@@ -1,0 +1,2 @@
+exports.speechmaticsAPIKey = "7vyIfsS3GeV0zK2hHFOyv1v4VU48o08m"
+exports.openaiAPIKey = "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"
