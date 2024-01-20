@@ -3,7 +3,8 @@ const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
 const { initialiseConnection } = require('./initialiseConnection');
 const { manageProcessingQueue } = require('./utils/manageProcessingQueue');
-const { modifyTranscript } = require('./transcript/modifyTranscript');
+const { handleTranscript } = require('./transcript/handleTranscript');
+const { handleAuthenticate } = require('./authenticate/handleAuthenticate');
 
 
 wss.on('connection', (ws) => {
@@ -27,9 +28,14 @@ wss.on('connection', (ws) => {
         processingQueue
     });
 
-    modifyTranscript({ 
+    handleTranscript({ 
         ws, 
         globals 
+    });
+
+    handleAuthenticate({
+        ws,
+        globals
     });
 
 

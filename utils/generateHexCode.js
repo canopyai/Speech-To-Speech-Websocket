@@ -1,5 +1,5 @@
 exports.generateRandomHex = ({
-    length
+    length = 6
 }) => {
     const characters = '0123456789ABCDEF';
     let hexCode = '';

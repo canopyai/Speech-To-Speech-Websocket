@@ -1,6 +1,6 @@
-const { initialiseTranscription } = require('./transcription/initialiseTranscription');
+const { initialiseSpeechmaticsTranscription } = require('./transcription/speechmaticsTranscription/initialiseTranscription');
 const { initialiseVAD } = require('./vad/initialiseVAD');
-
+const {initialiseDeepgramTranscription} = require('./transcription/deepgramTranscription/initialiseTranscription');
 exports.initialiseConnection = async ({
     session,
     ws,
@@ -8,12 +8,14 @@ exports.initialiseConnection = async ({
     processingQueue
 }) => {
 
-    initialiseTranscription({
+
+    initialiseDeepgramTranscription({
         session,
         ws,
         globals,
         processingQueue
     });
+
     initialiseVAD({
         ws,
         globals,

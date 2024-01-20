@@ -20,7 +20,15 @@ exports.generateResponse = async ({
     processingQueue, 
     createdAt
 }) => {
-    let processId = generateRandomHex(pIdLength);
+
+    // if (globals.isProcessingResponse) return;
+
+
+    console.log("generateResponse")
+
+    let {hexCode} = generateRandomHex(pIdLength);
+    
+    let processId = hexCode;
     
     globals.currentProcessId = processId;
     globals.isProcessingResponse = true;
@@ -35,18 +43,22 @@ exports.generateResponse = async ({
 
     globals.processingQueue.push(processingObject);
 
-    modifyThread({
-        globals,
-    });
 
+
+
+
+    globals.wordBuffer = []
+
+    console.log(globals.mainThread)
 
 
 
     const stream = await openai.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         messages: globals.mainThread,
         stream: true,
         temperature: 0,
+        max_tokens: 150,
 
     });
 
@@ -64,14 +76,18 @@ exports.generateResponse = async ({
                 sentence
             });
 
+
             if (shouldProcessContent({ sentence, part })) {
+              
+   
 
                 const processingObject = { 
                     id: Math.random().toString().substring(7), 
                     timestamp: Date.now(), 
                     sentence, 
                     createdAt, 
-                    dialogue: sentence.sentence
+                    dialogue: sentence.sentence, 
+                    parentProcessId: processId,
                     
                  };
 
@@ -83,7 +99,8 @@ exports.generateResponse = async ({
                 retrieveOpenAIAudio({
                     TTSSentence: TTSSentence,
                     process: processingObject,
-                    sentence
+                    sentence, 
+                    globals
                 })
             }
 

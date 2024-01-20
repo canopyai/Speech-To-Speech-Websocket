@@ -24,6 +24,7 @@ exports.modifyThread = ({
     }
 
     globals.finalTranscript = "";
+    
 
 
     

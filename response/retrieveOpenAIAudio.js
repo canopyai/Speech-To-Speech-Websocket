@@ -8,8 +8,13 @@ const openai = new OpenAI({
 exports.retrieveOpenAIAudio = async ({
     voice,
     TTSSentence, 
-    process
+    process, 
+    globals
 }) => {
+    
+    if(globals.currentProcessId !== process.parentProcessId) return;
+
+
     if (TTSSentence.trim()) {
         try {
             const response = await openai.audio.speech.create({
@@ -21,12 +26,12 @@ exports.retrieveOpenAIAudio = async ({
             const audioContent = await response.arrayBuffer();
             const base64String = Buffer.from(audioContent, 'binary').toString('base64');
             process.base64String = base64String;
-            console.log("Received response from OpenAI");
+    
 
             
         } catch (err) {
             console.error("Error in OpenAI Text-to-Speech:", err);
-            throw err;
+            // throw err;
         }
     } else {
 

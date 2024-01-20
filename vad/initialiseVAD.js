@@ -1,7 +1,7 @@
 const vad = require("@sentiment_technologies/vad-node");
 const { int16ToFloat32 } = require('./processFrame');
 
-const VAD_THRESHOLD = 0.7;
+const VAD_THRESHOLD = 0.6;
 let isSpeech = false;
 const sampleRate = 16000;
 const frameDuration = 200; 
@@ -48,7 +48,7 @@ exports.initialiseVAD = async ({
     ws.on('message', async function (message) {
         const { messageType, data } = JSON.parse(message);
     
-        if (messageType !== "audio") return;
+        if (messageType !== "vadAudio") return;
     
         const buffer = Buffer.from(data, 'base64');
 
