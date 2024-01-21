@@ -4,3 +4,4 @@
 # Ignore config.js file
 /config.js
 .DS_Store
+.vscode
