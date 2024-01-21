@@ -1,5 +1,6 @@
 const { createClient, LiveTranscriptionEvents } = require("@deepgram/sdk");
-const deepgramClient = createClient("578b7b7bdc1d9794c336abc735baeeba3fbc612e");
+const {deepgramApiKey} = require('../../config');
+const deepgramClient = createClient(deepgramApiKey);
 const { modifyTranscript } = require('../../transcript/modifyTranscript');
 const { generateResponse } = require('../../response/generateResponse');
 const ignoreWords = ["hi", "good", "hey", "yeah"]
