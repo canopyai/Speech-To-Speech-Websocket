@@ -12,10 +12,17 @@ exports.initialiseDecorator = ({
     decoratorSocket.on('connect', () => {
         console.log('Connected to phonemizer server');
 
-    })
+    }) 
     decoratorSocket.on('phonemize_response', (data) => {
+    
         const {phonemes, processId} = JSON.parse(data);
         console.log("phonemize_response", processId, Date.now())
+        processingQueue.forEach((processingObject, index) => {
+            if (processingObject.id === processId) {
+                processingObject.phonemesVector = phonemes;
+            } 
+
+        })
 
     });
 

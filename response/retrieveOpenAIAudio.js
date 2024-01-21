@@ -28,12 +28,12 @@ exports.retrieveOpenAIAudio = async ({
 
             const audioContent = await response.arrayBuffer();
             const base64String = Buffer.from(audioContent, 'binary').toString('base64');
-            decoratePhonemes({
-                audioData: base64String,
-                globals, 
-                ws, 
-                process
-            });
+            // decoratePhonemes({
+            //     audioData: base64String,
+            //     globals, 
+            //     ws, 
+            //     process
+            // });
             process.base64String = base64String;
 
             console.log("tts engine response",process.id, Date.now())

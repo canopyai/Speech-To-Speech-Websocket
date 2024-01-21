@@ -1,14 +1,16 @@
 const axios = require("axios")
-const elevenlabsKey = "a9e3d4fc4bf7e281083a53972fd5b3e3"
+const elevenlabsKey = "a0db3b43532337aaffa8178d40099086"
+const { decoratePhonemes } = require("../decorator/decoratePhonemes");
 
 exports.retrieveElevenLabsAudio = async ({
-    voiceId,
-    elevenLabsSentence,
-    process, 
-    sentence
+    voiceId = "21m00Tcm4TlvDq8ikWAM",
+    process,
+    TTSSentence,
+    globals,
+    ws,
 }) => {
 
-    if (elevenLabsSentence.trim()) {
+    if (TTSSentence.trim()) {
 
         const url = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?optimize_streaming_latency=4`;
         const headers = {
@@ -18,8 +20,9 @@ exports.retrieveElevenLabsAudio = async ({
         };
 
         const data = {
-            text: elevenLabsSentence,
-            modelId: 'eleven_monolingual_v1',
+            text: TTSSentence,
+            modelId: 'eleven_turbo_v2',
+            
             voiceSettings: {
                 stability: 0.5,
                 similarityBoost: 0.5
@@ -29,21 +32,33 @@ exports.retrieveElevenLabsAudio = async ({
 
 
         let response;
-        try{
-             response = await axios.post(url, data, { headers: headers, responseType: 'arraybuffer' });
-        } catch(err){
-            console.log(err)
+        let base64String;
+        try {
+            response = await axios.post(url, data, { headers: headers, responseType: 'arraybuffer' });
+            base64String = Buffer.from(response.data, 'binary').toString('base64');
+
+        } catch (err) {
+            console.log(Object.keys(err))
+            console.log(JSON.parse(err.response.data))
         }
 
-        const base64String = Buffer.from(response.data, 'binary').toString('base64');
 
-        
+        decoratePhonemes({
+            audioData: base64String,
+            globals,
+            ws,
+            process
+        });
+
+        process.base64String = base64String;
 
 
-        console.log("received response from 11 labs")
+
+
+        console.log("tts engine response", process.id, Date.now())
     } else {
-        
-        throw "Empty sentence sent to 11 labs!"
+
+        return "Empty sentence sent to 11 labs!"
     }
 
 
