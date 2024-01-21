@@ -1,4 +1,4 @@
-exports.parsePart = ({ part, sentence }) => {
+export const parsePart = ({ part, sentence }) => {
     let content = part.choices[0].delta.content;
 
     sentence.isPreviousContentNumber = /^\d+$/.test(sentence.previous_content);

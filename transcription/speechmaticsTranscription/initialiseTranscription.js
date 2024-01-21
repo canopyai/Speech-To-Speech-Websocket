@@ -1,11 +1,12 @@
-const { speechmaticsAPIKey } = require('../../config');
-const { RealtimeSession } = require('speechmatics');
+import { speechmaticsAPIKey } from '../../config.js';
 
-const { handlePartial } = require('./handlePartial');
-const { detectResponse } = require('../../response/detectResponse');
+import speechmatics from 'speechmatics';
+const { RealtimeSession } = speechmatics;
 
+import { handlePartial } from './handlePartial.js';
+import { detectResponse } from '../../response/detectResponse.js';
 
-exports.initialiseSpeechmaticsTranscription = async ({
+export const initialiseSpeechmaticsTranscription = async ({
     session,
     ws,
     processingQueue,

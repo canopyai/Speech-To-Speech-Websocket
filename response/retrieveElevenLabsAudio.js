@@ -1,8 +1,8 @@
-const axios = require("axios")
+import axios from "axios";
 const elevenlabsKey = "a0db3b43532337aaffa8178d40099086"
-const { decoratePhonemes } = require("../decorator/decoratePhonemes");
+import { decoratePhonemes } from "../decorator/decoratePhonemes.js";
 
-exports.retrieveElevenLabsAudio = async ({
+export const retrieveElevenLabsAudio = async ({
     voiceId = "21m00Tcm4TlvDq8ikWAM",
     process,
     TTSSentence,

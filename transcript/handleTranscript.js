@@ -1,6 +1,6 @@
-const { modifyTranscript } = require("./modifyTranscript");
+import { modifyTranscript } from "./modifyTranscript.js";
 
-exports.handleTranscript = ({
+export const handleTranscript = ({
     ws,
     globals
 }) => {

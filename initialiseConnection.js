@@ -1,7 +1,8 @@
-const { initialiseSpeechmaticsTranscription } = require('./transcription/speechmaticsTranscription/initialiseTranscription');
-const { initialiseVAD } = require('./vad/initialiseVAD');
-const {initialiseDeepgramTranscription} = require('./transcription/deepgramTranscription/initialiseTranscription');
-exports.initialiseConnection = async ({
+import { initialiseSpeechmaticsTranscription } from './transcription/speechmaticsTranscription/initialiseTranscription.js';
+import { initialiseVAD } from './vad/initialiseVAD.js';
+import { initialiseDeepgramTranscription } from './transcription/deepgramTranscription/initialiseTranscription.js';
+
+export const initialiseConnection = async ({
     session,
     ws,
     globals,

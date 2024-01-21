@@ -1,4 +1,4 @@
-exports.int16ToFloat32 = (inputArray) => {
+export const int16ToFloat32 = (inputArray) => {
     const buffer = Buffer.from(inputArray);
     var output = new Float32Array(inputArray.length / 2);
     for (var i = 0; i < inputArray.length; i += 2) {

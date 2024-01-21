@@ -1,4 +1,4 @@
-exports.reformatFractions = (str) => {
+export const reformatFractions = (str) => {
     // Check for a slash in the string
     if (!str.includes('/')) {
         return false;

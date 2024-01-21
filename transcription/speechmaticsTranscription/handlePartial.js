@@ -1,7 +1,6 @@
-const { constructFinalTranscriptFromWords } = require('./constructFinalTranscriptFromWords');
+import { constructFinalTranscriptFromWords } from './constructFinalTranscriptFromWords.js';
 
-
-exports.handlePartial = ({
+export const handlePartial = ({
     message,
     globals
 }) => {

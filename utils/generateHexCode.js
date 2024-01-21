@@ -1,4 +1,4 @@
-exports.generateRandomHex = ({
+export const generateRandomHex = ({
     length = 6
 }) => {
     const characters = '0123456789ABCDEF';

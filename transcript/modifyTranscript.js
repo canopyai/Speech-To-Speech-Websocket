@@ -1,6 +1,6 @@
 const permittedRoles = ["user", "assistant", "system"];
 
-exports.modifyTranscript = ({
+export const modifyTranscript = ({
     globals,
     role,
     content

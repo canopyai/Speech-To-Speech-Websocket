@@ -1,12 +1,12 @@
-const OpenAI = require("openai");
-const { openaiAPIKey } = require("../config");
-const { decoratePhonemes } = require("../decorator/decoratePhonemes");
+import OpenAI from "openai";
+import { openaiAPIKey } from "../config.js";
+import { decoratePhonemes } from "../decorator/decoratePhonemes.js";
 
 const openai = new OpenAI({
     apiKey: openaiAPIKey
 });
 
-exports.retrieveOpenAIAudio = async ({
+export const retrieveOpenAIAudio = async ({
     voice,
     TTSSentence, 
     process, 

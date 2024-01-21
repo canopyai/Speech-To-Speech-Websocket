@@ -1,4 +1,4 @@
-exports.modifyThread = ({
+export const modifyThread = ({
     globals
 }) => {
 

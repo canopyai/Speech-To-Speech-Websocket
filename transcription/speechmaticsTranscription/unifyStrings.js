@@ -1,4 +1,4 @@
-exports.unifyStrings = (str1, str2) => {
+export const unifyStrings = (str1, str2) => {
 
     const overlapLength = Math.min(str1.length, str2.length);
 

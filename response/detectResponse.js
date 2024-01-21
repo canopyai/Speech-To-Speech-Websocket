@@ -1,5 +1,6 @@
-const { generateResponse } = require('./generateResponse');
-exports.detectResponse = ({
+import { generateResponse } from './generateResponse.js';
+
+export const detectResponse = ({
     globals,
     processingQueue,
 
