@@ -5,6 +5,7 @@ const { initialiseConnection } = require('./initialiseConnection');
 const { manageProcessingQueue } = require('./utils/manageProcessingQueue');
 const { handleTranscript } = require('./transcript/handleTranscript');
 const { handleAuthenticate } = require('./authenticate/handleAuthenticate');
+const { initialiseDecorator } = require('./decorator/initialiseDecorator');
 
 
 wss.on('connection', (ws) => {
@@ -20,6 +21,7 @@ wss.on('connection', (ws) => {
     globals.lastTranscriptionTimeProcessed = 0;
     globals.wordBuffer = [];
     processingQueue = [];
+    globals.decoratorSocket = null
 
     initialiseConnection({ 
         ws, 
@@ -48,7 +50,7 @@ wss.on('connection', (ws) => {
     }, 100);
 
 
-
+    initialiseDecorator({globals, ws, processingQueue})
 
 
 

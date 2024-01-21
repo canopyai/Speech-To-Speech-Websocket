@@ -37,6 +37,8 @@ exports.retrieveElevenLabsAudio = async ({
 
         const base64String = Buffer.from(response.data, 'binary').toString('base64');
 
+        
+
 
         console.log("received response from 11 labs")
     } else {

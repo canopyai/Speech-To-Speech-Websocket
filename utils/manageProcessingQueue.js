@@ -27,7 +27,6 @@ exports.manageProcessingQueue = ({
 
         if (base64String) {
 
-            console.log("sending audio to client");
 
             ws.send(
                 JSON.stringify((

@@ -12,6 +12,7 @@
     "@deepgram/sdk": "^3.0.1",
     "@sentiment_technologies/vad-node": "^0.0.7",
     "openai": "^4.24.7",
+    "socket.io-client": "^4.7.4",
     "speechmatics": "^3.1.6",
     "written-number": "^0.11.1",
     "ws": "^8.16.0"

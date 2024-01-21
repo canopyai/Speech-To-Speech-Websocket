@@ -63,7 +63,8 @@ exports.initialiseDeepgramTranscription = async ({
                 generateResponse({
                     globals,
                     processingQueue,
-                    createdAt: Date.now()
+                    createdAt: Date.now(), 
+                    ws
                 });
             
 

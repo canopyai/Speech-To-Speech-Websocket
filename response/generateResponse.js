@@ -6,6 +6,7 @@ const { shouldProcessContent } = require('./shouldProcessContent');
 const { retrieveElevenLabsAudio } = require('./retrieveElevenLabsAudio');
 const { reformatTextForTTS } = require('./reformatTextForTTS');
 const { retrieveOpenAIAudio } = require('./retrieveOpenAIAudio');
+const { decorateGraphemes } = require('../decorator/decorateGraphemes');
 
 const pIdLength = 13;
 
@@ -16,9 +17,10 @@ const openai = new OpenAI({
 
 
 exports.generateResponse = async ({
-    globals, 
-    processingQueue, 
-    createdAt
+    globals,
+    processingQueue,
+    createdAt,
+    ws
 }) => {
 
     // if (globals.isProcessingResponse) return;
@@ -26,15 +28,15 @@ exports.generateResponse = async ({
 
     console.log("generateResponse")
 
-    let {hexCode} = generateRandomHex(pIdLength);
-    
+    let { hexCode } = generateRandomHex(pIdLength);
+
     let processId = hexCode;
-    
+
     globals.currentProcessId = processId;
     globals.isProcessingResponse = true;
 
     const sentence = { sentence: "", previousContent: "" }
-    
+
 
     const processingObject = {
         processId,
@@ -67,7 +69,7 @@ exports.generateResponse = async ({
 
             if (globals.currentProcessId !== processId) {
                 stream.controller.abort()
-     
+
                 break;
             }
 
@@ -78,29 +80,37 @@ exports.generateResponse = async ({
 
 
             if (shouldProcessContent({ sentence, part })) {
-              
-   
 
-                const processingObject = { 
-                    id: Math.random().toString().substring(7), 
-                    timestamp: Date.now(), 
-                    sentence, 
-                    createdAt, 
-                    dialogue: sentence.sentence, 
+
+
+                const processingObject = {
+                    id: Math.random().toString().substring(7),
+                    timestamp: Date.now(),
+                    sentence,
+                    createdAt,
+                    dialogue: sentence.sentence,
                     parentProcessId: processId,
-                    
-                 };
+
+                };
 
                 processingQueue.push(processingObject);
-         
+
 
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
+
+                decorateGraphemes({
+                    text:TTSSentence,
+                    process: processingObject,
+                    globals
+                })
+
                 retrieveOpenAIAudio({
                     TTSSentence: TTSSentence,
                     process: processingObject,
-                    sentence, 
-                    globals
+                    sentence,
+                    globals,
+                    ws
                 })
             }
 

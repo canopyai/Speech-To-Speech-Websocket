@@ -1,5 +1,6 @@
 const OpenAI = require("openai");
 const { openaiAPIKey } = require("../config");
+const { decoratePhonemes } = require("../decorator/decoratePhonemes");
 
 const openai = new OpenAI({
     apiKey: openaiAPIKey
@@ -9,7 +10,9 @@ exports.retrieveOpenAIAudio = async ({
     voice,
     TTSSentence, 
     process, 
-    globals
+    globals, 
+    ws, 
+
 }) => {
     
     if(globals.currentProcessId !== process.parentProcessId) return;
@@ -25,7 +28,15 @@ exports.retrieveOpenAIAudio = async ({
 
             const audioContent = await response.arrayBuffer();
             const base64String = Buffer.from(audioContent, 'binary').toString('base64');
+            decoratePhonemes({
+                audioData: base64String,
+                globals, 
+                ws, 
+                process
+            });
             process.base64String = base64String;
+
+            console.log("tts engine response",process.id, Date.now())
     
 
             
