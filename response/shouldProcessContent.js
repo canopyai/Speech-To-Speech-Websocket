@@ -1,4 +1,4 @@
-exports.shouldProcessContent = ({ sentence, part }) => {
+export const shouldProcessContent = ({ sentence, part }) => {
 
     const content = sentence.previousContent;
 

@@ -1,11 +1,12 @@
-const WebSocket = require('ws');
+import { WebSocketServer } from 'ws';
 
-const wss = new WebSocket.Server({ port: 8080 });
-const { initialiseConnection } = require('./initialiseConnection');
-const { manageProcessingQueue } = require('./utils/manageProcessingQueue');
-const { handleTranscript } = require('./transcript/handleTranscript');
-const { handleAuthenticate } = require('./authenticate/handleAuthenticate');
-const { initialiseDecorator } = require('./decorator/initialiseDecorator');
+const wss = new WebSocketServer({ port: 8080 });
+
+import { initialiseConnection } from './initialiseConnection.js';
+import { manageProcessingQueue } from './utils/manageProcessingQueue.js';
+import { handleTranscript } from './transcript/handleTranscript.js';
+import { handleAuthenticate } from './authenticate/handleAuthenticate.js';
+import { initialiseDecorator } from './decorator/initialiseDecorator.js';
 
 
 wss.on('connection', (ws) => {
@@ -20,19 +21,19 @@ wss.on('connection', (ws) => {
     globals.finalTranscript = '';
     globals.lastTranscriptionTimeProcessed = 0;
     globals.wordBuffer = [];
-    processingQueue = [];
+    let processingQueue = [];
     globals.decoratorSocket = null
 
-    initialiseConnection({ 
-        ws, 
-        session, 
-        globals, 
+    initialiseConnection({
+        ws,
+        session,
+        globals,
         processingQueue
     });
 
-    handleTranscript({ 
-        ws, 
-        globals 
+    handleTranscript({
+        ws,
+        globals
     });
 
     handleAuthenticate({
@@ -50,7 +51,7 @@ wss.on('connection', (ws) => {
     }, 100);
 
 
-    initialiseDecorator({globals, ws, processingQueue})
+    initialiseDecorator({ globals, ws, processingQueue })
 
 
 

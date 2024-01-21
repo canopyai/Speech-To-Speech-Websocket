@@ -1,5 +1,6 @@
-const { authenticate } = require('./authenticate');
-exports.handleAuthenticate = async ({
+import { authenticate } from './authenticate.js';
+
+export const handleAuthenticate = async ({
     ws, 
     globals
 }) => {

@@ -1,4 +1,4 @@
-exports.decorateGraphemes = async ({
+export const decorateGraphemes = async ({
     text,
     globals,
     ws,

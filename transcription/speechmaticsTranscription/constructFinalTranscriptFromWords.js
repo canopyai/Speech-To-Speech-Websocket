@@ -1,4 +1,4 @@
-exports.constructFinalTranscriptFromWords = ({
+export const constructFinalTranscriptFromWords = ({
     globals
 }) => {
     // Sort the wordBuffer array by start_time in ascending order

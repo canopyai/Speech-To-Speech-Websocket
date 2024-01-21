@@ -1,5 +1,5 @@
 
-exports.manageProcessingQueue = ({
+export const manageProcessingQueue = ({
     processingQueue,
     globals,
     ws

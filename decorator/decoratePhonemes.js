@@ -1,4 +1,4 @@
-exports.decoratePhonemes = async ({
+export const decoratePhonemes = async ({
     audioData,
     globals,
     ws,

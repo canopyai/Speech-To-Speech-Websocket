@@ -1,5 +1,5 @@
-const vad = require("@sentiment_technologies/vad-node");
-const { int16ToFloat32 } = require('./processFrame');
+import vad from "@sentiment_technologies/vad-node";
+import { int16ToFloat32 } from './processFrame.js';
 
 const VAD_THRESHOLD = 0.6;
 let isSpeech = false;
@@ -7,7 +7,7 @@ const sampleRate = 16000;
 const frameDuration = 200; 
 const frameSize = (sampleRate / 1000) * frameDuration;
 
-exports.initialiseVAD = async ({ 
+export const initialiseVAD = async ({ 
     ws, 
     globals, 
     processingQueue
@@ -18,7 +18,7 @@ exports.initialiseVAD = async ({
 
     const myvad = await vad.RealTimeVAD.new(sampleRate, {
         onFrameProcessed: (probabilities) => {
-            time_delta = Date.now() - globals.startTime;
+            let time_delta = Date.now() - globals.startTime;
             if (probabilities.isSpeech > VAD_THRESHOLD && isSpeech === false) {
                 isSpeech = true;
                 globals.lastVADSpeechStarted = Date.now();

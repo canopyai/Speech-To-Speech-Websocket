@@ -1,7 +1,7 @@
-const writtenNumber = require('written-number');
-const { reformatFractions } = require('./reformatFractions.js');
+import writtenNumber from 'written-number';
+import { reformatFractions } from './reformatFractions.js';
 
-exports.reformatTextForTTS = ({ sentence }) => {
+export const reformatTextForTTS = ({ sentence }) => {
     let str = sentence.sentence;
 
     str = str.replace(/(\d),(\d)/g, '$1$2');

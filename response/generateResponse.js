@@ -1,22 +1,22 @@
-const { generateRandomHex } = require('../utils/generateHexCode');
-const { modifyThread } = require('./modifyThread');
-const OpenAI = require('openai');
-const { parsePart } = require('./parsePart');
-const { shouldProcessContent } = require('./shouldProcessContent');
-const { retrieveElevenLabsAudio } = require('./retrieveElevenLabsAudio');
-const { reformatTextForTTS } = require('./reformatTextForTTS');
-const { retrieveOpenAIAudio } = require('./retrieveOpenAIAudio');
-const { decorateGraphemes } = require('../decorator/decorateGraphemes');
+import { generateRandomHex } from '../utils/generateHexCode.js';
+import { modifyThread } from './modifyThread.js';
+import OpenAI from 'openai';
+import { parsePart } from './parsePart.js';
+import { shouldProcessContent } from './shouldProcessContent.js';
+import { retrieveElevenLabsAudio } from './retrieveElevenLabsAudio.js';
+import { reformatTextForTTS } from './reformatTextForTTS.js';
+import { retrieveOpenAIAudio } from './retrieveOpenAIAudio.js';
+import { decorateGraphemes } from '../decorator/decorateGraphemes.js';
 
 const pIdLength = 13;
 
-const { openaiAPIKey } = require('../config');
+import { openaiAPIKey } from '../config.js';
 const openai = new OpenAI({
     apiKey: openaiAPIKey
 });
 
 
-exports.generateResponse = async ({
+export const generateResponse = async ({
     globals,
     processingQueue,
     createdAt,

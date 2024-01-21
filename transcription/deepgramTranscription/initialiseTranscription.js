@@ -1,10 +1,13 @@
-const { createClient, LiveTranscriptionEvents } = require("@deepgram/sdk");
-const {deepgramApiKey} = require('../../config');
+import { createClient, LiveTranscriptionEvents } from "@deepgram/sdk";
+import {deepgramApiKey} from '../../config.js';
+import { modifyTranscript } from '../../transcript/modifyTranscript.js';
+import { generateResponse } from '../../response/generateResponse.js';
+
+
 const deepgramClient = createClient(deepgramApiKey);
-const { modifyTranscript } = require('../../transcript/modifyTranscript');
-const { generateResponse } = require('../../response/generateResponse');
 const ignoreWords = ["hi", "good", "hey", "yeah"]
-exports.initialiseDeepgramTranscription = async ({
+
+export const initialiseDeepgramTranscription = async ({
     session,
     ws,
     processingQueue,
