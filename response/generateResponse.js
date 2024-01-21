@@ -112,6 +112,15 @@ exports.generateResponse = async ({
                     globals,
                     ws
                 })
+
+                // retrieveElevenLabsAudio({
+                //     TTSSentence: TTSSentence,
+                //     process: processingObject,
+                //     sentence,
+                //     globals,
+                //     ws
+
+                // })
             }
 
         } catch (error) {
