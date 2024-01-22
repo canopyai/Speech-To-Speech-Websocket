@@ -2,39 +2,37 @@ import { authenticate } from './authenticate.js';
 
 export const handleAuthenticate = async ({
     ws,
-    globals
+    globals,
+    data
 }) => {
-    ws.on('message', async function (message) {
-        const { data, messageType } = JSON.parse(message);
-        const { authToken } = data;
+    
+    const { authToken } = data;
 
-        if (messageType !== "authenticate") return;
+    const { success, projectId, error } = await authenticate(authToken);
 
-        const { success, projectId, error } = await authenticate(authToken);
-
-        if (!success) {
-
-            ws.send(JSON.stringify({
-                messageType: "authenticate",
-                success: "false",
-                error
-            }));
-
-            return;
-        }
-
-        globals.authenticated = true;
-        globals.projectId = projectId;
+    if (!success) {
 
         ws.send(JSON.stringify({
             messageType: "authenticate",
-            message: "You are now authenticated.",
-            success: "true"
+            success: "false",
+            error
         }));
 
-        return;
-    })
+        ws.close(4000, "Authentication failed");
 
+        return;
+    }
+
+    globals.authenticated = true;
+    globals.projectId = projectId;
+
+    ws.send(JSON.stringify({
+        messageType: "authenticate",
+        message: "You are now authenticated.",
+        success: "true"
+    }));
+
+    return;
 
 }
 // if (globals.isProcessingResponse) return;

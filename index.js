@@ -25,21 +25,35 @@ wss.on('connection', (ws) => {
     globals.decoratorSocket = null;
     globals.projectId = null;
 
+
+    ws.on('message', async function (message) {
+        const { messageType, data } = JSON.parse(message);
+
+        switch (messageType) {
+            case "transcript":
+                console.log("project id: ", globals.projectId);
+                handleTranscript({
+                    ws,
+                    globals,
+                    data
+                });
+                break;
+            case "authenticate":
+                handleAuthenticate({
+                    ws,
+                    globals,
+                    data
+                });
+                break;
+        }
+    });
+
+
     initialiseConnection({
         ws,
         session,
         globals,
         processingQueue
-    });
-
-    handleTranscript({
-        ws,
-        globals
-    });
-
-    handleAuthenticate({
-        ws,
-        globals
     });
 
 
