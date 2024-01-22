@@ -22,7 +22,8 @@ wss.on('connection', (ws) => {
     globals.lastTranscriptionTimeProcessed = 0;
     globals.wordBuffer = [];
     let processingQueue = [];
-    globals.decoratorSocket = null
+    globals.decoratorSocket = null;
+    globals.projectId = null;
 
     initialiseConnection({
         ws,
