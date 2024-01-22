@@ -13,7 +13,7 @@ export const decorateGraphemes = async ({
         processId:id
     }
 
-    decoratorSocket.emit('graphemize', decoratorObject);
+    // decoratorSocket.emit('graphemize', decoratorObject);
 
 
 }
