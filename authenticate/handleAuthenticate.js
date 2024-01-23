@@ -1,40 +1,46 @@
 import { authenticate } from './authenticate.js';
+import { initialiseFirebaseSessionRecord } from '../firebase/firestore.js';
 
 export const handleAuthenticate = async ({
     ws,
-    globals
+    globals,
+    data
 }) => {
-    ws.on('message', async function (message) {
-        const { data, messageType } = JSON.parse(message);
-        const { authToken } = data;
 
-        if (messageType !== "authenticate") return;
+    const { authToken } = data;
 
-        const { success, projectId, error } = await authenticate(authToken);
+    const { success, projectId, error } = await authenticate(authToken);
 
-        if (!success) {
-
-            ws.send(JSON.stringify({
-                messageType: "authenticate",
-                success: "false",
-                error
-            }));
-
-            return;
-        }
-
-        globals.authenticated = true;
-        globals.projectId = projectId;
+    if (!success) {
 
         ws.send(JSON.stringify({
             messageType: "authenticate",
-            message: "You are now authenticated.",
-            success: "true"
+            success: "false",
+            error
         }));
 
-        return;
-    })
+        console.log("Authentication failed.")
 
+        ws.close(4000, "Authentication failed");
+
+        return;
+    }
+
+    const sessionId = await initialiseFirebaseSessionRecord(projectId);
+
+    console.log("session id: ", sessionId);
+
+    globals.authenticated = true;
+    globals.projectId = projectId;
+    globals.sessionId = sessionId;
+
+    ws.send(JSON.stringify({
+        messageType: "authenticate",
+        message: "You are now authenticated.",
+        success: "true"
+    }));
+
+    return;
 
 }
 // if (globals.isProcessingResponse) return;
