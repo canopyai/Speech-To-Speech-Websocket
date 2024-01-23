@@ -21,6 +21,7 @@ export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
         const response = await requestPromise(options);
         const { phonemes } = response;
         process.phonemesVector = phonemes;
+
     } catch (error) {
         console.error('Error:', error.message);
     }
