@@ -25,8 +25,8 @@ export const manageProcessingQueue = ({
         const { base64String, phonemesVector } = processingQueue[0];
 
 
-        // if (base64String && phonemesVector) {
-        if (base64String ) {
+        if (base64String && phonemesVector) {
+        // if (base64String ) {
 
 
             ws.send(

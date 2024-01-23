@@ -71,6 +71,7 @@ export const initialiseDeepgramTranscription = async ({
                     ws
                 });
             
+                
 
                 // ws.send(JSON.stringify(data));
             });
