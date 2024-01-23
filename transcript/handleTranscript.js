@@ -11,7 +11,8 @@ export const handleTranscript = ({
     const { success, error } = modifyTranscript({
         globals,
         role,
-        content
+        content,
+        ws
     });
 
     if (!success) {

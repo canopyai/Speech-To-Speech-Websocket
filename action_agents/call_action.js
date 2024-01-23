@@ -10,10 +10,9 @@ export const callActionAgent = async (action, data, endpoint) => {
 
         console.log("responseJson: ", response.data);
 
-        return response.data;
-        
+        return { success: true, data: response.data };
+
     } catch (error) {
-        console.error("Error calling action agent:", error);
-        throw error;
+        return { success: false, data: error }
     }
 }
