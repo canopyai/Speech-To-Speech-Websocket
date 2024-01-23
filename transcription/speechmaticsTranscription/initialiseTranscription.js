@@ -73,5 +73,4 @@ export const initialiseSpeechmaticsTranscription = async ({
         session.stop();
     });
 
-
 }

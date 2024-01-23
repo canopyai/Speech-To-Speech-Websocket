@@ -8,6 +8,8 @@ import { handleTranscript } from './transcript/handleTranscript.js';
 import { handleAuthenticate } from './authenticate/handleAuthenticate.js';
 import { initialiseDecorator } from './decorator/initialiseDecorator.js';
 
+import { writeSessionCloseToFirebase } from './firebase/firestore.js';
+
 
 wss.on('connection', (ws) => {
 
@@ -24,6 +26,9 @@ wss.on('connection', (ws) => {
     let processingQueue = [];
     globals.decoratorSocket = null;
     globals.projectId = null;
+    globals.sessionId = null;
+
+    globals.baseAgentUrl = null;
 
 
     ws.on('message', async function (message) {
@@ -39,6 +44,13 @@ wss.on('connection', (ws) => {
                 });
                 break;
             case "authenticate":
+                
+                if (data.initialSystemMessage) {
+                    globals.mainThread.push({ role: "system", content: data.initialSystemMessage });
+                    globals.baseAgentUrl = data.baseAgentUrl;
+                }
+
+
                 handleAuthenticate({
                     ws,
                     globals,
@@ -66,8 +78,27 @@ wss.on('connection', (ws) => {
     }, 100);
 
 
-    initialiseDecorator({ globals, ws, processingQueue })
+    initialiseDecorator({ globals, ws, processingQueue });
 
+    ws.onclose = function(event) {
+
+        let eventData = {
+
+        }
+
+        if (event.reason == "Authentication failed") {
+            return;
+        }
+
+        if (event.wasClean) {
+            console.log(`Connection closed cleanly, code=${event.code}, reason=${event.reason}`);
+        } else {
+            console.log('Connection died');
+        }
+
+        writeSessionCloseToFirebase(globals.projectId, globals.sessionId)
+    };
+    
 
 
 });
