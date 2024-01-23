@@ -4,10 +4,11 @@ import { callActionAgent } from "../action_agents/call_action.js";
 
 const permittedRoles = ["user", "assistant", "system"];
 
-export const modifyTranscript = ({
+export const modifyTranscript = async ({
     globals,
     role,
-    content
+    content,
+    ws
 }) => {
 
     if (permittedRoles.includes(role)) {
@@ -27,7 +28,13 @@ export const modifyTranscript = ({
             const { tagName, jsonObject } = extractAgentFromTranscript(globals.mainThread[globals.mainThread.length - 1].content);
 
             if (tagName) {
-                callActionAgent(tagName, jsonObject, globals.baseAgentUrl);
+                const { success, data } = await callActionAgent(tagName, jsonObject, globals.baseAgentUrl);
+
+                ws.send(JSON.stringify({
+                    messageType: "actionAgentResponse",
+                    success,
+                    data
+                }));
             }
 
 
