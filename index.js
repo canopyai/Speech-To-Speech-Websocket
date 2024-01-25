@@ -6,7 +6,6 @@ import { initialiseConnection } from './initialiseConnection.js';
 import { manageProcessingQueue } from './utils/manageProcessingQueue.js';
 import { handleTranscript } from './transcript/handleTranscript.js';
 import { handleAuthenticate } from './authenticate/handleAuthenticate.js';
-import { initialiseDecorator } from './decorator/initialiseDecorator.js';
 
 import { writeSessionCloseToFirebase } from './firebase/firestore.js';
 
@@ -36,7 +35,7 @@ wss.on('connection', (ws) => {
 
         switch (messageType) {
             case "transcript":
-                console.log("project id: ", globals.projectId);
+                // console.log("project id: ", globals.projectId);
                 handleTranscript({
                     ws,
                     globals,
@@ -78,7 +77,6 @@ wss.on('connection', (ws) => {
     }, 100);
 
 
-    initialiseDecorator({ globals, ws, processingQueue });
 
     ws.onclose = function(event) {
 

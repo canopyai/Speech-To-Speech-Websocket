@@ -34,7 +34,9 @@ export const retrieveElevenLabsAudio = async ({
         let response;
         let base64String;
         try {
+            let initialTime = Date.now();
             response = await axios.post(url, data, { headers: headers, responseType: 'arraybuffer' });
+            console.log("11 labs response time:", Date.now() - initialTime);
             base64String = Buffer.from(response.data, 'binary').toString('base64');
 
         } catch (err) {
@@ -43,12 +45,12 @@ export const retrieveElevenLabsAudio = async ({
         }
 
 
-        decoratePhonemes({
-            audioData: base64String,
-            globals,
-            ws,
-            process
-        });
+        // decoratePhonemes({
+        //     audioData: base64String,
+        //     globals,
+        //     ws,
+        //     process
+        // });
 
         process.base64String = base64String;
 
