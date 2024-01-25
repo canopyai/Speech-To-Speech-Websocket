@@ -28,7 +28,10 @@ export const modifyTranscript = async ({
             const { tagName, jsonObject } = extractAgentFromTranscript(globals.mainThread[globals.mainThread.length - 1].content);
 
             if (tagName) {
-                const { success, data } = await callActionAgent(tagName, jsonObject, globals.baseAgentUrl);
+
+                const endpoint = globals.actionAgents.find((actionAgent) => actionAgent.action_id === tagName).endpoint;
+
+                const { success, data } = await callActionAgent(tagName, jsonObject, endpoint);
 
                 ws.send(JSON.stringify({
                     messageType: "actionAgentResponse",
