@@ -11,8 +11,7 @@ export const handleAuthenticate = async ({
 
     const { success, projectId, error } = await authenticate(authToken);
 
-    // if (!success) {
-    if (false) {
+    if (!success) {
 
         ws.send(JSON.stringify({
             messageType: "authenticate",

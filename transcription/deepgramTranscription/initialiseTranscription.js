@@ -1,5 +1,5 @@
 import { createClient, LiveTranscriptionEvents } from "@deepgram/sdk";
-import {deepgramApiKey} from '../../config.js';
+import { deepgramApiKey } from '../../config.js';
 import { modifyTranscript } from '../../transcript/modifyTranscript.js';
 import { generateResponse } from '../../response/generateResponse.js';
 
@@ -35,10 +35,10 @@ export const initialiseDeepgramTranscription = async ({
 
 
                 const finalTranscript = data.channel.alternatives[0].transcript;
-            
-                if(!finalTranscript.trim()) return;
-                if(finalTranscript.trim().length < 3) return;
-                
+
+                if (!finalTranscript.trim()) return;
+                if (finalTranscript.trim().length < 3) return;
+
                 let shouldReturn = false;
                 for (const word of ignoreWords) {
                     if (finalTranscript.trim() === word) {
@@ -46,10 +46,10 @@ export const initialiseDeepgramTranscription = async ({
                         break; // Exit the loop if condition is met
                     }
                 }
-            
-                if (shouldReturn) return; 
 
-                const {success, error} = modifyTranscript({
+                if (shouldReturn) return;
+
+                const { success, error } = modifyTranscript({
                     globals,
                     role: "user",
                     content: finalTranscript
@@ -62,16 +62,14 @@ export const initialiseDeepgramTranscription = async ({
                 //         finalTranscript
                 //     })
                 // )
-         
+
 
                 generateResponse({
                     globals,
                     processingQueue,
-                    createdAt: Date.now(), 
+                    createdAt: Date.now(),
                     ws
                 });
-            
-                
 
                 // ws.send(JSON.stringify(data));
             });

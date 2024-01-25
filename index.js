@@ -9,7 +9,13 @@ import { handleAuthenticate } from './authenticate/handleAuthenticate.js';
 import { initialiseDecorator } from './decorator/initialiseDecorator.js';
 
 import { writeSessionCloseToFirebase } from './firebase/firestore.js';
+import { generateActionAgentsSystemPrompt } from './action_agents/generate_actions_prompt.js';
 
+import { handleReadDialogue } from './canopy_methods/handleReadDialogue.js';
+import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
+import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
+
+const permittedRoles = ["user", "assistant", "system"];
 
 wss.on('connection', (ws) => {
 
@@ -19,6 +25,7 @@ wss.on('connection', (ws) => {
     let globals = {};
 
     globals.mainThread = [];
+    globals.messageThreadLength = 0;
     globals.processingQueue = [];
     globals.finalTranscript = '';
     globals.lastTranscriptionTimeProcessed = 0;
@@ -28,7 +35,8 @@ wss.on('connection', (ws) => {
     globals.projectId = null;
     globals.sessionId = null;
 
-    globals.baseAgentUrl = null;
+
+    globals.actionAgents = null;
 
 
     ws.on('message', async function (message) {
@@ -43,13 +51,15 @@ wss.on('connection', (ws) => {
                     data
                 });
                 break;
-            case "authenticate":
-                
-                if (data.initialSystemMessage) {
-                    globals.mainThread.push({ role: "system", content: data.initialSystemMessage });
-                    globals.baseAgentUrl = data.baseAgentUrl;
-                }
 
+            case "authenticate":
+
+                if (data.actionAgents) {
+
+                    globals.actionAgents = data.actionAgents;
+                    globals.mainThread.push({ role: "system", content: generateActionAgentsSystemPrompt(data.actionAgents) });
+
+                }
 
                 handleAuthenticate({
                     ws,
@@ -57,6 +67,73 @@ wss.on('connection', (ws) => {
                     data
                 });
                 break;
+
+            case "appendDialogue":
+                const { role, content } = data;
+                console.log("recieved appendDialogue: ", data);
+
+                if (permittedRoles.includes(role)) {
+
+                    if (content) {
+
+
+                        globals.mainThread.push({ role: role, content: content });
+
+                        ws.send(JSON.stringify({
+                            messageType: "appendDialogueResponse",
+                            success: true,
+                            data: {
+                                timestamp: Date.now(),
+                                messageThread: globals.mainThread
+                            }
+                        }));
+                    } else {
+
+                        ws.send(JSON.stringify({
+                            messageType: "appendDialogueResponse",
+                            success: false,
+                            error: "No content provided"
+                        }));
+                    }
+
+                    return;
+
+                } else {
+
+                    ws.send(JSON.stringify({
+                        messageType: "appendDialogueResponse",
+                        success: false,
+                        error: "Invalid role, role must be one of: " + permittedRoles.join(", ") + " but was: " + role
+                    }));
+                }
+                break;
+
+            case "readDialogue":
+
+                handleReadDialogue({
+                    ws,
+                    globals
+                });
+                break;
+
+            case "updateDialogue":
+
+                handleUpdateDialogue({
+                    ws,
+                    globals,
+                    data
+                });
+                break;
+
+            case "messageThreadLength":
+
+                handleMessageThreadLength({
+                    ws,
+                    globals
+                });
+                break;
+
+
         }
     });
 
@@ -80,7 +157,7 @@ wss.on('connection', (ws) => {
 
     initialiseDecorator({ globals, ws, processingQueue });
 
-    ws.onclose = function(event) {
+    ws.onclose = function (event) {
 
         let eventData = {
 
@@ -98,7 +175,6 @@ wss.on('connection', (ws) => {
 
         writeSessionCloseToFirebase(globals.projectId, globals.sessionId)
     };
-    
 
 
 });
