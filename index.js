@@ -13,6 +13,7 @@ import { generateActionAgentsSystemPrompt } from './action_agents/generate_actio
 import { handleReadDialogue } from './canopy_methods/handleReadDialogue.js';
 import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
+import  { generateResponse } from './response/generateResponse.js';
 
 const permittedRoles = ["user", "assistant", "system"];
 
@@ -52,12 +53,16 @@ wss.on('connection', (ws) => {
                 break;
 
             case "authenticate":
+                const { actionAgents, initialSystemMessage} = data;
+                if (actionAgents) {
 
-                if (data.actionAgents) {
-
-                    globals.actionAgents = data.actionAgents;
+                    globals.actionAgents = actionAgents;
                     globals.mainThread.push({ role: "system", content: generateActionAgentsSystemPrompt(data.actionAgents) });
+                    
 
+                }
+                if (initialSystemMessage) {
+                    globals.mainThread.push({ role: "system", content: initialSystemMessage });
                 }
 
                 handleAuthenticate({
@@ -66,6 +71,16 @@ wss.on('connection', (ws) => {
                     data
                 });
                 break;
+            
+            case "getResponse":
+                generateResponse({
+                    globals,
+                    processingQueue,
+                    createdAt: Date.now(),
+                    ws
+                });
+
+                return;
 
             case "appendDialogue":
                 const { role, content } = data;
