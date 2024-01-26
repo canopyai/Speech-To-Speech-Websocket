@@ -13,7 +13,7 @@ export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
 
     const options = {
         method: 'POST',
-        uri: 'https://phonemizer-python.fly.dev/phonemize',
+        uri: 'https://phonemizer-mlzdnrxolq-ue.a.run.app/phonemize',
         body: decoratorObject,
         json: true // Automatically stringifies the body to JSON
     };
