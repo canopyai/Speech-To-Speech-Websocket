@@ -6,7 +6,6 @@ import { shouldProcessContent } from './shouldProcessContent.js';
 import { retrieveElevenLabsAudio } from './retrieveElevenLabsAudio.js';
 import { reformatTextForTTS } from './reformatTextForTTS.js';
 import { retrieveOpenAIAudio } from './retrieveOpenAIAudio.js';
-import { decorateGraphemes } from '../decorator/decorateGraphemes.js';
 
 const pIdLength = 13;
 
@@ -100,11 +99,7 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
-                decorateGraphemes({
-                    text:TTSSentence,
-                    process: processingObject,
-                    globals
-                })
+              
 
                 retrieveOpenAIAudio({
                     TTSSentence: TTSSentence,
