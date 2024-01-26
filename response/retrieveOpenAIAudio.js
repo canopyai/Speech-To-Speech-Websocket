@@ -20,12 +20,15 @@ export const retrieveOpenAIAudio = async ({
 
     if (TTSSentence.trim()) {
         try {
+
+            const initialTime = Date.now();
             const response = await openai.audio.speech.create({
                 model: "tts-1",
                 voice: voice || "alloy",
                 input: TTSSentence, 
-                speed: 0.9,
+                // speed: 1,
             });
+            // console.log("OpenAI TTS response time:", Date.now() - initialTime);
 
             const audioContent = await response.arrayBuffer();
             const base64String = Buffer.from(audioContent, 'binary').toString('base64');

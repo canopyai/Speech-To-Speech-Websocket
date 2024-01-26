@@ -26,7 +26,7 @@ export const generateResponse = async ({
     // if (globals.isProcessingResponse) return;
 
 
-    console.log("generateResponse")
+    // console.log("generateResponse")
 
     let { hexCode } = generateRandomHex(pIdLength);
 
@@ -51,13 +51,13 @@ export const generateResponse = async ({
 
     globals.wordBuffer = []
 
-    console.log(globals.mainThread)
+    // console.log(globals.mainThread)
 
 
 
     const stream = await openai.chat.completions.create({
-        // model: "gpt-3.5-turbo",
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
+        // model: "gpt-4-1106-preview",
         messages: globals.mainThread,
         stream: true,
         temperature: 0,
