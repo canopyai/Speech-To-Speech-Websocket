@@ -41,7 +41,7 @@ export const retrieveOpenAIAudio = async ({
             });
             process.base64String = base64String;
 
-            console.log("bufferise",process.id, Date.now() - interimTime);
+            // console.log("bufferise",process.id, Date.now() - interimTime);
     
 
             

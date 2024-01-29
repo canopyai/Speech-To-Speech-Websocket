@@ -6,6 +6,9 @@ import { shouldProcessContent } from './shouldProcessContent.js';
 import { retrieveElevenLabsAudio } from './retrieveElevenLabsAudio.js';
 import { reformatTextForTTS } from './reformatTextForTTS.js';
 import { retrieveOpenAIAudio } from './retrieveOpenAIAudio.js';
+import { elevenlabsApiKey } from "../config.js"
+import {initialiseElevenLabsConnection} from "./initialiseElevenLabsConnection.js"
+import { retrieveGCPTTSAudio } from "./retrieveGCPAudio.js"
 
 const pIdLength = 13;
 
@@ -21,6 +24,10 @@ export const generateResponse = async ({
     createdAt,
     ws
 }) => {
+
+    // initialiseElevenLabsConnection({
+    //     globals
+    // })
 
     // if (globals.isProcessingResponse) return;
 
@@ -50,7 +57,7 @@ export const generateResponse = async ({
 
     globals.wordBuffer = []
 
-    // console.log(globals.mainThread)
+    console.log(globals.mainThread)
 
 
     const initialTimePreFirstChunk = Date.now();
@@ -67,6 +74,37 @@ export const generateResponse = async ({
 
     for await (const part of stream) {
         try {
+
+
+            // const text = part.choices[0].delta.content
+            // const finishReason = part.choices[0].finish_reason
+            // // console.dir(part, { depth:null})
+            // // console.log("text", text)
+            // if(text){
+            //     globals.elevenLabsWs.send(
+            //         JSON.stringify({
+            //             text: part.choices[0].delta.content,
+            //             xi_api_key: elevenlabsApiKey, 
+            //             "optimize_streaming_latency":4, 
+            //             try_trigger_generation:true
+
+            //         }))
+    
+            // }
+
+            // if(finishReason==="stop"){
+            //     globals.elevenLabsWs.send(
+            //         JSON.stringify({
+            //             text: "",
+            //             xi_api_key: elevenlabsApiKey, 
+            //             "optimize_streaming_latency":4, 
+            //             // flush:true
+            //         }))
+            // }
+
+
+        
+            // continue
 
             if (globals.currentProcessId !== processId) {
                 stream.controller.abort()
@@ -104,9 +142,16 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
-              
 
-                retrieveOpenAIAudio({
+
+                // retrieveOpenAIAudio({
+                //     TTSSentence: TTSSentence,
+                //     process: processingObject,
+                //     sentence,
+                //     globals,
+                //     ws
+                // })
+                retrieveGCPTTSAudio({
                     TTSSentence: TTSSentence,
                     process: processingObject,
                     sentence,

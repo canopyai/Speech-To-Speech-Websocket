@@ -13,7 +13,8 @@ import { generateActionAgentsSystemPrompt } from './action_agents/generate_actio
 import { handleReadDialogue } from './canopy_methods/handleReadDialogue.js';
 import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
-import  { generateResponse } from './response/generateResponse.js';
+import { generateResponse } from './response/generateResponse.js';
+import { initialiseElevenLabsConnection } from './response/initialiseElevenLabsConnection.js';
 
 const permittedRoles = ["user", "assistant", "system"];
 
@@ -44,6 +45,8 @@ Give short 1 sentence answers aiming for a fast paced discussion atmosphere - wh
     globals.decoratorSocket = null;
     globals.projectId = null;
     globals.sessionId = null;
+    globals.ws = ws
+
 
 
     globals.actionAgents = null;
@@ -63,12 +66,12 @@ Give short 1 sentence answers aiming for a fast paced discussion atmosphere - wh
                 break;
 
             case "authenticate":
-                const { actionAgents, initialSystemMessage} = data;
+                const { actionAgents, initialSystemMessage } = data;
                 if (actionAgents) {
 
                     globals.actionAgents = actionAgents;
                     globals.mainThread.push({ role: "system", content: generateActionAgentsSystemPrompt(data.actionAgents) });
-                    
+
 
                 }
                 if (initialSystemMessage) {
@@ -81,7 +84,7 @@ Give short 1 sentence answers aiming for a fast paced discussion atmosphere - wh
                     data
                 });
                 break;
-            
+
             case "getResponse":
                 generateResponse({
                     globals,
