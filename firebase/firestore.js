@@ -15,7 +15,7 @@ import { db } from "../firebase.js";
 export async function initialiseFirebaseSessionRecord(projectId) {
     const session = {
         projectId,
-        createdAt: serverTimestamp(),
+        startedAt: serverTimestamp(),
         endedAt: null,
         status: "ongoing",
     };

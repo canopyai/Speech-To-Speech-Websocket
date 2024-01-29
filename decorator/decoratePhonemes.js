@@ -13,7 +13,8 @@ export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
 
     const options = {
         method: 'POST',
-        uri: 'https://phonemizer-mlzdnrxolq-ue.a.run.app/phonemize',
+        uri: 'http://127.0.0.1:8081/phonemize',
+        // uri: 'https://phonemizer-mlzdnrxolq-ue.a.run.app/phonemize',
         body: decoratorObject,
         json: true // Automatically stringifies the body to JSON
     };
