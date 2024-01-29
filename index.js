@@ -15,6 +15,7 @@ import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
 import { generateResponse } from './response/generateResponse.js';
 import { initialiseElevenLabsConnection } from './response/initialiseElevenLabsConnection.js';
+import { handleConfig } from "./authenticate/handle_config/handleConfig.js"
 
 const permittedRoles = ["user", "assistant", "system"];
 
@@ -25,17 +26,7 @@ wss.on('connection', (ws) => {
     let session = null;
     let globals = {};
 
-    globals.mainThread = [{
-        role: "system",
-        content: `You are a talking AI Avatar made by the Canopy team. 
-Your name is Marcus. You are going to have a chat with me (Amu) about why AI Avatars are important.
-First we will talk about interactive experiences in education. Leverage the fact that you can call APIs and are fully flexible for interactive experiences. Then we will talk about meetings and sales calls and 
-how AI Avatars can help. Finally we will talk about how AI Avatars can help with mental health.
-
-Give short 1 sentence answers aiming for a fast paced discussion atmosphere - where I will follow up if I want more information.
-
-`
-    }];
+    globals.mainThread = [];
     globals.messageThreadLength = 0;
     globals.processingQueue = [];
     globals.finalTranscript = '';
@@ -66,7 +57,8 @@ Give short 1 sentence answers aiming for a fast paced discussion atmosphere - wh
                 break;
 
             case "authenticate":
-                const { actionAgents, initialSystemMessage } = data;
+                console.log("authenticate hit", data)
+                const { actionAgents } = data;
                 if (actionAgents) {
 
                     globals.actionAgents = actionAgents;
@@ -74,15 +66,18 @@ Give short 1 sentence answers aiming for a fast paced discussion atmosphere - wh
 
 
                 }
-                if (initialSystemMessage) {
-                    globals.mainThread.push({ role: "system", content: initialSystemMessage });
-                }
+           
 
                 handleAuthenticate({
                     ws,
                     globals,
                     data
                 });
+
+                handleConfig({
+                    globals, 
+                    data
+                })
                 break;
 
             case "getResponse":
