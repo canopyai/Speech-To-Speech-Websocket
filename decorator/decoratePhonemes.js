@@ -14,7 +14,6 @@ export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
     const options = {
         method: 'POST',
         uri: 'http://127.0.0.1:8081/phonemize',
-        // uri: 'https://phonemizer-mlzdnrxolq-ue.a.run.app/phonemize',
         body: decoratorObject,
         json: true // Automatically stringifies the body to JSON
     };
@@ -26,7 +25,6 @@ export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
         const { phonemes } = response;
         process.phonemesVector = phonemes;
         const timeDelta = finalTime - initialTime;
-        console.log("processId", id, "timeDelta", timeDelta)
         //write this data to a file
 
 

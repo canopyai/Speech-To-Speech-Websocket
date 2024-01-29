@@ -13,7 +13,8 @@ import { generateActionAgentsSystemPrompt } from './action_agents/generate_actio
 import { handleReadDialogue } from './canopy_methods/handleReadDialogue.js';
 import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
-import  { generateResponse } from './response/generateResponse.js';
+import { generateResponse } from './response/generateResponse.js';
+import { initialiseElevenLabsConnection } from './response/initialiseElevenLabsConnection.js';
 
 const permittedRoles = ["user", "assistant", "system"];
 
@@ -24,7 +25,17 @@ wss.on('connection', (ws) => {
     let session = null;
     let globals = {};
 
-    globals.mainThread = [];
+    globals.mainThread = [{
+        role: "system",
+        content: `You are a talking AI Avatar made by the Canopy team. 
+Your name is Marcus. You are going to have a chat with me (Amu) about why AI Avatars are important.
+First we will talk about interactive experiences in education. Leverage the fact that you can call APIs and are fully flexible for interactive experiences. Then we will talk about meetings and sales calls and 
+how AI Avatars can help. Finally we will talk about how AI Avatars can help with mental health.
+
+Give short 1 sentence answers aiming for a fast paced discussion atmosphere - where I will follow up if I want more information.
+
+`
+    }];
     globals.messageThreadLength = 0;
     globals.processingQueue = [];
     globals.finalTranscript = '';
@@ -34,6 +45,8 @@ wss.on('connection', (ws) => {
     globals.decoratorSocket = null;
     globals.projectId = null;
     globals.sessionId = null;
+    globals.ws = ws
+
 
 
     globals.actionAgents = null;
@@ -53,12 +66,12 @@ wss.on('connection', (ws) => {
                 break;
 
             case "authenticate":
-                const { actionAgents, initialSystemMessage} = data;
+                const { actionAgents, initialSystemMessage } = data;
                 if (actionAgents) {
 
                     globals.actionAgents = actionAgents;
                     globals.mainThread.push({ role: "system", content: generateActionAgentsSystemPrompt(data.actionAgents) });
-                    
+
 
                 }
                 if (initialSystemMessage) {
@@ -71,7 +84,7 @@ wss.on('connection', (ws) => {
                     data
                 });
                 break;
-            
+
             case "getResponse":
                 generateResponse({
                     globals,

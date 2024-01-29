@@ -23,6 +23,12 @@ export const initialiseVAD = async ({
                 isSpeech = true;
                 globals.lastVADSpeechStarted = Date.now();
 
+                if(globals.elevenLabsWs){
+                    globals.elevenLabsWs.close()
+                }
+
+                // 
+                
                 globals.isProcessingResponse = false;
                 processingQueue = [];
                 ws.send(JSON.stringify({

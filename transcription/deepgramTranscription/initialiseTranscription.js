@@ -21,6 +21,8 @@ export const initialiseDeepgramTranscription = async ({
             punctuate: false,
             smart_format: false,
             model: "nova-2",
+
+            
         });
 
         if (keepAlive) clearInterval(keepAlive);
@@ -32,6 +34,14 @@ export const initialiseDeepgramTranscription = async ({
 
 
             deepgram.addListener(LiveTranscriptionEvents.Transcript, (data) => {
+                
+                // if( data.channel.alternatives[0].transcript){
+                //     console.dir(data, { depth: null })
+                //     console.log("deepgram: transcript received",Date.now(), data.channel.alternatives[0].transcript);
+
+                    
+                // }
+             
 
 
                 const finalTranscript = data.channel.alternatives[0].transcript;
@@ -52,7 +62,8 @@ export const initialiseDeepgramTranscription = async ({
                 const { success, error } = modifyTranscript({
                     globals,
                     role: "user",
-                    content: finalTranscript
+                    content: finalTranscript, 
+
                 });
 
 
@@ -62,6 +73,14 @@ export const initialiseDeepgramTranscription = async ({
                 //         finalTranscript
                 //     })
                 // )
+
+                ws.send(
+                    JSON.stringify({
+                        messageType:"timestampBenchmark", 
+                        timestamp:Date.now(), 
+                        finalTranscript
+                    })
+                )
 
 
                 generateResponse({
