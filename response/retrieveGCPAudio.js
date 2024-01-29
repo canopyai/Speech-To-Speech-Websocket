@@ -16,17 +16,13 @@ export const retrieveGCPTTSAudio = async ({
 
     if (TTSSentence.trim()) {
         try {
+            
             const initialTime = Date.now();
 
             // Construct the request for GCP Text-to-Speech
             const request = {
                 input: { text: TTSSentence },
-                voice: {
-                    languageCode: 'en-GB  ', // or any other supported language code
-
-                    voiceName: 'en-GB-Wavenet-A' // Make sure the name is correct
-                },
-                
+                voice: { languageCode: 'en-US', ssmlGender: voice || 'FEMALE', 	voiceName:"	en-IN-Neural2-C"  },
                 audioConfig: { audioEncoding: 'MP3' },
             };
 

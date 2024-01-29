@@ -7,7 +7,7 @@ import { retrieveElevenLabsAudio } from './retrieveElevenLabsAudio.js';
 import { reformatTextForTTS } from './reformatTextForTTS.js';
 import { retrieveOpenAIAudio } from './retrieveOpenAIAudio.js';
 import { elevenlabsApiKey } from "../config.js"
-import {initialiseElevenLabsConnection} from "./initialiseElevenLabsConnection.js"
+import { initialiseElevenLabsConnection } from "./initialiseElevenLabsConnection.js"
 import { retrieveGCPTTSAudio } from "./retrieveGCPAudio.js"
 
 const pIdLength = 13;
@@ -25,14 +25,16 @@ export const generateResponse = async ({
     ws
 }) => {
 
-    // initialiseElevenLabsConnection({
-    //     globals
-    // })
+    if (globals.visual && globals.voice.provider === "eleven_labs") {
+        initialiseElevenLabsConnection({
+            globals
+        })
+    }
 
-    // if (globals.isProcessingResponse) return;
+
+    if (globals.isProcessingResponse) return;
 
 
-    // console.log("generateResponse")
 
     let { hexCode } = generateRandomHex(pIdLength);
 
@@ -76,35 +78,38 @@ export const generateResponse = async ({
         try {
 
 
-            // const text = part.choices[0].delta.content
-            // const finishReason = part.choices[0].finish_reason
-            // // console.dir(part, { depth:null})
-            // // console.log("text", text)
-            // if(text){
-            //     globals.elevenLabsWs.send(
-            //         JSON.stringify({
-            //             text: part.choices[0].delta.content,
-            //             xi_api_key: elevenlabsApiKey, 
-            //             "optimize_streaming_latency":4, 
-            //             try_trigger_generation:true
-
-            //         }))
-    
-            // }
-
-            // if(finishReason==="stop"){
-            //     globals.elevenLabsWs.send(
-            //         JSON.stringify({
-            //             text: "",
-            //             xi_api_key: elevenlabsApiKey, 
-            //             "optimize_streaming_latency":4, 
-            //             // flush:true
-            //         }))
-            // }
+            if (globals.visual && globals.voice.provider === "eleven_labs") {
+                const text = part.choices[0].delta.content
+                const finishReason = part.choices[0].finish_reason
 
 
-        
-            // continue
+                if (text) {
+                    globals.elevenLabsWs.send(
+                        JSON.stringify({
+                            text: part.choices[0].delta.content,
+                            xi_api_key: elevenlabsApiKey,
+                            "optimize_streaming_latency": 4,
+                            try_trigger_generation: true
+
+                        }))
+
+                }
+
+                if (finishReason === "stop") {
+                    globals.elevenLabsWs.send(
+                        JSON.stringify({
+                            text: "",
+                            xi_api_key: elevenlabsApiKey,
+                            "optimize_streaming_latency": 4,
+                            // flush:true
+                        }))
+                }
+
+
+
+                continue
+            }
+
 
             if (globals.currentProcessId !== processId) {
                 stream.controller.abort()
