@@ -147,31 +147,48 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
+                console.log(globals.voice.provider)
+
+                switch (globals.voice.provider) {
+                    case "eleven_labs":
+                        retrieveElevenLabsAudio({
+                            TTSSentence: TTSSentence,
+                            process: processingObject,
+                            sentence,
+                            globals,
+                            ws
+
+                        })
+
+                        break;
+
+                    case "openai":
+                        retrieveOpenAIAudio({
+                            TTSSentence: TTSSentence,
+                            process: processingObject,
+                            sentence,
+                            globals,
+                            ws
+                        })
+                        break;
+
+                    case "google":
+                        retrieveGCPTTSAudio({
+                            TTSSentence: TTSSentence,
+                            process: processingObject,
+                            sentence,
+                            globals,
+                            ws
+                        })
+
+                        break;
 
 
-                // retrieveOpenAIAudio({
-                //     TTSSentence: TTSSentence,
-                //     process: processingObject,
-                //     sentence,
-                //     globals,
-                //     ws
-                // })
-                retrieveGCPTTSAudio({
-                    TTSSentence: TTSSentence,
-                    process: processingObject,
-                    sentence,
-                    globals,
-                    ws
-                })
+                }
 
-                // retrieveElevenLabsAudio({
-                //     TTSSentence: TTSSentence,
-                //     process: processingObject,
-                //     sentence,
-                //     globals,
-                //     ws
+                
 
-                // })
+
             }
 
         } catch (error) {

@@ -1,6 +1,7 @@
 import { handleVoice } from "./configVoice.js"
 import { handleVisual } from "./configVisual.js"
 import { handleInitialSystemMessage } from "./configInitialSystemMessage.js"
+import {handleLLM} from "./configLLM.js"
 
 export const handleConfig = ({
     globals, 
@@ -18,6 +19,11 @@ export const handleConfig = ({
     })
 
     handleInitialSystemMessage({
+        globals, 
+        data
+    })
+
+    handleLLM({
         globals, 
         data
     })
