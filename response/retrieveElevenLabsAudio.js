@@ -45,12 +45,12 @@ export const retrieveElevenLabsAudio = async ({
         }
 
 
-        // decoratePhonemes({
-        //     audioData: base64String,
-        //     globals,
-        //     ws,
-        //     process
-        // });
+        decoratePhonemes({
+            audioData: base64String,
+            globals,
+            ws,
+            process
+        });
 
         process.base64String = base64String;
 

@@ -20,7 +20,7 @@ export const extractAgentFromTranscript = (content) => {
             console.error("Invalid JSON string:", jsonString);
         }
     } else {
-        console.error("No matching tags found");
+
     }
 
     return {
