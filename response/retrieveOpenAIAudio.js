@@ -24,11 +24,12 @@ export const retrieveOpenAIAudio = async ({
             const initialTime = Date.now();
             const response = await openai.audio.speech.create({
                 model: "tts-1",
-                voice: voice || "alloy",
+                voice: voice || "onyx",
                 input: TTSSentence, 
-                // speed: 1,
+                speed: 1,
             });
-            // console.log("OpenAI TTS response time:", Date.now() - initialTime);
+            console.log("OpenAI TTS response time:",process.id, Date.now() - initialTime);
+            const interimTime = Date.now();
 
             const audioContent = await response.arrayBuffer();
             const base64String = Buffer.from(audioContent, 'binary').toString('base64');
@@ -40,7 +41,7 @@ export const retrieveOpenAIAudio = async ({
             });
             process.base64String = base64String;
 
-            console.log("tts engine response",process.id, Date.now())
+            console.log("bufferise",process.id, Date.now() - interimTime);
     
 
             

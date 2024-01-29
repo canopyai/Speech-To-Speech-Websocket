@@ -53,6 +53,7 @@ export const generateResponse = async ({
     // console.log(globals.mainThread)
 
 
+    const initialTimePreFirstChunk = Date.now();
 
     const stream = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
@@ -83,6 +84,7 @@ export const generateResponse = async ({
 
 
 
+
                 const processingObject = {
                     id: Math.random().toString().substring(7),
                     timestamp: Date.now(),
@@ -92,6 +94,9 @@ export const generateResponse = async ({
                     parentProcessId: processId,
 
                 };
+
+                console.log("first chunk", processingObject.id, Date.now() - initialTimePreFirstChunk);
+
 
                 processingQueue.push(processingObject);
 
