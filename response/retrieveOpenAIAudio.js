@@ -7,7 +7,6 @@ const openai = new OpenAI({
 });
 
 export const retrieveOpenAIAudio = async ({
-    voice,
     TTSSentence, 
     process, 
     globals, 
@@ -24,7 +23,7 @@ export const retrieveOpenAIAudio = async ({
             const initialTime = Date.now();
             const response = await openai.audio.speech.create({
                 model: "tts-1",
-                voice: voice || "onyx",
+                voice: globals.voice.voice_id || "onyx",
                 input: TTSSentence, 
                 speed: 1,
             });

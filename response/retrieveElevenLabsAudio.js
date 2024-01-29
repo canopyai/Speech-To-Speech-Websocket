@@ -12,7 +12,7 @@ export const retrieveElevenLabsAudio = async ({
 
     if (TTSSentence.trim()) {
 
-        const url = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?optimize_streaming_latency=4`;
+        const url = `https://api.elevenlabs.io/v1/text-to-speech/${globals.voice.voice_id || "21m00Tcm4TlvDq8ikWAM"}?optimize_streaming_latency=4`;
         const headers = {
             Accept: 'audio/mpeg',
             'Content-Type': 'application/json',
