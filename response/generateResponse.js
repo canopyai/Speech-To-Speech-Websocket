@@ -9,6 +9,14 @@ import { retrieveOpenAIAudio } from './retrieveOpenAIAudio.js';
 import { elevenlabsApiKey } from "../config.js"
 import { initialiseElevenLabsConnection } from "./initialiseElevenLabsConnection.js"
 import { retrieveGCPTTSAudio } from "./retrieveGCPAudio.js"
+import { Readable } from 'node:stream';
+import PlayHT from "playht";
+
+
+PlayHT.init({
+    apiKey: 'f4655478df684e76ae96facd8dc8df22',
+    userId: 'fTCoF67G60giwPCkLYSFk2pKACi2',
+});
 
 const pIdLength = 13;
 
@@ -25,9 +33,14 @@ export const generateResponse = async ({
     ws
 }) => {
 
+    let { hexCode } = generateRandomHex(pIdLength);
+    let processId = hexCode;
+
     if (globals.visual && globals.voice.provider === "eleven_labs") {
         initialiseElevenLabsConnection({
-            globals
+            globals, 
+            processId, 
+            createdAt
         })
     }
 
@@ -36,9 +49,9 @@ export const generateResponse = async ({
 
 
 
-    let { hexCode } = generateRandomHex(pIdLength);
 
-    let processId = hexCode;
+
+    
 
     globals.currentProcessId = processId;
     globals.isProcessingResponse = true;
@@ -53,20 +66,21 @@ export const generateResponse = async ({
 
     globals.processingQueue.push(processingObject);
 
+    
+
 
 
 
 
     globals.wordBuffer = []
 
-    console.log(globals.mainThread)
 
 
     const initialTimePreFirstChunk = Date.now();
 
     const stream = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        // model: "gpt-4-1106-preview",
+        // model: "gpt-4-turbo",
+        model: globals.LLM,
         messages: globals.mainThread,
         stream: true,
         temperature: 0,
@@ -110,6 +124,8 @@ export const generateResponse = async ({
                 continue
             }
 
+        
+
 
             if (globals.currentProcessId !== processId) {
                 stream.controller.abort()
@@ -138,7 +154,6 @@ export const generateResponse = async ({
 
                 };
 
-                console.log("first chunk", processingObject.id, Date.now() - initialTimePreFirstChunk);
 
 
                 processingQueue.push(processingObject);
@@ -147,7 +162,7 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
-                console.log(globals.voice.provider)
+
 
                 switch (globals.voice.provider) {
                     case "eleven_labs":

@@ -21,6 +21,9 @@ export const initialiseDeepgramTranscription = async ({
             punctuate: false,
             smart_format: false,
             model: "nova-2",
+            interim_results: true,
+
+
 
             
         });
@@ -35,25 +38,32 @@ export const initialiseDeepgramTranscription = async ({
 
             deepgram.addListener(LiveTranscriptionEvents.Transcript, (data) => {
                 
-                // if( data.channel.alternatives[0].transcript){
-                //     console.dir(data, { depth: null })
-                //     console.log("deepgram: transcript received",Date.now(), data.channel.alternatives[0].transcript);
-
-                    
-                // }
+                if( data.channel.alternatives[0].transcript){
+                    console.log(data.channel.alternatives[0].transcript, data.is_final, data.speech_final, Date.now() );
+                }
              
-
 
                 const finalTranscript = data.channel.alternatives[0].transcript;
 
+        
+                ws.send(
+                    JSON.stringify({
+                        messageType:"timestampBenchmark", 
+                        timestamp:Date.now(), 
+                        finalTranscript
+                    })
+                )
+
+                if (!data.is_final) return;
                 if (!finalTranscript.trim()) return;
                 if (finalTranscript.trim().length < 3) return;
 
                 let shouldReturn = false;
+
                 for (const word of ignoreWords) {
                     if (finalTranscript.trim() === word) {
                         shouldReturn = true;
-                        break; // Exit the loop if condition is met
+                        break; 
                     }
                 }
 
@@ -74,13 +84,7 @@ export const initialiseDeepgramTranscription = async ({
                 //     })
                 // )
 
-                ws.send(
-                    JSON.stringify({
-                        messageType:"timestampBenchmark", 
-                        timestamp:Date.now(), 
-                        finalTranscript
-                    })
-                )
+               
 
 
                 generateResponse({
