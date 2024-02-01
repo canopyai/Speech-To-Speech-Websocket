@@ -26,18 +26,20 @@ export const manageProcessingQueue = ({
 
 
         // if (base64String && phonemesVector) {
-        if (base64String ) {
+            
 
-            // console.log("prcess id", Date.now()-createdAt, processingQueue[0].id);
-            ws.send(
-                JSON.stringify((
-                    {
-                        ...processingQueue[0],
-                        messageType: "audio"
-                    }
-                )));
-
-            processingQueue.shift();
-        }
+            if((globals.visual && phonemesVector && base64String) || (base64String && !globals.visual)){
+                ws.send(
+                    JSON.stringify((
+                        {
+                            ...processingQueue[0],
+                            messageType: "audio"
+                        }
+                    )));
+    
+                processingQueue.shift();
+            }
+          
+        
     }
 }

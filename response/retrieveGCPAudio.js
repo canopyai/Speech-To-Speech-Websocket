@@ -1,4 +1,5 @@
 import textToSpeech from '@google-cloud/text-to-speech';
+import { decoratePhonemes } from '../decorator/decoratePhonemes.js';
 
 
 // Creates a client
@@ -20,10 +21,18 @@ export const retrieveGCPTTSAudio = async ({
             const initialTime = Date.now();
 
             // Construct the request for GCP Text-to-Speech
+            console.log(TTSSentence)
             const request = {
-                input: { text: TTSSentence },
-                voice: { languageCode: 'en-US', ssmlGender: voice || 'FEMALE', 	voiceName:"	en-IN-Neural2-C"  },
-                audioConfig: { audioEncoding: 'MP3' },
+                input: { ssml: TTSSentence },
+                voice: { 
+                    languageCode:globals.voice.voiceId.slice(0,5),
+                    name:"en-GB-News-M", 
+                    ssmlGender:"MALE"
+             },
+                audioConfig: { 
+                    audioEncoding: 'MP3', 
+                    speakingRate:0.9
+                 },
             };
 
             // Performs the text-to-speech request
@@ -35,12 +44,15 @@ export const retrieveGCPTTSAudio = async ({
             const base64String = Buffer.from(audioContent).toString('base64');
 
             // Use your decoratePhonemes function or similar logic here
-            // decoratePhonemes({
-            //     audioData: base64String,
-            //     globals,
-            //     ws,
-            //     process
-            // });
+            if(globals.visual){
+            decoratePhonemes({
+                    audioData: base64String,
+                    globals,
+                    ws,
+                    process
+                });
+            }
+   
 
             process.base64String = base64String;
             console.log('GCP TTS response time:', process.id, timeTaken);
