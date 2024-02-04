@@ -2,6 +2,7 @@ import { createClient, LiveTranscriptionEvents } from "@deepgram/sdk";
 import { deepgramApiKey } from '../../config.js';
 import { modifyTranscript } from '../../transcript/modifyTranscript.js';
 import { generateResponse } from '../../response/generateResponse.js';
+import { axios } from 'axios';
 
 
 const deepgramClient = createClient(deepgramApiKey);
@@ -15,6 +16,7 @@ export const initialiseDeepgramTranscription = async ({
 }) => {
 
     let keepAlive;
+    let recent_transcript = "";
     const setupDeepgram = (ws) => {
         const deepgram = deepgramClient.listen.live({
             language: "en",
@@ -22,10 +24,6 @@ export const initialiseDeepgramTranscription = async ({
             smart_format: false,
             model: "nova-2",
             interim_results: true,
-
-
-
-            
         });
 
         if (keepAlive) clearInterval(keepAlive);
@@ -37,19 +35,38 @@ export const initialiseDeepgramTranscription = async ({
 
 
             deepgram.addListener(LiveTranscriptionEvents.Transcript, (data) => {
-                
-                if( data.channel.alternatives[0].transcript){
-                    console.log(data.channel.alternatives[0].transcript, data.is_final, data.speech_final, Date.now() );
+
+                if (data.channel.alternatives[0].transcript) {
+                    console.log(data.channel.alternatives[0].transcript, data.is_final, data.speech_final, Date.now(), "deepgram");
+
+                    if (data.is_final) {
+                        if (recent_transcript.split(/\s+/).filter(word => word.length > 0).length > 15) {
+                            recent_transcript = data.channel.alternatives[0].transcript;
+                        } else {
+                            recent_transcript += " " + data.channel.alternatives[0].transcript;
+                        }
+                        console.log("recent_transcript: ", recent_transcript)
+                    }
+
+
+                    axios.post("https://user-reaction-classification-mlzdnrxolq-ue.a.run.app/classify", {
+                        text: recent_transcript
+                    }).then(response => {
+                        const responseData = response.data;
+                        ws.send(JSON.stringify({ ...responseData }));
+                    }).catch(error => console.error("POST request failed:", error));
+
+
                 }
-             
+
 
                 const finalTranscript = data.channel.alternatives[0].transcript;
 
-        
+
                 ws.send(
                     JSON.stringify({
-                        messageType:"timestampBenchmark", 
-                        timestamp:Date.now(), 
+                        messageType: "timestampBenchmark",
+                        timestamp: Date.now(),
                         finalTranscript
                     })
                 )
@@ -63,7 +80,7 @@ export const initialiseDeepgramTranscription = async ({
                 for (const word of ignoreWords) {
                     if (finalTranscript.trim() === word) {
                         shouldReturn = true;
-                        break; 
+                        break;
                     }
                 }
 
@@ -72,7 +89,7 @@ export const initialiseDeepgramTranscription = async ({
                 const { success, error } = modifyTranscript({
                     globals,
                     role: "user",
-                    content: finalTranscript, 
+                    content: finalTranscript,
 
                 });
 
@@ -84,7 +101,7 @@ export const initialiseDeepgramTranscription = async ({
                 //     })
                 // )
 
-               
+
 
 
                 generateResponse({

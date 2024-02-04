@@ -19,13 +19,13 @@ export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
     };
 
     try {
-        const response = await requestPromise(options);
+        // const response = await requestPromise(options);
 
-        const finalTime = Date.now();
-        const { phonemes } = response;
-        process.phonemesVector = phonemes;
-        const timeDelta = finalTime - initialTime;
-        //write this data to a file
+        // const finalTime = Date.now();
+        // const { phonemes } = response;
+        // process.phonemesVector = phonemes;
+        // const timeDelta = finalTime - initialTime;
+        // //write this data to a file
 
 
 
