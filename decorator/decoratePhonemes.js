@@ -31,6 +31,7 @@ export const decoratePhonemes = async ({
         const response = await requestPromise(options);
 
 
+
         const { visemesData } = convertToVectors({
             decoratorResponse: response,
         });

@@ -26,6 +26,7 @@ export const manageProcessingQueue = ({
 
 
         if (base64String && visemesData) {
+            console.log("prcess id", Date.now()-createdAt, processingQueue[0].id);
         // if (base64String ) {
             
 

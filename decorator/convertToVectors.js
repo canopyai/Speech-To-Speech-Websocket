@@ -14,9 +14,6 @@ export const convertToVectors = ({
             continue;
         }
 
-  
-
-
 
 
         const { graphemes, start, end } = word;

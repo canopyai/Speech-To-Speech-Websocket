@@ -8,14 +8,16 @@ const httpsAgent = new https.Agent({
   });
 
 // Replace these with actual values
-const voice_id = '21m00Tcm4TlvDq8ikWAM';
+const voice_id = 'ErXwobaYiN019PkySvjV';
 const model = 'eleven_turbo_v2';
 
 const wsUrl = `wss://api.elevenlabs.io/v1/text-to-speech/${voice_id}/stream-input?model_id=${model}`;
 
 
 export const initialiseElevenLabsConnection = ({
-    globals
+    globals, 
+    processId, 
+    createdAt
 }) => {
 
     
@@ -39,7 +41,7 @@ export const initialiseElevenLabsConnection = ({
                 "similarity_boost": 0.8
             },
             "xi_api_key": elevenlabsApiKey, 
-            "optimize_streaming_latency":4
+            "optimize_streaming_latency":3
         };
     
         elevenLabsWs.send(JSON.stringify(bosMessage));
@@ -71,7 +73,9 @@ export const initialiseElevenLabsConnection = ({
                     {
                         messageType: "audio", 
                         base64String: audio, 
-                        dialogue:""
+                        dialogue:"", 
+                        processId, 
+                        createdAt
                     }
                 )));
         }
