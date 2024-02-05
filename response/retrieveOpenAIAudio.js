@@ -28,15 +28,16 @@ export const retrieveOpenAIAudio = async ({
                 speed: 1,
             });
             console.log("OpenAI TTS response time:",process.id, Date.now() - initialTime);
-            const interimTime = Date.now();
+           
 
             const audioContent = await response.arrayBuffer();
             const base64String = Buffer.from(audioContent, 'binary').toString('base64');
-            decoratePhonemes({
+             decoratePhonemes({
                 audioData: base64String,
                 globals, 
                 ws, 
-                process
+                process, 
+                sampleRate: 24000
             });
             process.base64String = base64String;
 

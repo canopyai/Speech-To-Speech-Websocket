@@ -1,6 +1,13 @@
 import requestPromise from 'request-promise';
+import { convertToVectors } from './convertToVectors.js';
 
-export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
+export const decoratePhonemes = async ({
+    audioData,
+    globals,
+    ws,
+    process,
+    sampleRate
+}) => {
     // console.log("decorator", process.id, Date.now())
     const { id } = process;
 
@@ -8,12 +15,14 @@ export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
     const decoratorObject = {
         audioData,
         processId: id,
-        currentdatetime: Date.now()
+        currentdatetime: Date.now(),
+        sampleRate
     };
+
 
     const options = {
         method: 'POST',
-        uri: 'http://127.0.0.1:8081/phonemize',
+        uri: 'http://127.0.0.1:8081/transcribe',
         body: decoratorObject,
         json: true // Automatically stringifies the body to JSON
     };
@@ -21,11 +30,14 @@ export const decoratePhonemes = async ({ audioData, globals, ws, process }) => {
     try {
         const response = await requestPromise(options);
 
-        const finalTime = Date.now();
-        const { phonemes } = response;
-        process.phonemesVector = phonemes;
-        const timeDelta = finalTime - initialTime;
-        //write this data to a file
+
+        const { visemesData } = convertToVectors({
+            decoratorResponse: response,
+        });
+
+        process.visemesData = visemesData
+
+
 
 
 

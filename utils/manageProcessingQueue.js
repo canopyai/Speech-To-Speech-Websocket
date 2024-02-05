@@ -22,11 +22,12 @@ export const manageProcessingQueue = ({
             return a.timestamp - b.timestamp;
         });
 
-        const { base64String, phonemesVector, id, createdAt } = processingQueue[0];
+        const { base64String, visemesData, id, createdAt } = processingQueue[0];
 
 
-        // if (base64String && phonemesVector) {
-        if (base64String ) {
+        if (base64String && visemesData) {
+        // if (base64String ) {
+            
 
             // console.log("prcess id", Date.now()-createdAt, processingQueue[0].id);
             ws.send(

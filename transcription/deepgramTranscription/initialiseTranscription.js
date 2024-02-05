@@ -34,15 +34,7 @@ export const initialiseDeepgramTranscription = async ({
 
 
             deepgram.addListener(LiveTranscriptionEvents.Transcript, (data) => {
-                
-                // if( data.channel.alternatives[0].transcript){
-                //     console.dir(data, { depth: null })
-                //     console.log("deepgram: transcript received",Date.now(), data.channel.alternatives[0].transcript);
-
-                    
-                // }
-             
-
+            
 
                 const finalTranscript = data.channel.alternatives[0].transcript;
 
@@ -67,12 +59,6 @@ export const initialiseDeepgramTranscription = async ({
                 });
 
 
-                // ws.send(
-                //     JSON.stringify({
-                //         messageType: "transcript",
-                //         finalTranscript
-                //     })
-                // )
 
                 ws.send(
                     JSON.stringify({
@@ -90,7 +76,6 @@ export const initialiseDeepgramTranscription = async ({
                     ws
                 });
 
-                // ws.send(JSON.stringify(data));
             });
 
             deepgram.addListener(LiveTranscriptionEvents.Close, async () => {
