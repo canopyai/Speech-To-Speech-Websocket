@@ -1,4 +1,4 @@
-import { graphemesToVector } from './graphemesToVector.js';
+import { graphemesToVector, graphemeGroups } from './graphemesToVector.js';
 
 export const convertToVectors = ({
     decoratorResponse
@@ -6,13 +6,28 @@ export const convertToVectors = ({
 
     const visemesData = [];
 
+
     for (const word of decoratorResponse) {
-        
-        let bannedWords = ["</s>", "<s>"]
+
+        let bannedWords = ["</s>", "<s>", "<sil>", "</sil>", "<SIL>", "</SIL>"]
 
         if (bannedWords.includes(word.word)) {
+            const { start, end } = word;
+
+            const aggregateGraphemeObjects = [{
+                vector: Array(Object.keys(graphemeGroups).length).fill(0),
+                startTime: start,
+                endTime: end,
+                word: word.word,
+                grapheme: word.word
+            }]
+
+            visemesData.push(...aggregateGraphemeObjects);
+
             continue;
+
         }
+
 
 
 

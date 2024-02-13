@@ -2,6 +2,7 @@ import { createClient, LiveTranscriptionEvents } from "@deepgram/sdk";
 import { deepgramApiKey } from '../../config.js';
 import { modifyTranscript } from '../../transcript/modifyTranscript.js';
 import { generateResponse } from '../../response/generateResponse.js';
+import { listeningReactions } from "../../reactions/listeningReactions.js";
 
 
 const deepgramClient = createClient(deepgramApiKey);
@@ -21,6 +22,7 @@ export const initialiseDeepgramTranscription = async ({
             punctuate: false,
             smart_format: false,
             model: "nova-2",
+            interim_results: true,
 
             
         });
@@ -37,6 +39,7 @@ export const initialiseDeepgramTranscription = async ({
             
 
                 const finalTranscript = data.channel.alternatives[0].transcript;
+                
 
                 if (!finalTranscript.trim()) return;
                 if (finalTranscript.trim().length < 3) return;
@@ -51,30 +54,29 @@ export const initialiseDeepgramTranscription = async ({
 
                 if (shouldReturn) return;
 
-                const { success, error } = modifyTranscript({
-                    globals,
-                    role: "user",
-                    content: finalTranscript, 
+                if(data.speech_final&& data.is_final){
+                    const { success, error } = modifyTranscript({
+                        globals,
+                        role: "user",
+                        content: finalTranscript, 
+    
+                    });
+                    generateResponse({
+                        globals,
+                        processingQueue,
+                        createdAt: Date.now(),
+                        ws
+                    });
+                } else {
+                    //get reaction
+                    listeningReactions({
+                        globals,
+                        ws,
+                        partialTranscript: finalTranscript
+                    });
 
-                });
-
-
-
-                ws.send(
-                    JSON.stringify({
-                        messageType:"timestampBenchmark", 
-                        timestamp:Date.now(), 
-                        finalTranscript
-                    })
-                )
-
-
-                generateResponse({
-                    globals,
-                    processingQueue,
-                    createdAt: Date.now(),
-                    ws
-                });
+                }
+                
 
             });
 

@@ -1,9 +1,13 @@
+// const strong = 0.6;
+// const medium = 0.45;
+// const weak = 0.3;
+
 const strong = 0.7;
 const medium = 0.6;
 const weak = 0.5;
 
 
-const graphemeGroups = {
+export const graphemeGroups = {
     "neutral": [],
     "B/P/M": ["B", "P", "M"],
     "Tf/d3": ["CH", "JH", "SH", "ZH", "Y"],
@@ -24,8 +28,8 @@ const graphemeGroups = {
     "IH": ["IH"],
     "OO": ["UW"],
     "OUH": ["ER"],
-    "OH": ["OW", "W"],
-    "OY": ["OY", "AO"],
+    "OH": ["OW"],
+    "OY": ["OY", "AO", "AW", "W"],
     "UH": ["UH"],
 }
 
@@ -37,7 +41,7 @@ export const graphemesToVector = ({
 }) => {
     const aggregateGraphemeObjects = [];
 
-    let strength = medium;
+    let strength = strong;
 
     let totalTime = end - start;
 
@@ -68,7 +72,7 @@ export const graphemesToVector = ({
 
         const groupIndex = Object.keys(graphemeGroups).indexOf(group);
         const vector = Array(Object.keys(graphemeGroups).length).fill(0);
-        vector[groupIndex] = strength;
+        vector[groupIndex-1] = strength;
         const endTime = startTime + timePerGroup;
         const graphemeObject = {
             vector,
@@ -86,6 +90,14 @@ export const graphemesToVector = ({
 
 
     });
+
+    // aggregateGraphemeObjects.push({
+    //     vector: Array(Object.keys(graphemeGroups).length).fill(0),
+    //     startTime: end,
+    //     endTime: end+100,
+    //     word:word.word, 
+    //     grapheme: "end"
+    // })
 
     return { aggregateGraphemeObjects };
 
