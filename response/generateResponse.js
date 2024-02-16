@@ -11,6 +11,7 @@ import PlayHT from "playht";
 import { openaiAPIKey, playHTApiKey, playHTUserId } from '../config.js';
 import { retrieveAudio } from './retrieveAudio.js';
 import { semantifySentence } from './semantifySentence.js';
+import { labelSentiment } from './labelSentiment.js';
 
 
 PlayHT.init({
@@ -56,6 +57,7 @@ export const generateResponse = async ({
     globals.isProcessingResponse = true;
 
     const sentence = { sentence: "", previousContent: "" }
+    let isFirstChunk = true;
 
 
     const processingObject = {
@@ -90,12 +92,11 @@ export const generateResponse = async ({
     for await (const part of stream) {
         try {
 
-            let finishReason = null;
+            let finishReason = part.choices[0].finish_reason
+            const text = part.choices[0].delta.content
+
             if (globals.visual && globals.voice.provider === "eleven_labs") {
-                const text = part.choices[0].delta.content
-                finishReason = part.choices[0].finish_reason
-
-
+                
                 if (text) {
                     globals.elevenLabsWs.send(
                         JSON.stringify({
@@ -137,6 +138,10 @@ export const generateResponse = async ({
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
 
+                if (finishReason === "stop") {
+                    console.log("finish reason is stop")
+                }
+
                 const processingObject = {
                     id: Math.random().toString().substring(7),
                     timestamp: Date.now(),
@@ -144,8 +149,12 @@ export const generateResponse = async ({
                     createdAt,
                     dialogue: sentence.sentence,
                     parentProcessId: processId,
+                    isFirstChunk,
+                    finishReason,
 
                 };
+
+                isFirstChunk = false;
 
                 processingQueue.push(processingObject);
                 let TTSSentence = reformatTextForTTS({ sentence });
@@ -161,6 +170,15 @@ export const generateResponse = async ({
                 })
 
                 semantifySentence({
+                    TTSSentence,
+                    processingObject,
+                    sentence,
+                    globals,
+                    finishReason,
+                    ws
+                })
+
+                labelSentiment({
                     TTSSentence,
                     processingObject,
                     sentence,

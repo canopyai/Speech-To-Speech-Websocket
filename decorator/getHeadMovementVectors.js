@@ -1,51 +1,56 @@
-import { getHeadMovementVectorsFromList } from "./getHeadMovementVectorsFromList.js"
 export const getHeadMovementVectors = ({
     decoratorResponse,
-    process
+    process,
+    visemesData
 }) => {
 
-
-    let mag = 1
-    let isFirstWord = true
-    let previousVector = null;
-
-
-    let wordList = []
-
-
-    for (const word of decoratorResponse) {
-
-        let bannedWords = ["</s>", "<s>", "<sil>", "</sil>", "<SIL>", "</SIL>"]
-
-        if (bannedWords.includes(word.word)) {
-            continue;
+    for (const visemeObject of visemesData) {
+        if (!visemeObject.word.includes("<") && process.isFirstChunk) {
+            visemeObject.stress = true;
+            visemeObject.stressProbability = 0.2;
+            visemeObject.eyebrowStress = 0.3;
+            visemeObject.firstSyllable = true;
+            break;
         }
+    }
 
-        let stress = 0;
-        process.semanticStresses.forEach((el) => {
-            if (word.word.toLowerCase() === el.token.toLowerCase()) {
-                stress = el.probabilities.class_1
+    const taggedWords = []; // Initialize an array to keep track of tagged words
+
+    for (const stressObject of process.semanticStresses) {
+        const { token, probabilities } = stressObject;
+        const stressProbability = probabilities.class_1;
+
+        if (stressProbability > 0.1 && token.length > 1) {
+            if (!taggedWords.includes(token)) {
+                for (const visemeObject of visemesData) {
+                    if (visemeObject.word === token) {
+                        visemeObject.stress = true;
+                        visemeObject.semanticStress = true;
+                        visemeObject.stressProbability = stressProbability;
+                        visemeObject.eyebrowStress = stressProbability;
+                        taggedWords.push(token);
+                    }
+                }
             }
-        })
-
-        wordList.push({
-            word: word.word,
-            start: word.start,
-            end: word.end,
-            stress
-        })
-
+        }
     }
 
 
-    const { headMovementVectors } = getHeadMovementVectorsFromList({
-        wordList
+    visemesData.forEach((visemeObject, index) => {
+        const { word } = visemeObject;
+        if (!taggedWords.includes(word)) {
+            if (Math.random() < 0.5) {
+                visemeObject.stress = true;
+                visemeObject.stressProbability = 0.2;
+            }
+
+            taggedWords.push(word);
+        }
     })
 
-    console.log("headMovementVectors", headMovementVectors)
 
 
 
-    return { headMovementVectors }
+    return { visemesData }
 
 }

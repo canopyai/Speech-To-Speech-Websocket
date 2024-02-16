@@ -20,7 +20,6 @@ export const getHeadMovementVectorsFromList = ({
         }
     })
 
-    // console.log("wordList", wordList)
 
     let stressors = wordList.filter(word => (word.stressMarker === "main" || word.stressMarker === "first word"))
 
@@ -36,7 +35,6 @@ export const getHeadMovementVectorsFromList = ({
 
     })
 
-    console.log(stressors)
 
     let vectorsObjects = []
 
@@ -61,8 +59,6 @@ export const getHeadMovementVectorsFromList = ({
             vector: [0,0,0],
             duration: decay
         })
-
-
 
 
 
