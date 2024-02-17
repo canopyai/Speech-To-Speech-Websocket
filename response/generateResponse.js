@@ -89,6 +89,8 @@ export const generateResponse = async ({
 
     });
 
+    let previousSentence = null;
+
     for await (const part of stream) {
         try {
 
@@ -154,6 +156,8 @@ export const generateResponse = async ({
 
                 };
 
+                
+
                 isFirstChunk = false;
 
                 processingQueue.push(processingObject);
@@ -184,8 +188,11 @@ export const generateResponse = async ({
                     sentence,
                     globals,
                     finishReason,
-                    ws
+                    ws,
+                    previousSentence
                 })
+
+                previousSentence += TTSSentence;
 
             }
 
