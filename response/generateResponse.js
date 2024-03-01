@@ -12,7 +12,7 @@ import { openaiAPIKey, playHTApiKey, playHTUserId } from '../config.js';
 import { retrieveAudio } from './retrieveAudio.js';
 import { semantifySentence } from './semantifySentence.js';
 import { labelSentiment } from './labelSentiment.js';
-
+import { Readable } from 'node:stream';
 
 PlayHT.init({
     apiKey: playHTApiKey,
@@ -36,22 +36,9 @@ export const generateResponse = async ({
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
 
-    if (globals.visual && globals.voice.provider === "eleven_labs") {
-        initialiseElevenLabsConnection({
-            globals,
-            processId,
-            createdAt
-        })
-    }
 
 
     if (globals.isProcessingResponse) return;
-
-
-
-
-
-
 
     globals.currentProcessId = processId;
     globals.isProcessingResponse = true;
@@ -66,11 +53,6 @@ export const generateResponse = async ({
     }
 
     globals.processingQueue.push(processingObject);
-
-
-
-
-
 
 
     globals.wordBuffer = []
@@ -89,9 +71,28 @@ export const generateResponse = async ({
 
     });
 
-    let previousSentence = null;
+    // let previousSentence = null;
+    // const textStream = new Readable({
+    //     async read() {
+    //       for await (const part of stream) {
+    //         this.push(part.choices[0]?.delta?.content || '');
+    //       }
+    //       // End the stream
+    //       this.push(null);
+    //     },
+    //   });
 
+    // const audioStream = await PlayHT.stream(textStream);
+
+    // console.log(audioStream);
+
+    // return;
     for await (const part of stream) {
+
+
+     
+
+
         try {
 
             let finishReason = part.choices[0].finish_reason
@@ -141,7 +142,7 @@ export const generateResponse = async ({
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
 
                 if (finishReason === "stop") {
-                    console.log("finish reason is stop")
+       
                 }
 
                 const processingObject = {

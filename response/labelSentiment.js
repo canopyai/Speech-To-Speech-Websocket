@@ -13,7 +13,7 @@ export const labelSentiment = async ({
         processingObject.sentiment = score;
 
     } catch (err) {
-        console.log("Error:", err);
+
     }
 
 }

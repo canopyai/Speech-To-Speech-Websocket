@@ -33,7 +33,7 @@ export const decoratePhonemes = async ({
     };
 
     try {
-        console.log("request being made")
+
         const response = await requestPromise(options);
 
 
@@ -43,12 +43,15 @@ export const decoratePhonemes = async ({
 
         });
 
+        console.log("requested head movement vector")
+
         const { headMovementVectors } = getHeadMovementVectors({
             decoratorResponse: response, 
             process, 
             visemesData
         })
 
+        console.log("retrieved head movement vectors")
 
 
         // process.headMovementVectors = headMovementVectors
@@ -72,6 +75,6 @@ export const decoratePhonemes = async ({
 
 
     } catch (error) {
-        console.error('Error:', error.message);
+
     }
 };

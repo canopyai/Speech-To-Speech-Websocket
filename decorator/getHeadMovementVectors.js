@@ -50,6 +50,7 @@ export const getHeadMovementVectors = ({
 
 
 
+    // console.log("visemesData", visemesData);
 
     return { visemesData }
 

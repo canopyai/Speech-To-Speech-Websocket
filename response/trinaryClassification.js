@@ -15,7 +15,6 @@ export const trinaryClassify = async ({
         },
         json: true // This ensures the response is parsed as JSON
     });
-    console.log("Sentiment:", response, text);
 
     if(response[0].label ==="neutral") return {score :0}
     if(response[0].label ==="positive") return {score :response[0].score}

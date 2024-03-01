@@ -4,7 +4,7 @@ export const listeningReactions = async ({
     globals,
     partialTranscript
 }) => {
-    console.log("listeningReactions", partialTranscript);
+
     if (partialTranscript.length < 5) return;
 
 
@@ -14,7 +14,7 @@ export const listeningReactions = async ({
         })
 
         const reactionVector = extractScoresInOrder(result)
-        console.log("reactionVector", reactionVector);
+     
 
         globals.ws.send(JSON.stringify({
             messageType: "reaction",
