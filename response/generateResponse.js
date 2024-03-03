@@ -71,22 +71,8 @@ export const generateResponse = async ({
 
     });
 
-    // let previousSentence = null;
-    // const textStream = new Readable({
-    //     async read() {
-    //       for await (const part of stream) {
-    //         this.push(part.choices[0]?.delta?.content || '');
-    //       }
-    //       // End the stream
-    //       this.push(null);
-    //     },
-    //   });
+    let previousSentence = null;
 
-    // const audioStream = await PlayHT.stream(textStream);
-
-    // console.log(audioStream);
-
-    // return;
     for await (const part of stream) {
 
 
@@ -98,34 +84,7 @@ export const generateResponse = async ({
             let finishReason = part.choices[0].finish_reason
             const text = part.choices[0].delta.content
 
-            if (globals.visual && globals.voice.provider === "eleven_labs") {
-                
-                if (text) {
-                    globals.elevenLabsWs.send(
-                        JSON.stringify({
-                            text: part.choices[0].delta.content,
-                            xi_api_key: elevenlabsApiKey,
-                            "optimize_streaming_latency": 4,
-                            try_trigger_generation: true
-
-                        }))
-
-                }
-
-                if (finishReason === "stop") {
-                    globals.elevenLabsWs.send(
-                        JSON.stringify({
-                            text: "",
-                            xi_api_key: elevenlabsApiKey,
-                            "optimize_streaming_latency": 4,
-                            // flush:true
-                        }))
-                }
-
-
-
-                continue
-            }
+  
 
             if (globals.currentProcessId !== processId) {
                 stream.controller.abort()

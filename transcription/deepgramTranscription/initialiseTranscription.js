@@ -24,7 +24,7 @@ export const initialiseDeepgramTranscription = async ({
             model: "nova-2",
             interim_results: true,
 
-            
+
         });
 
         if (keepAlive) clearInterval(keepAlive);
@@ -36,10 +36,10 @@ export const initialiseDeepgramTranscription = async ({
 
 
             deepgram.addListener(LiveTranscriptionEvents.Transcript, (data) => {
-            
+
 
                 const finalTranscript = data.channel.alternatives[0].transcript;
-                
+
 
                 if (!finalTranscript.trim()) return;
                 if (finalTranscript.trim().length < 3) return;
@@ -54,13 +54,19 @@ export const initialiseDeepgramTranscription = async ({
 
                 if (shouldReturn) return;
 
-                if(data.speech_final&& data.is_final){
+                if (data.speech_final && data.is_final) {
                     const { success, error } = modifyTranscript({
                         globals,
                         role: "user",
-                        content: finalTranscript, 
-    
+                        content: finalTranscript,
+
                     });
+                    ws.send(JSON.stringify({
+                        messageType: "transcript",
+                        content: finalTranscript,
+                        timestamp: Date.now()
+
+                    }))
                     generateResponse({
                         globals,
                         processingQueue,
@@ -76,7 +82,7 @@ export const initialiseDeepgramTranscription = async ({
                     });
 
                 }
-                
+
 
             });
 
