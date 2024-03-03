@@ -3,7 +3,6 @@ const elevenlabsKey = "a0db3b43532337aaffa8178d40099086"
 import { decoratePhonemes } from "../decorator/decoratePhonemes.js";
 
 export const retrieveElevenLabsAudio = async ({
-    voiceId = "21m00Tcm4TlvDq8ikWAM",
     process,
     TTSSentence,
     globals,
