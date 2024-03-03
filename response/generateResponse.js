@@ -3,24 +3,24 @@ import { modifyThread } from './modifyThread.js';
 import OpenAI from 'openai';
 import { parsePart } from './parsePart.js';
 import { shouldProcessContent } from './shouldProcessContent.js';
-import { retrieveElevenLabsAudio } from './retrieveElevenLabsAudio.js';
 import { reformatTextForTTS } from './reformatTextForTTS.js';
-import { retrieveOpenAIAudio } from './retrieveOpenAIAudio.js';
+
 import { elevenlabsApiKey } from "../config.js"
 import { initialiseElevenLabsConnection } from "./initialiseElevenLabsConnection.js"
-import { retrieveGCPTTSAudio } from "./retrieveGCPAudio.js"
-import { Readable } from 'node:stream';
 import PlayHT from "playht";
-
+import { openaiAPIKey, playHTApiKey, playHTUserId } from '../config.js';
+import { retrieveAudio } from './retrieveAudio.js';
+import { semantifySentence } from './semantifySentence.js';
+import { labelSentiment } from './labelSentiment.js';
+import { Readable } from 'node:stream';
 
 PlayHT.init({
-    apiKey: 'f4655478df684e76ae96facd8dc8df22',
-    userId: 'fTCoF67G60giwPCkLYSFk2pKACi2',
+    apiKey: playHTApiKey,
+    userId: playHTUserId
 });
 
 const pIdLength = 13;
 
-import { openaiAPIKey } from '../config.js';
 const openai = new OpenAI({
     apiKey: openaiAPIKey
 });
@@ -36,27 +36,15 @@ export const generateResponse = async ({
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
 
-    if (globals.visual && globals.voice.provider === "eleven_labs") {
-        initialiseElevenLabsConnection({
-            globals, 
-            processId, 
-            createdAt
-        })
-    }
 
 
     if (globals.isProcessingResponse) return;
-
-
-
-
-
-    
 
     globals.currentProcessId = processId;
     globals.isProcessingResponse = true;
 
     const sentence = { sentence: "", previousContent: "" }
+    let isFirstChunk = true;
 
 
     const processingObject = {
@@ -65,11 +53,6 @@ export const generateResponse = async ({
     }
 
     globals.processingQueue.push(processingObject);
-
-    
-
-
-
 
 
     globals.wordBuffer = []
@@ -88,15 +71,35 @@ export const generateResponse = async ({
 
     });
 
+    // let previousSentence = null;
+    // const textStream = new Readable({
+    //     async read() {
+    //       for await (const part of stream) {
+    //         this.push(part.choices[0]?.delta?.content || '');
+    //       }
+    //       // End the stream
+    //       this.push(null);
+    //     },
+    //   });
+
+    // const audioStream = await PlayHT.stream(textStream);
+
+    // console.log(audioStream);
+
+    // return;
     for await (const part of stream) {
+
+
+     
+
+
         try {
 
+            let finishReason = part.choices[0].finish_reason
+            const text = part.choices[0].delta.content
 
             if (globals.visual && globals.voice.provider === "eleven_labs") {
-                const text = part.choices[0].delta.content
-                const finishReason = part.choices[0].finish_reason
-
-
+                
                 if (text) {
                     globals.elevenLabsWs.send(
                         JSON.stringify({
@@ -124,9 +127,6 @@ export const generateResponse = async ({
                 continue
             }
 
-        
-
-
             if (globals.currentProcessId !== processId) {
                 stream.controller.abort()
 
@@ -139,10 +139,11 @@ export const generateResponse = async ({
             });
 
 
-            if (shouldProcessContent({ sentence, part })) {
+            if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
 
-
-
+                if (finishReason === "stop") {
+       
+                }
 
                 const processingObject = {
                     id: Math.random().toString().substring(7),
@@ -151,58 +152,48 @@ export const generateResponse = async ({
                     createdAt,
                     dialogue: sentence.sentence,
                     parentProcessId: processId,
+                    isFirstChunk,
+                    finishReason,
 
                 };
 
+                
 
+                isFirstChunk = false;
 
                 processingQueue.push(processingObject);
-
-
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
+                retrieveAudio({
+                    TTSSentence,
+                    processingObject,
+                    sentence,
+                    globals,
+                    finishReason,
+                    ws
+                })
 
+                semantifySentence({
+                    TTSSentence,
+                    processingObject,
+                    sentence,
+                    globals,
+                    finishReason,
+                    ws
+                })
 
-                switch (globals.voice.provider) {
-                    case "eleven_labs":
-                        retrieveElevenLabsAudio({
-                            TTSSentence: TTSSentence,
-                            process: processingObject,
-                            sentence,
-                            globals,
-                            ws
+                labelSentiment({
+                    TTSSentence,
+                    processingObject,
+                    sentence,
+                    globals,
+                    finishReason,
+                    ws,
+                    previousSentence
+                })
 
-                        })
-
-                        break;
-
-                    case "openai":
-                        retrieveOpenAIAudio({
-                            TTSSentence: TTSSentence,
-                            process: processingObject,
-                            sentence,
-                            globals,
-                            ws
-                        })
-                        break;
-
-                    case "google":
-                        retrieveGCPTTSAudio({
-                            TTSSentence: TTSSentence,
-                            process: processingObject,
-                            sentence,
-                            globals,
-                            ws
-                        })
-
-                        break;
-
-
-                }
-
-                
-
+                previousSentence += TTSSentence;
 
             }
 

@@ -1,5 +1,7 @@
 import vad from "@sentiment_technologies/vad-node";
 import { int16ToFloat32 } from './processFrame.js';
+import { addToTranscriptBuffer } from '../transcription/sileroTranscription/transcribe.js';
+import { postAudioBuffer } from '../transcription/sileroTranscription/postAudio.js';
 
 const VAD_THRESHOLD = 0.6;
 let isSpeech = false;
@@ -39,6 +41,12 @@ export const initialiseVAD = async ({
             } else if (probabilities.isSpeech < VAD_THRESHOLD && isSpeech === true) {
                 isSpeech = false;
                 globals.lastVADSpeechEnded = Date.now();
+                // console.log("posting audio")
+
+                // postAudioBuffer({
+                //     globals
+                // });
+
                 ws.send(JSON.stringify({
                     messageType: 'vadStop',
                     timestamp: Date.now()
@@ -57,6 +65,10 @@ export const initialiseVAD = async ({
         if (messageType !== "vadAudio") return;
 
         const buffer = Buffer.from(data, 'base64');
+        addToTranscriptBuffer({
+            buffer,
+            globals
+        });
 
         const uint8Array = new Uint8Array(buffer);
 

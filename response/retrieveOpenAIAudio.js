@@ -10,11 +10,14 @@ export const retrieveOpenAIAudio = async ({
     TTSSentence, 
     process, 
     globals, 
+    finishReason,
     ws, 
 
 }) => {
     
     if(globals.currentProcessId !== process.parentProcessId) return;
+
+    // TTSSentence = `Hello, can you hear me?`
 
 
     if (TTSSentence.trim()) {
@@ -37,7 +40,8 @@ export const retrieveOpenAIAudio = async ({
                 globals, 
                 ws, 
                 process, 
-                sampleRate: 24000
+                sampleRate: 24000,
+                finishReason
             });
             process.base64String = base64String;
 
