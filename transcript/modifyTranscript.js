@@ -16,10 +16,10 @@ export const modifyTranscript = async ({
 
             globals.mainThread.push({ role, content });
 
-            writeTranscriptToFirebase(globals.projectId, globals.sessionId, {
-                role: role,
-                content: content
-            });
+            // writeTranscriptToFirebase(globals.projectId, globals.sessionId, {
+            //     role: role,
+            //     content: content
+            // });
 
             return { success: true };
         } else {
