@@ -44,6 +44,7 @@ wss.on('connection', (ws) => {
 
 
     ws.on('message', async function (message) {
+        console.log(message)
         let parsedMessage;
 
         // Attempt to parse the message as JSON
