@@ -1,6 +1,6 @@
 import { WebSocketServer } from 'ws';
 
-const wss = new WebSocketServer({ port: 8080 });
+const wss = new WebSocketServer({ host: '0.0.0.0', port: 8080 });
 
 import { initialiseConnection } from './initialiseConnection.js';
 import { manageProcessingQueue } from './utils/manageProcessingQueue.js';
@@ -44,6 +44,15 @@ wss.on('connection', (ws) => {
 
 
     ws.on('message', async function (message) {
+        let parsedMessage;
+
+        // Attempt to parse the message as JSON
+        try {
+            parsedMessage = JSON.parse(message);
+        } catch (e) {
+            return; // Exit the function if the message cannot be parsed
+        }
+
         const { messageType, data } = JSON.parse(message);
 
         switch (messageType) {
@@ -66,7 +75,7 @@ wss.on('connection', (ws) => {
 
 
                 }
-           
+
 
                 handleAuthenticate({
                     ws,
@@ -75,7 +84,7 @@ wss.on('connection', (ws) => {
                 });
 
                 handleConfig({
-                    globals, 
+                    globals,
                     data
                 })
                 break;

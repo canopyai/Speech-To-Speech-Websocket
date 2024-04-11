@@ -8,10 +8,18 @@ export const authenticate = async (authToken) => {
 
 
     if (data.valid) {
+        console.log("auth success");
         return {
             success: true,
             projectId: data.payload.projectId,
             error: null
+        }
+    } else {
+        console.log("auth failed");
+        return {
+            success: false,
+            projectId: null,
+            error: data.error
         }
     }
     

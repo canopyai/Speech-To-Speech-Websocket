@@ -45,11 +45,11 @@ export const decoratePhonemes = async ({
 
         console.log("requested head movement vector")
 
-        const { headMovementVectors } = getHeadMovementVectors({
-            decoratorResponse: response, 
-            process, 
-            visemesData
-        })
+        // const { headMovementVectors } = getHeadMovementVectors({
+        //     decoratorResponse: response, 
+        //     process, 
+        //     visemesData
+        // })
 
         console.log("retrieved head movement vectors")
 
