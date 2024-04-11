@@ -11,21 +11,6 @@ export const handleAuthenticate = async ({
 
     const { success, projectId, error } = await authenticate(authToken);
 
-    if (!success) {
-
-        ws.send(JSON.stringify({
-            messageType: "authenticate",
-            success: "false",
-            error
-        }));
-
-        console.log("Authentication failed.")
-
-        ws.close(4000, "Authentication failed");
-
-        return;
-    }
-
     const sessionId = await initialiseFirebaseSessionRecord(projectId);
 
     console.log("session id: ", sessionId);

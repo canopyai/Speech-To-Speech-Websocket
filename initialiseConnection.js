@@ -1,6 +1,7 @@
 import { initialiseSpeechmaticsTranscription } from './transcription/speechmaticsTranscription/initialiseTranscription.js';
 import { initialiseVAD } from './vad/initialiseVAD.js';
 import { initialiseDeepgramTranscription } from './transcription/deepgramTranscription/initialiseTranscription.js';
+import {initialiseShallowgramTranscription} from './transcription/shallowgramTranscription/initialiseTranscription.js';
 
 export const initialiseConnection = async ({
     session,
@@ -10,11 +11,17 @@ export const initialiseConnection = async ({
 }) => {
 
 
-    initialiseDeepgramTranscription({
-        session,
+    // initialiseDeepgramTranscription({
+    //     session,
+    //     ws,
+    //     globals,
+    //     processingQueue
+    // });
+
+    initialiseShallowgramTranscription({
         ws,
-        globals,
-        processingQueue
+        processingQueue,
+        globals
     });
 
     initialiseVAD({

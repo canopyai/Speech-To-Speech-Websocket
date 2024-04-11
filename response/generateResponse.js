@@ -13,6 +13,7 @@ import { retrieveAudio } from './retrieveAudio.js';
 import { semantifySentence } from './semantifySentence.js';
 import { labelSentiment } from './labelSentiment.js';
 import { Readable } from 'node:stream';
+import { createWriteStream } from 'node:fs';
 
 PlayHT.init({
     apiKey: playHTApiKey,
@@ -33,11 +34,13 @@ export const generateResponse = async ({
     ws
 }) => {
 
+    console.log("generating response", globals.mainThread)
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
 
 
 
+    console.log(globals.isProcessingResponse)
     if (globals.isProcessingResponse) return;
 
     globals.currentProcessId = processId;
@@ -71,9 +74,16 @@ export const generateResponse = async ({
 
     });
 
+   
+
+    
+    
+
     let previousSentence = null;
 
     for await (const part of stream) {
+
+        console.log("part", part.choices[0].finish_reason, part.choices[0].delta.content)
 
 
      
@@ -83,7 +93,6 @@ export const generateResponse = async ({
 
             let finishReason = part.choices[0].finish_reason
             const text = part.choices[0].delta.content
-
   
 
             if (globals.currentProcessId !== processId) {

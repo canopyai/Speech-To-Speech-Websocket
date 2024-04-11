@@ -26,9 +26,10 @@ export const manageProcessingQueue = ({
 
         
 
-        if (base64String) {
-        // if (base64String ) {
-            console.log("sending audio")
+        // if (base64String && visemesData) {
+        if (base64String ) {
+
+            console.log("sending off data")
             // console.log("prcess id", Date.now()-createdAt, processingQueue[0].id);
             ws.send(
 

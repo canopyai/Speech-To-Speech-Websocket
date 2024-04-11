@@ -30,7 +30,7 @@ export const retrieveOpenAIAudio = async ({
                 input: TTSSentence, 
                 speed: 1,
             });
-            console.log("OpenAI TTS response time:",process.id, Date.now() - initialTime);
+            // console.log("OpenAI TTS response time:",process.id, Date.now() - initialTime);
            
 
             const audioContent = await response.arrayBuffer();

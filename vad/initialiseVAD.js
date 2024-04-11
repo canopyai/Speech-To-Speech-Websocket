@@ -14,70 +14,25 @@ export const initialiseVAD = async ({
     globals,
     processingQueue
 }) => {
-
-
-    let frame = [];
-
-    const myvad = await vad.RealTimeVAD.new(sampleRate, {
-        onFrameProcessed: (probabilities) => {
-            let time_delta = Date.now() - globals.startTime;
-            if (probabilities.isSpeech > VAD_THRESHOLD && isSpeech === false) {
-                isSpeech = true;
-                globals.lastVADSpeechStarted = Date.now();
-
-                if(globals.elevenLabsWs){
-                    globals.elevenLabsWs.close()
-                }
-
-                // 
-                
-                globals.isProcessingResponse = false;
-                processingQueue = [];
-                ws.send(JSON.stringify({
-                    messageType: 'vadStart',
-                    timestamp: Date.now()
-                }));
-
-            } else if (probabilities.isSpeech < VAD_THRESHOLD && isSpeech === true) {
-                isSpeech = false;
-                globals.lastVADSpeechEnded = Date.now();
-                // console.log("posting audio")
-
-                // postAudioBuffer({
-                //     globals
-                // });
-
-                ws.send(JSON.stringify({
-                    messageType: 'vadStop',
-                    timestamp: Date.now()
-                }));
-
-            }
-        },
-        onVADMisfire: () => {
-            console.log("VAD misfire");
-        },
-    });
-
     ws.on('message', async function (message) {
+
         const { messageType, data } = JSON.parse(message);
 
-        if (messageType !== "vadAudio") return;
+        if (messageType !== "vad") return;
 
-        const buffer = Buffer.from(data, 'base64');
-        addToTranscriptBuffer({
-            buffer,
-            globals
-        });
+        const { vad_type } = data
 
-        const uint8Array = new Uint8Array(buffer);
-
-        frame.push(...Array.from(uint8Array));
-        while (frame.length >= frameSize) {
-            const newBuffer = int16ToFloat32(new Uint8Array(frame.slice(0, frameSize)));
-
-            await myvad.processAudio(newBuffer);
-            frame = frame.slice(frameSize);
+        if (vad_type === "end") {
+            ws.send(JSON.stringify({
+                messageType: "vadStop",
+                timestamp:Date.now()
+            }))
+        } else if (vad_type === "start") {
+            globals.isProcessingResponse = false;
+            ws.send(JSON.stringify({
+                messageType: "vadStart",
+                timestamp:Date.now()
+            }))
         }
     });
 
