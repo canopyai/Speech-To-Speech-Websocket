@@ -66,7 +66,7 @@ export const generateResponse = async ({
 
     const stream = await openai.chat.completions.create({
         // model: "gpt-4-turbo",
-        model: globals.LLM,
+        model: globals.LLM ? globals.LLM : "gpt-3.5-turbo",
         messages: globals.mainThread,
         stream: true,
         temperature: 0,
