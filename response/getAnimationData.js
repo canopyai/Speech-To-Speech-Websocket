@@ -32,6 +32,8 @@ export const getAnimationData = async ({
                     animationData: data
                 }
             }));
+
+            globals.isProcessingResponse = false;
         })
     } catch (error) {
         console.error("An error occurred:", error);
