@@ -5,7 +5,9 @@ export const getAnimationData = async ({
     try {
         const remoteUrl = "http://34.32.228.101:8080/generate_animation";
         const url = new URL(remoteUrl);
-        url.searchParams.append('text', TTSSentence);
+
+        const modifiedTTSSentence = TTSSentence.replace(/[^\w\s]/g, '');
+        url.searchParams.append('text', modifiedTTSSentence);
 
         console.log("url", url)
 
