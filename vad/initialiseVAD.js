@@ -20,7 +20,11 @@ export const initialiseVAD = async ({
 
         if (messageType !== "vad") return;
 
+
         const { vad_type } = data
+
+        console.log("vad type: ", vad_type)
+        return
 
         if (vad_type === "end") {
             ws.send(JSON.stringify({
