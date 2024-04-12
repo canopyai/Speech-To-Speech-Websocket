@@ -26,13 +26,13 @@ export const initialiseShallowgramTranscription = async ({
             content: transcription,
 
         });
-        return
-        ws.send(JSON.stringify({
-            messageType: "transcript",
-            content: transcription,
-            timestamp: Date.now()
+        // return
+        // ws.send(JSON.stringify({
+        //     messageType: "transcript",
+        //     content: transcription,
+        //     timestamp: Date.now()
 
-        }))
+        // }))
         generateResponse({
             globals,
             processingQueue,
