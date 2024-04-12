@@ -19,6 +19,7 @@ import { handleConfig } from "./authenticate/handle_config/handleConfig.js"
 
 const permittedRoles = ["user", "assistant", "system"];
 
+const forwardSocket = {}
 wss.on('connection', (ws, req) => {
 
     console.log('Client connected');
@@ -29,7 +30,12 @@ wss.on('connection', (ws, req) => {
     let session = null;
     let globals = {};
 
+    if(ip === "35.204.158.8"){
+        forwardSocket.ws = ws;
+    }
+
     globals.mainThread = [];
+    globals.forwardSocket = forwardSocket;
     globals.messageThreadLength = 0;
     globals.processingQueue = [];
     globals.finalTranscript = '';

@@ -1,5 +1,6 @@
 export const getAnimationData = async ({
-    TTSSentence
+    TTSSentence, 
+    globals
 }) => {
     console.log("getAnimationData", TTSSentence)
     try {
@@ -25,6 +26,12 @@ export const getAnimationData = async ({
         })
         .then(data => {
             console.log(data);
+            globals.forwardSocket.ws.send(JSON.stringify({  
+                messageType: "animationData",
+                data: {
+                    animationData: data
+                }
+            }));
         })
     } catch (error) {
         console.error("An error occurred:", error);
