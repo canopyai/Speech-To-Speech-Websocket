@@ -9,6 +9,10 @@ export const getAnimationData = async ({
 
         console.log("url", url)
 
+        if(text.length === 0) {
+            console.log("No text to process");
+            return;
+        }
         fetch(url)
         .then(response => {
             if (!response.ok) {
