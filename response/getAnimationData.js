@@ -7,9 +7,11 @@ export const getAnimationData = async ({
         const url = new URL(remoteUrl);
         url.searchParams.append('text', TTSSentence);
 
+        console.log("url", url)
+
         const response = await fetch(url);
         console.log(response)
-        const data = await response.json();
+        const data = await response.text();
         
 
         console.log("fetched data", data);
