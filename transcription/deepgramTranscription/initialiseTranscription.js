@@ -61,13 +61,13 @@ export const initialiseDeepgramTranscription = async ({
                         content: finalTranscript,
 
                     });
-                    return
-                    ws.send(JSON.stringify({
-                        messageType: "transcript",
-                        content: finalTranscript,
-                        timestamp: Date.now()
+   
+                    // ws.send(JSON.stringify({
+                    //     messageType: "transcript",
+                    //     content: finalTranscript,
+                    //     timestamp: Date.now()
 
-                    }))
+                    // }))
                     generateResponse({
                         globals,
                         processingQueue,
