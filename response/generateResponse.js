@@ -14,6 +14,7 @@ import { semantifySentence } from './semantifySentence.js';
 import { labelSentiment } from './labelSentiment.js';
 import { Readable } from 'node:stream';
 import { createWriteStream } from 'node:fs';
+import { getAnimationData } from './getAnimationData.js';
 
 PlayHT.init({
     apiKey: playHTApiKey,
@@ -74,10 +75,10 @@ export const generateResponse = async ({
 
     });
 
-   
 
-    
-    
+
+
+
 
     let previousSentence = null;
 
@@ -86,14 +87,14 @@ export const generateResponse = async ({
         console.log("part", part.choices[0].finish_reason, part.choices[0].delta.content)
 
 
-     
+
 
 
         try {
 
             let finishReason = part.choices[0].finish_reason
             const text = part.choices[0].delta.content
-  
+
 
             if (globals.currentProcessId !== processId) {
                 stream.controller.abort()
@@ -110,7 +111,7 @@ export const generateResponse = async ({
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
 
                 if (finishReason === "stop") {
-       
+
                 }
 
                 const processingObject = {
@@ -125,7 +126,7 @@ export const generateResponse = async ({
 
                 };
 
-                
+
 
                 isFirstChunk = false;
 
@@ -133,7 +134,7 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
-                retrieveAudio({
+                getAnimationData({
                     TTSSentence,
                     processingObject,
                     sentence,
@@ -142,24 +143,18 @@ export const generateResponse = async ({
                     ws
                 })
 
-                semantifySentence({
-                    TTSSentence,
-                    processingObject,
-                    sentence,
-                    globals,
-                    finishReason,
-                    ws
-                })
+                // retrieveAudio({
+                //     TTSSentence,
+                //     processingObject,
+                //     sentence,
+                //     globals,
+                //     finishReason,
+                //     ws
+                // })
 
-                labelSentiment({
-                    TTSSentence,
-                    processingObject,
-                    sentence,
-                    globals,
-                    finishReason,
-                    ws,
-                    previousSentence
-                })
+
+
+
 
                 previousSentence += TTSSentence;
 
