@@ -14,6 +14,8 @@ import { db } from "../firebase.js";
 
 export async function initialiseFirebaseSessionRecord(projectId) {
 
+    return;
+
     try{
         const session = {
             projectId,
@@ -32,6 +34,7 @@ export async function initialiseFirebaseSessionRecord(projectId) {
 }
 
 export async function writeTranscriptToFirebase(projectId, sessionId, data) {
+    return;
     const sessionRef = collection(db, "projects", projectId, "sessions", sessionId, "transcript");
 
     try{
@@ -49,6 +52,7 @@ export async function writeTranscriptToFirebase(projectId, sessionId, data) {
 }
 
 export async function writeSessionCloseToFirebase(projectId, sessionId) {
+    return
     const sessionRef = doc(db, "projects", projectId, "sessions", sessionId);
 
     try{
