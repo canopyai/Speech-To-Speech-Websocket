@@ -16,6 +16,7 @@ export const handleTranscript = ({
     });
 
     if (!success) {
+        return
         ws.send(JSON.stringify({
             messageType: "error",
             data: error

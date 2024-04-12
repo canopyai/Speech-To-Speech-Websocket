@@ -24,7 +24,7 @@ export const handleUpdateDialogue = async ({
             if (content) {
                 messageThread[dialogueIndex].content = content;
             }
-
+            return
             ws.send(JSON.stringify({
                 messageType: "updateDialogueResponse",
                 success: true,
@@ -38,7 +38,7 @@ export const handleUpdateDialogue = async ({
 
 
         } else {
-
+            return
             ws.send(JSON.stringify({
                 messageType: "updateDialogueResponse",
                 success: false,
@@ -46,7 +46,7 @@ export const handleUpdateDialogue = async ({
             }));
         }
     } catch (error) {
-
+        return
         ws.send(JSON.stringify({
             messageType: "updateDialogueResponse",
             success: false,

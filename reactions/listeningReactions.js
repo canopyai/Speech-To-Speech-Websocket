@@ -15,7 +15,7 @@ export const listeningReactions = async ({
 
         const reactionVector = extractScoresInOrder(result)
      
-
+        return
         globals.ws.send(JSON.stringify({
             messageType: "reaction",
             reactionData: reactionVector

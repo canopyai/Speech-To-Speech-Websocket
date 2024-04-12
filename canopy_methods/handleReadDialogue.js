@@ -6,7 +6,7 @@ export const handleReadDialogue = async ({
     const messageThread = globals.mainThread;
 
     if (messageThread) {
-
+        return
         ws.send(JSON.stringify({
             messageType: "readDialogueResponse",
             success: true,
@@ -17,7 +17,7 @@ export const handleReadDialogue = async ({
         }));
 
     } else {
-
+        return
         ws.send(JSON.stringify({
             messageType: "readDialogueResponse",
             success: false,

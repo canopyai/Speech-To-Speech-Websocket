@@ -110,7 +110,7 @@ wss.on('connection', (ws) => {
 
 
                         globals.mainThread.push({ role: role, content: content });
-
+                        return
                         ws.send(JSON.stringify({
                             messageType: "appendDialogueResponse",
                             success: true,
@@ -120,7 +120,7 @@ wss.on('connection', (ws) => {
                             }
                         }));
                     } else {
-
+                        return
                         ws.send(JSON.stringify({
                             messageType: "appendDialogueResponse",
                             success: false,
@@ -131,7 +131,7 @@ wss.on('connection', (ws) => {
                     return;
 
                 } else {
-
+                    return
                     ws.send(JSON.stringify({
                         messageType: "appendDialogueResponse",
                         success: false,

@@ -43,7 +43,7 @@ export const initialiseElevenLabsConnection = ({
             "xi_api_key": elevenlabsApiKey, 
             "optimize_streaming_latency":3
         };
-    
+        return
         elevenLabsWs.send(JSON.stringify(bosMessage));
     });
 
@@ -56,6 +56,7 @@ export const initialiseElevenLabsConnection = ({
             const text = chars.join("")
 
             // console.log(audio)
+            return
             globals.ws.send(
                 JSON.stringify((
                     {
@@ -67,7 +68,7 @@ export const initialiseElevenLabsConnection = ({
 
         } else if(audio) {
 
-
+            return
             globals.ws.send(
                 JSON.stringify((
                     {

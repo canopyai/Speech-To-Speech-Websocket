@@ -6,7 +6,7 @@ export const handleMessageThreadLength = async ({
     const messageThread = globals.mainThread;
 
     if (messageThread) {
-
+        return
         ws.send(JSON.stringify({
             messageType: "messageThreadLengthResponse",
             success: true,
@@ -17,7 +17,7 @@ export const handleMessageThreadLength = async ({
         }));
 
     } else {
-
+        return
         ws.send(JSON.stringify({
             messageType: "messageThreadLengthResponse",
             success: false,

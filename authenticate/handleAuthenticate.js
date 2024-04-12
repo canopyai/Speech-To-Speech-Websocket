@@ -18,7 +18,7 @@ export const handleAuthenticate = async ({
     globals.authenticated = true;
     globals.projectId = projectId;
     globals.sessionId = sessionId;
-
+    return
     ws.send(JSON.stringify({
         messageType: "authenticate",
         message: "You are now authenticated.",

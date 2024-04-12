@@ -24,6 +24,7 @@ export const streamMP4File = (ws) => {
     // Handle the data event to send file chunks over the WebSocket
     passThrough.on('data', (chunk) => {
         // Send each chunk through the WebSocket
+        return
         ws.send(chunk, { binary: true }, (error) => {
             if (error) {
                 console.error('WebSocket send error:', error);

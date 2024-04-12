@@ -26,6 +26,7 @@ export const initialiseShallowgramTranscription = async ({
             content: transcription,
 
         });
+        return
         ws.send(JSON.stringify({
             messageType: "transcript",
             content: transcription,

@@ -31,6 +31,7 @@ export const manageProcessingQueue = ({
 
             console.log("sending off data")
             // console.log("prcess id", Date.now()-createdAt, processingQueue[0].id);
+            return
             ws.send(
 
                 JSON.stringify((

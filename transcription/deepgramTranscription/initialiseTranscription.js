@@ -61,6 +61,7 @@ export const initialiseDeepgramTranscription = async ({
                         content: finalTranscript,
 
                     });
+                    return
                     ws.send(JSON.stringify({
                         messageType: "transcript",
                         content: finalTranscript,
