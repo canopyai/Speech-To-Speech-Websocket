@@ -18,6 +18,7 @@ export const getAnimationData = async ({
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+            console.log("response was okay")
             return response.text(); // or response.json() if your server responds with JSON
         })
         .then(data => {
