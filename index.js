@@ -19,9 +19,12 @@ import { handleConfig } from "./authenticate/handle_config/handleConfig.js"
 
 const permittedRoles = ["user", "assistant", "system"];
 
-wss.on('connection', (ws) => {
+wss.on('connection', (ws, req) => {
 
     console.log('Client connected');
+    const ip = req.socket.remoteAddress;
+
+    console.log('Client IP Address:', ip);
 
     let session = null;
     let globals = {};

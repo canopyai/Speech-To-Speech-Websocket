@@ -11,7 +11,7 @@ export function retrieveAudio ({
     ws
 }) {
 
-    switch (globals.voice.provider) {
+    switch (globals.voice.provider || "eleven_labs") {
         case "eleven_labs":
             retrieveElevenLabsAudio({
                 TTSSentence: TTSSentence,
