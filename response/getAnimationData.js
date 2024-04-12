@@ -9,12 +9,16 @@ export const getAnimationData = async ({
 
         console.log("url", url)
 
-        const response = await fetch(url);
-        console.log(response)
-        const data = await response.text();
-        
-
-        console.log("fetched data", data);
+        fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text(); // or response.json() if your server responds with JSON
+        })
+        .then(data => {
+            console.log(data);
+        })
     } catch (error) {
         console.error("An error occurred:", error);
     }
