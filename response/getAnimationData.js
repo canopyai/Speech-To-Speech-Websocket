@@ -16,24 +16,23 @@ export const getAnimationData = async ({
             return;
         }
         const startTime = Date.now()
-        fetch(url)
-        .then(response => {
+        try {
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.text(); // or response.json() if your server responds with JSON
-        })
-        .then(data => {
-            console.log(`Recieved animation data in ${Date.now() - startTime}ms`)
+            const data = await response.text(); // or response.json() if your server responds with JSON
+            console.log(`Received animation data in ${Date.now() - startTime}ms`);
             globals.forwardSocket.ws.send(JSON.stringify({  
                 messageType: "animationData",
                 data: {
                     animationData: data
                 }
             }));
-
             globals.isProcessingResponse = false;
-        })
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
     } catch (error) {
         console.error("An error occurred:", error);
     }
