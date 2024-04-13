@@ -10,7 +10,6 @@ export const getAnimationData = async ({
         const modifiedTTSSentence = TTSSentence.replace(/[^\w\s]/g, '');
         url.searchParams.append('text', modifiedTTSSentence);
 
-        console.log("url", url)
 
         if(TTSSentence.length === 0) {
             console.log("No text to process");
@@ -22,7 +21,6 @@ export const getAnimationData = async ({
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            console.log("response was okay")
             return response.text(); // or response.json() if your server responds with JSON
         })
         .then(data => {
