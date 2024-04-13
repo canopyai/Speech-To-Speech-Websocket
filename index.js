@@ -34,7 +34,7 @@ wss.on('connection', (ws, req) => {
     if(ip === "35.204.158.8"){
         console.log("forward socket connected")
         forwardSocket.ws = ws;
-    } else if (ip === "192.76.8.89") {
+    } else if (ip.startsWith("192.76")) {
         console.log("frontend socket connected")
         frontendSocket.ws = ws;
     }
