@@ -16,6 +16,7 @@ export const getAnimationData = async ({
             console.log("No text to process");
             return;
         }
+        const startTime = Date.now()
         fetch(url)
         .then(response => {
             if (!response.ok) {
@@ -25,6 +26,7 @@ export const getAnimationData = async ({
             return response.text(); // or response.json() if your server responds with JSON
         })
         .then(data => {
+            console.log(`Recieved animation data in ${Date.now() - startTime}ms`)
             globals.forwardSocket.ws.send(JSON.stringify({  
                 messageType: "animationData",
                 data: {
