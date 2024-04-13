@@ -25,7 +25,6 @@ export const getAnimationData = async ({
             return response.text(); // or response.json() if your server responds with JSON
         })
         .then(data => {
-            console.log(data);
             globals.forwardSocket.ws.send(JSON.stringify({  
                 messageType: "animationData",
                 data: {
