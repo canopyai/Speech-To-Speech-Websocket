@@ -1,25 +1,12 @@
 import { generateRandomHex } from '../utils/generateHexCode.js';
-import { modifyThread } from './modifyThread.js';
 import OpenAI from 'openai';
 import { parsePart } from './parsePart.js';
 import { shouldProcessContent } from './shouldProcessContent.js';
 import { reformatTextForTTS } from './reformatTextForTTS.js';
-
-import { elevenlabsApiKey } from "../config.js"
-import { initialiseElevenLabsConnection } from "./initialiseElevenLabsConnection.js"
-import PlayHT from "playht";
-import { openaiAPIKey, playHTApiKey, playHTUserId } from '../config.js';
-import { retrieveAudio } from './retrieveAudio.js';
-import { semantifySentence } from './semantifySentence.js';
-import { labelSentiment } from './labelSentiment.js';
-import { Readable } from 'node:stream';
-import { createWriteStream } from 'node:fs';
+import { openaiAPIKey } from '../config.js';
 import { getAnimationData } from './getAnimationData.js';
+import { getSemantics } from '../reactions/getSemantics.js';
 
-PlayHT.init({
-    apiKey: playHTApiKey,
-    userId: playHTUserId
-});
 
 const pIdLength = 13;
 
@@ -36,12 +23,15 @@ export const generateResponse = async ({
 }) => {
 
     console.log("generating response", globals.mainThread)
+
+    const last3Messages = globals.mainThread.slice(-3);
+
+    const semantics = await getSemantics(last3Messages);
+    console.log("semantics", semantics);
+
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
 
-
-
-    console.log(globals.isProcessingResponse)
     if (globals.isProcessingResponse) return;
 
     globals.currentProcessId = processId;
@@ -85,11 +75,6 @@ export const generateResponse = async ({
     for await (const part of stream) {
 
         console.log("part", part.choices[0].finish_reason, part.choices[0].delta.content)
-
-
-
-
-
         try {
 
             let finishReason = part.choices[0].finish_reason
@@ -142,19 +127,6 @@ export const generateResponse = async ({
                     finishReason,
                     ws
                 })
-
-                // retrieveAudio({
-                //     TTSSentence,
-                //     processingObject,
-                //     sentence,
-                //     globals,
-                //     finishReason,
-                //     ws
-                // })
-
-
-
-
 
                 previousSentence += TTSSentence;
 
