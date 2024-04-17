@@ -11,6 +11,9 @@ export const getAnimationData = async ({
         url.searchParams.append('text', modifiedTTSSentence);
 
 
+        console.log("modifiedTTSSentence", modifiedTTSSentence)
+
+
         if(TTSSentence.length === 0) {
             console.log("No text to process");
             return;
