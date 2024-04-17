@@ -26,10 +26,15 @@ export const getAnimationData = async ({
             }
             const data = await response.text(); // or response.json() if your server responds with JSON
 
-            console.log("data", data)
+            console.log("data", typeof data, data)
+
+            const {b64string:audioData, visemes} = JSON.parse(data);
 
 
-            globals.forwardSocket.ws.send(JSON.stringify(data));
+            globals.forwardSocket.ws.send(JSON.stringify({
+                audioData,
+                visemes
+        }));
             globals.isProcessingResponse = false;
         } catch (error) {
             console.error("An error occurred:", error);
