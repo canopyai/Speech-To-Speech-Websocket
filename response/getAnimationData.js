@@ -26,13 +26,20 @@ export const getAnimationData = async ({
             }
             const data = await response.text(); // or response.json() if your server responds with JSON
             console.log(`Received animation data in ${Date.now() - startTime}ms`);
-
+            const { b64string, targets, duration} = data
             console.log("animationData", data)  
+
+            // {
+            //     type: "morphTarget",
+            //     duration: 0.1,
+            //     targets: [Math.random(), Math.random()],
+            //     audioData: "hellothereareyouokay".toString('base64')
+            // }
             globals.forwardSocket.ws.send(JSON.stringify({  
-                messageType: "animationData",
-                data: {
-                    animationData: data
-                }
+                type: "morphTarget",
+                duration: duration/1000,
+                targets: targets,
+                audioData: b64string
             }));
             globals.isProcessingResponse = false;
         } catch (error) {
