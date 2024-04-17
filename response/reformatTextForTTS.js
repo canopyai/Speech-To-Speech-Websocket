@@ -20,7 +20,7 @@ export const reformatTextForTTS = ({ sentence }) => {
     }
 
     if (reformatFractions(str)) {
-        str = str.replace("/", " by ");
+        str = str.replace("/", " by "); 
     }
 
     str = str.replace("^", " to the power of ");
