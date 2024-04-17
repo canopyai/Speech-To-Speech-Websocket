@@ -35,12 +35,22 @@ export const getAnimationData = async ({
             //     targets: [Math.random(), Math.random()],
             //     audioData: "hellothereareyouokay".toString('base64')
             // }
-            globals.forwardSocket.ws.send(JSON.stringify({  
+
+            const targetObject = {  
                 type: "morphTarget",
                 duration: duration/1000,
                 targets: targets,
                 audioData: b64string
-            }));
+            }
+
+            let duplicateTargetObject = {...targetObject};
+
+            duplicateTargetObject.audioData = duplicateTargetObject.audioData.substring(0, 10) + "..." + duplicateTargetObject.audioData.substring(duplicateTargetObject.audioData.length - 10, duplicateTargetObject.audioData.length)
+
+            console.log("targetObject", duplicateTargetObject)
+
+
+            globals.forwardSocket.ws.send(JSON.stringify(targetObject));
             globals.isProcessingResponse = false;
         } catch (error) {
             console.error("An error occurred:", error);
