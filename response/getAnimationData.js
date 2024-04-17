@@ -26,7 +26,7 @@ export const getAnimationData = async ({
             }
             const data = await response.text(); // or response.json() if your server responds with JSON
             console.log(`Received animation data in ${Date.now() - startTime}ms`);
-            console.log("data", Object.keys(data));
+            console.log("data keys", data);
             const { b64string, targets, duration} = data
 
             // {
