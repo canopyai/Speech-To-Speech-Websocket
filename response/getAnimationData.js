@@ -25,7 +25,8 @@ export const getAnimationData = async ({
                 throw new Error('Network response was not ok');
             }
             const data = await response.text(); // or response.json() if your server responds with JSON
-            console.log(`Received animation data in ${Date.now() - startTime}ms`);
+
+            console.log("data", data)
 
 
             globals.forwardSocket.ws.send(JSON.stringify(data));

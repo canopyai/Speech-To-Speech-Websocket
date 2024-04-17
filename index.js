@@ -35,17 +35,7 @@ wss.on('connection', (ws, req) => {
         console.log("forward socket connected", ip)
         forwardSocket.ws = ws;
 
-        setTimeout(()=>{
-            forwardSocket.ws.send(
-                JSON.stringify(
-                    {
-                        type: "morphTarget",
-                        duration: 0.1,
-                        targets: [Math.random(), Math.random()],
-                        audioData: "hellothereareyouokay".toString('base64')
-                    }
-                ));
-        }, 1000)
+    
       
     
     } else if (ip.startsWith("192.76")) {
