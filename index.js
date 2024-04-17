@@ -40,7 +40,7 @@ wss.on('connection', (ws, req) => {
                     type: "morphTarget",
                     duration: 0.1,
                     targets: [Math.random(), Math.random()],
-                    audioData: audioData.toString('base64')
+                    audioData: "hellothereareyouokay".toString('base64')
                 }
             ));
     
