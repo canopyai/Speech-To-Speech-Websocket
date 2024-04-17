@@ -27,7 +27,6 @@ export const getAnimationData = async ({
             const data = await response.text(); // or response.json() if your server responds with JSON
             console.log(`Received animation data in ${Date.now() - startTime}ms`);
             const { b64string, targets, duration} = data
-            console.log("animationData", data)  
 
             // {
             //     type: "morphTarget",
@@ -43,9 +42,11 @@ export const getAnimationData = async ({
                 audioData: b64string
             }
 
+            console.log("targetObject", targetObject)
+
             let duplicateTargetObject = {...targetObject};
 
-            duplicateTargetObject.audioData = duplicateTargetObject.audioData.substring(0, 10) + "..." + duplicateTargetObject.audioData.substring(duplicateTargetObject.audioData.length - 10, duplicateTargetObject.audioData.length)
+            // duplicateTargetObject.audioData = duplicateTargetObject.audioData.substring(0, 10) + "..." + duplicateTargetObject.audioData.substring(duplicateTargetObject.audioData.length - 10, duplicateTargetObject.audioData.length)
 
             console.log("targetObject", duplicateTargetObject)
 
