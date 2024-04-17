@@ -34,15 +34,19 @@ wss.on('connection', (ws, req) => {
     if(ip !== "34.141.221.82" && !ip.startsWith("192.76")){
         console.log("forward socket connected", ip)
         forwardSocket.ws = ws;
-        forwardSocket.ws.send(
-            JSON.stringify(
-                {
-                    type: "morphTarget",
-                    duration: 0.1,
-                    targets: [Math.random(), Math.random()],
-                    audioData: "hellothereareyouokay".toString('base64')
-                }
-            ));
+
+        setTimeout(()=>{
+            forwardSocket.ws.send(
+                JSON.stringify(
+                    {
+                        type: "morphTarget",
+                        duration: 0.1,
+                        targets: [Math.random(), Math.random()],
+                        audioData: "hellothereareyouokay".toString('base64')
+                    }
+                ));
+        }, 1000)
+      
     
     } else if (ip.startsWith("192.76")) {
         console.log("frontend socket connected")
