@@ -26,30 +26,10 @@ export const getAnimationData = async ({
             }
             const data = await response.text(); // or response.json() if your server responds with JSON
             console.log(`Received animation data in ${Date.now() - startTime}ms`);
-            console.log("data keys", data);
-            const { b64string, targets, duration} = data
 
-            // {
-            //     type: "morphTarget",
-            //     duration: 0.1,
-            //     targets: [Math.random(), Math.random()],
-            //     audioData: "hellothereareyouokay".toString('base64')
-            // }
+            console.log("data animat", data)
 
-            const targetObject = {  
-                type: "morphTarget",
-                duration: duration/1000,
-                targets: targets,
-                audioData: b64string
-            }
 
-            console.log("targetObject", targetObject)
-
-            let duplicateTargetObject = {...targetObject};
-
-            // duplicateTargetObject.audioData = duplicateTargetObject.audioData.substring(0, 10) + "..." + duplicateTargetObject.audioData.substring(duplicateTargetObject.audioData.length - 10, duplicateTargetObject.audioData.length)
-
-            console.log("targetObject", duplicateTargetObject)
 
 
             globals.forwardSocket.ws.send(JSON.stringify(targetObject));
