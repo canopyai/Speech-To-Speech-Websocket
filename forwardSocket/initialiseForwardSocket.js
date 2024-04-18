@@ -10,6 +10,7 @@ export function initialiseForwardSocket({
         const { messageType } = JSON.parse(message);
         if (messageType === "updateThread") {
 
+            console.log("updateThread", JSON.parse(message));
 
             const { uuid, numberOfVisemesPlayed } = JSON.parse(message);
 
