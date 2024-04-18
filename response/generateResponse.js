@@ -32,9 +32,9 @@ export const generateResponse = async ({
     globals.emotions.semantics = semantics;
     const endSem = Date.now();
 
-    generateEmotionVector({
-        globals
-    })
+    // generateEmotionVector({
+    //     globals
+    // })
 
 
     let { hexCode } = generateRandomHex(pIdLength);
