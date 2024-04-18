@@ -10,8 +10,10 @@ export function initialiseForwardSocket({
         console.log("forward socket message: ", message)
         const { messageType } = JSON.parse(message);
         if (messageType === "updateThread") {
+            console.log("time to update thread")
 
             const { uuid, numberOfVisemesPlayed } = JSON.parse(message);
+            console.log("uuid: ", uuid)
 
             const animationData = globals.animationsSent.find(animation => animation.uuid === uuid);
 
