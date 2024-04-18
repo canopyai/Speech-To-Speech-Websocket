@@ -24,6 +24,7 @@ export const generateResponse = async ({
 }) => {
 
     const currentConversationIndex = globals.conversationIndex;
+    console.log("starting generation number", currentConversationIndex)
 
     const last3Messages = globals.mainThread.slice(-3);
     const startSem = Date.now();
@@ -100,6 +101,8 @@ export const generateResponse = async ({
 
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
+                console.log("proccesed content for", currentConversationIndex)
+
 
                 if (finishReason === "stop") {
 
@@ -125,6 +128,7 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
+                console.log("getting animation data for", currentConversationIndex)
                 getAnimationData({
                     TTSSentence,
                     processingObject,
