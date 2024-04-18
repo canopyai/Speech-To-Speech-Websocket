@@ -29,6 +29,25 @@ wss.on('connection', (ws, req) => {
     let session = null;
     let globals = {};
 
+
+    globals.mainThread = [];
+    globals.forwardSocket = forwardSocket;
+    globals.frontendSocket = frontendSocket;
+    globals.messageThreadLength = 0;
+    globals.processingQueue = [];
+    globals.finalTranscript = '';
+    globals.lastTranscriptionTimeProcessed = 0;
+    globals.wordBuffer = [];
+    let processingQueue = [];
+    globals.decoratorSocket = null;
+    globals.projectId = null;
+    globals.sessionId = null;
+    globals.emotions = {}
+    globals.ws = ws
+    globals.conversationIndex = 0;
+    globals.animationsSent = []
+
+
     if(ip !== "34.141.221.82" && !ip.startsWith("192.76")){
         console.log("forward socket connected", ip)
         forwardSocket.ws = ws;
@@ -47,23 +66,6 @@ wss.on('connection', (ws, req) => {
         console.log("frontend socket connected")
         frontendSocket.ws = ws;
     }
-
-    globals.mainThread = [];
-    globals.forwardSocket = forwardSocket;
-    globals.frontendSocket = frontendSocket;
-    globals.messageThreadLength = 0;
-    globals.processingQueue = [];
-    globals.finalTranscript = '';
-    globals.lastTranscriptionTimeProcessed = 0;
-    globals.wordBuffer = [];
-    let processingQueue = [];
-    globals.decoratorSocket = null;
-    globals.projectId = null;
-    globals.sessionId = null;
-    globals.emotions = {}
-    globals.ws = ws
-    globals.conversationIndex = 0;
-    globals.animationsSent = []
 
 
 
