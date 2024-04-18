@@ -18,9 +18,9 @@ export const initialiseShallowgramTranscription = async ({
         const { messageType, data } = JSON.parse(message);
         if (messageType !== "transcription") return;
 
-        const { transcription } = data;
+        const { transcription, emotion_data } = data;
 
-        console.log("transcription: ", transcription)
+        console.log("transcription: ", transcription, emotion_data)
 
         const { success, error } = modifyTranscript({
             globals,
