@@ -32,14 +32,14 @@ wss.on('connection', (ws, req) => {
     if(ip !== "34.141.221.82" && !ip.startsWith("192.76")){
         console.log("forward socket connected", ip)
         forwardSocket.ws = ws;
-        initialiseForwardSocket({
+        ({
             globals, 
             forwardSocket
         });
 
     
       
-    
+    initialiseForwardSocket
     } else if (ip.startsWith("192.76")) {
         console.log("frontend socket connected")
         frontendSocket.ws = ws;

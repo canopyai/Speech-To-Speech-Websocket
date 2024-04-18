@@ -6,7 +6,7 @@ export function initialiseForwardSocket({
 
 }) {
 
-    forwardSocket.on('message', (message) => {
+    forwardSocket.ws.on('message', (message) => {
         console.log("forward socket message: ", message)
         const { messageType } = JSON.parse(message);
         if (messageType === "updateThread") {
