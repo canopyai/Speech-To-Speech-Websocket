@@ -13,8 +13,6 @@ import { generateActionAgentsSystemPrompt } from './action_agents/generate_actio
 import { handleReadDialogue } from './canopy_methods/handleReadDialogue.js';
 import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
-import { generateResponse } from './response/generateResponse.js';
-import { initialiseElevenLabsConnection } from './response/initialiseElevenLabsConnection.js';
 import { handleConfig } from "./authenticate/handle_config/handleConfig.js"
 
 const permittedRoles = ["user", "assistant", "system"];
@@ -114,15 +112,6 @@ wss.on('connection', (ws, req) => {
                 })
                 break;
 
-            case "getResponse":
-                generateResponse({
-                    globals,
-                    processingQueue,
-                    createdAt: Date.now(),
-                    ws
-                });
-
-                return;
 
             case "appendDialogue":
                 const { role, content } = data;

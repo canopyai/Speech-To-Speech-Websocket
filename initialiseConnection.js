@@ -1,4 +1,3 @@
-import { initialiseSpeechmaticsTranscription } from './transcription/speechmaticsTranscription/initialiseTranscription.js';
 import { initialiseVAD } from './vad/initialiseVAD.js';
 import { initialiseDeepgramTranscription } from './transcription/deepgramTranscription/initialiseTranscription.js';
 import {initialiseShallowgramTranscription} from './transcription/shallowgramTranscription/initialiseTranscription.js';

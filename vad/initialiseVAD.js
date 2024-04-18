@@ -1,13 +1,3 @@
-import vad from "@sentiment_technologies/vad-node";
-import { int16ToFloat32 } from './processFrame.js';
-import { addToTranscriptBuffer } from '../transcription/sileroTranscription/transcribe.js';
-import { postAudioBuffer } from '../transcription/sileroTranscription/postAudio.js';
-
-const VAD_THRESHOLD = 0.6;
-let isSpeech = false;
-const sampleRate = 16000;
-const frameDuration = 200;
-const frameSize = (sampleRate / 1000) * frameDuration;
 
 export const initialiseVAD = async ({
     ws,

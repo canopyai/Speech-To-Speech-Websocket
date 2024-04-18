@@ -1,8 +1,5 @@
 import { modifyTranscript } from '../../transcript/modifyTranscript.js';
 import { generateResponse } from '../../response/generateResponse.js';
-import { listeningReactions } from "../../reactions/listeningReactions.js";
-
-import websocket from 'ws';
 
 
 export const initialiseShallowgramTranscription = async ({
@@ -29,13 +26,7 @@ export const initialiseShallowgramTranscription = async ({
             content: transcription,
 
         });
-        // return
-        // ws.send(JSON.stringify({
-        //     messageType: "transcript",
-        //     content: transcription,
-        //     timestamp: Date.now()
-
-        // }))
+   
         generateResponse({
             globals,
             processingQueue,

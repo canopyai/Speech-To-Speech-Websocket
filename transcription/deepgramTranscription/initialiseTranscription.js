@@ -2,7 +2,6 @@ import { createClient, LiveTranscriptionEvents } from "@deepgram/sdk";
 import { deepgramApiKey } from '../../config.js';
 import { modifyTranscript } from '../../transcript/modifyTranscript.js';
 import { generateResponse } from '../../response/generateResponse.js';
-import { listeningReactions } from "../../reactions/listeningReactions.js";
 
 
 const deepgramClient = createClient(deepgramApiKey);
@@ -74,15 +73,7 @@ export const initialiseDeepgramTranscription = async ({
                         createdAt: Date.now(),
                         ws
                     });
-                } else {
-                    //get reaction
-                    listeningReactions({
-                        globals,
-                        ws,
-                        partialTranscript: finalTranscript
-                    });
-
-                }
+                } 
 
 
             });
