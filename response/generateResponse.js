@@ -101,8 +101,6 @@ export const generateResponse = async ({
 
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
-                console.log("proccesed content for", currentConversationIndex)
-
 
                 if (finishReason === "stop") {
 

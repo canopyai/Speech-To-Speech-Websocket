@@ -21,6 +21,8 @@ export function initialiseForwardSocket({
 
             const textToUpdate = text.slice(0, Math.floor(fractionOfText * text.length));
 
+            console.log("textToUpdate", textToUpdate)
+
             modifyTranscript({
                 globals, 
                 role:"assistant", 

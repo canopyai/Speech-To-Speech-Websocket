@@ -20,6 +20,7 @@ const permittedRoles = ["user", "assistant", "system"];
 const forwardSocket = {}
 const frontendSocket = {}
 const animationsSent = []
+const mainThread = []
 wss.on('connection', (ws, req) => {
 
     console.log('Client connected');
@@ -31,7 +32,7 @@ wss.on('connection', (ws, req) => {
     let globals = {};
 
 
-    globals.mainThread = [];
+    globals.mainThread = mainThread;
     globals.forwardSocket = forwardSocket;
     globals.frontendSocket = frontendSocket;
     globals.messageThreadLength = 0;

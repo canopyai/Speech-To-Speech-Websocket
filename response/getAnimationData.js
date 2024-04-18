@@ -47,7 +47,6 @@ export const getAnimationData = async ({
                 uuid: hexCode,
             }
 
-            console.log("adding data to animations sent")
             globals.animationsSent.push(animationSentData);
 
 

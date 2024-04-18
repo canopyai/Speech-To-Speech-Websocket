@@ -10,6 +10,7 @@ export const modifyTranscript = async ({
     content,
 }) => {
 
+    console.log("modifyTranscript", role, content);
     if (permittedRoles.includes(role)) {
         if (globals.mainThread.length === 0 || globals.mainThread[globals.mainThread.length - 1].role !== role) {
 
