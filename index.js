@@ -57,6 +57,7 @@ wss.on('connection', (ws, req) => {
     globals.sessionId = null;
     globals.emotions = {}
     globals.ws = ws
+    globals.conversationIndex = 0;
 
 
 
