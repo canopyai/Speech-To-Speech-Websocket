@@ -11,7 +11,7 @@ export const getAnimationData = async ({
         url.searchParams.append('text', modifiedTTSSentence);
 
 
-        console.log("modifiedTTSSentence", modifiedTTSSentence)
+        // console.log("modifiedTTSSentence", modifiedTTSSentence)
 
 
         if(TTSSentence.length === 0) {
@@ -25,8 +25,6 @@ export const getAnimationData = async ({
                 throw new Error('Network response was not ok');
             }
             const data = await response.text(); // or response.json() if your server responds with JSON
-
-            console.log("data", typeof data, data)
 
             const {b64string:audioData, visemes} = JSON.parse(data);
 
