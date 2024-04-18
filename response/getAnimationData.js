@@ -40,12 +40,15 @@ export const getAnimationData = async ({
                 uuid: hexCode,
             }));
 
-            globals.animationsSent.push({
+            const animationSentData = {
                 conversationIndex: currentConversationIndex,
                 visemesLength: visemes.length,
                 text: TTSSentence,
                 uuid: hexCode,
-            });
+            }
+
+            console.log("adding data to animations sent")
+            globals.animationsSent.push(animationSentData);
             globals.isProcessingResponse = false;
         } catch (error) {
             console.error("An error occurred:", error);
