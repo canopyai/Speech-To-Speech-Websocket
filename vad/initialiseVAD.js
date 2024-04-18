@@ -24,14 +24,18 @@ export const initialiseVAD = async ({
         const { vad_type } = data
 
         console.log("vad type: ", vad_type)
-        return
+ 
 
-        if (vad_type === "end") {
-            ws.send(JSON.stringify({
-                messageType: "vadStop",
-                timestamp:Date.now()
-            }))
-        } else if (vad_type === "start") {
+        // if (vad_type === "end") {
+
+        //     ws.send(JSON.stringify({
+        //         messageType: "vadStop",
+        //         timestamp:Date.now()
+        //     }))
+        // } 
+        // else 
+        if (vad_type === "start") {
+            console.log("vad start detected")
             globals.isProcessingResponse = false;
             ws.send(JSON.stringify({
                 messageType: "vadStart",

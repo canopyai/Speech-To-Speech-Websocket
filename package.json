@@ -13,6 +13,7 @@
     "@google-cloud/text-to-speech": "^5.0.2",
     "@sentiment_technologies/vad-node": "^0.0.7",
     "axios": "^1.6.5",
+    "csv-parse": "^5.5.5",
     "firebase": "^10.7.2",
     "openai": "^4.24.7",
     "playht": "^0.9.6",
