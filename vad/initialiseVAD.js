@@ -10,12 +10,7 @@ export const initialiseVAD = async ({
 
         if (messageType !== "vad") return;
 
-        console.log("vad data: ", data)
-
-
         const { vad_type } = data
-
-        console.log("vad type: ", vad_type)
 
 
         // if (vad_type === "end") {

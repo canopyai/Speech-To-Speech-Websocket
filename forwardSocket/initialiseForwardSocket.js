@@ -9,7 +9,7 @@ export function initialiseForwardSocket({
     forwardSocket.ws.on('message', (message) => {
         const { messageType } = JSON.parse(message);
         if (messageType === "updateThread") {
-            console.log("time to update thread")
+
 
             const { uuid, numberOfVisemesPlayed } = JSON.parse(message);
 

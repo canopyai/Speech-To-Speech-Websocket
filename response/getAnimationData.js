@@ -50,7 +50,7 @@ export const getAnimationData = async ({
             console.log("adding data to animations sent")
             globals.animationsSent.push(animationSentData);
 
-            console.log("animationsSe push nt", globals.animationsSent)
+
 
             globals.isProcessingResponse = false;
         } catch (error) {

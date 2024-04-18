@@ -24,8 +24,7 @@ export const generateResponse = async ({
 }) => {
 
     const currentConversationIndex = globals.conversationIndex;
-    console.log("starting generation number", currentConversationIndex)
-    console.log(globals.mainThread)
+    console.log("globals.mainThread", globals.mainThread)
 
     const last3Messages = globals.mainThread.slice(-3);
     const startSem = Date.now();
