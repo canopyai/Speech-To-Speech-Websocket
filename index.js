@@ -64,7 +64,6 @@ wss.on('connection', (ws, req) => {
 
     ws.on('message', async function (message) {
 
-        console.log("sending message to frontend socket")
         const parsedMessageAB = JSON.parse(message);
         frontendSocket.ws.send(JSON.stringify(parsedMessageAB));    
         let parsedMessage;

@@ -17,6 +17,8 @@ export const initialiseShallowgramTranscription = async ({
 
         const { transcription, emotion_data } = data;
 
+        console.log("transcription: ", transcription, "index",globals.conversationIndex)
+
         globals.emotions.audioIntonation = emotion_data;
 
 

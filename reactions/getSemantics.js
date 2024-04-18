@@ -16,7 +16,6 @@ export async function getSemantics(messages) {
 
         console.log("Messages posted successfully!");
         const data = await response.text();
-        console.log(data);
         return data;
     } catch (error) {
         console.error(`Error posting messages: ${error}`);
