@@ -24,7 +24,7 @@ export const generateResponse = async ({
 }) => {
 
     console.log("generating response", globals.mainThread)
-    globals.currentConversationIndex = globals.conversationIndex;
+    const currentConversationIndex = globals.conversationIndex;
 
     const last3Messages = globals.mainThread.slice(-3);
     const startSem = Date.now();
@@ -132,7 +132,8 @@ export const generateResponse = async ({
                     sentence,
                     globals,
                     finishReason,
-                    ws
+                    ws, 
+                    currentConversationIndex
                 })
 
                 previousSentence += TTSSentence;

@@ -1,6 +1,7 @@
 export const getAnimationData = async ({
     TTSSentence, 
-    globals
+    globals, 
+    currentConversationIndex
 }) => {
     console.log("getAnimationData", TTSSentence)
     try {
@@ -33,7 +34,7 @@ export const getAnimationData = async ({
                 messageType: "animationData",
                 audioData,
                 visemes, 
-                conversationIndex:globals.currentConversationIndex
+                conversationIndex:currentConversationIndex
         }));
             globals.isProcessingResponse = false;
         } catch (error) {
