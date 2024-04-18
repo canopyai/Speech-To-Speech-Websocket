@@ -33,7 +33,7 @@ export const getAnimationData = async ({
                 messageType: "animationData",
                 audioData,
                 visemes, 
-                conversationIndex:globals.conversationIndex
+                conversationIndex:globals.currentConversationIndex
         }));
             globals.isProcessingResponse = false;
         } catch (error) {
