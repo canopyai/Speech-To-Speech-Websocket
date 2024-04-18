@@ -6,6 +6,7 @@ import { reformatTextForTTS } from './reformatTextForTTS.js';
 import { openaiAPIKey } from '../config.js';
 import { getAnimationData } from './getAnimationData.js';
 import { getSemantics } from '../reactions/getSemantics.js';
+import { generateEmotionVector } from '../emotions/generateEmotionVector.js';
 
 
 const pIdLength = 13;
