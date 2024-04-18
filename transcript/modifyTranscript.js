@@ -8,7 +8,6 @@ export const modifyTranscript = async ({
     globals,
     role,
     content,
-    ws
 }) => {
 
     if (permittedRoles.includes(role)) {
@@ -33,7 +32,7 @@ export const modifyTranscript = async ({
 
                 const { success, data } = await callActionAgent(tagName, jsonObject, endpoint);
                 return
-                ws.send(JSON.stringify({
+                globals.ws.send(JSON.stringify({
                     messageType: "actionAgentResponse",
                     success,
                     data

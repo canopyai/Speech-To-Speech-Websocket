@@ -1,6 +1,10 @@
+
+import { text } from "express";
+import { generateRandomHex } from "../utils/generateHexCode";
+
 export const getAnimationData = async ({
-    TTSSentence, 
-    globals, 
+    TTSSentence,
+    globals,
     currentConversationIndex
 }) => {
     try {
@@ -14,7 +18,7 @@ export const getAnimationData = async ({
         // console.log("modifiedTTSSentence", modifiedTTSSentence)
 
 
-        if(TTSSentence.length === 0) {
+        if (TTSSentence.length === 0) {
             console.log("No text to process");
             return;
         }
@@ -26,15 +30,24 @@ export const getAnimationData = async ({
             }
             const data = await response.text(); // or response.json() if your server responds with JSON
 
-            const {b64string:audioData, visemes} = JSON.parse(data);
+            const { b64string: audioData, visemes } = JSON.parse(data);
+            const { hexCode } = generateRandomHex({ length: 13 });
 
 
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "animationData",
                 audioData,
-                visemes, 
-                conversationIndex:currentConversationIndex
-        }));
+                visemes,
+                conversationIndex: currentConversationIndex,
+                uuid: hexCode,
+            }));
+
+            globals.animationsSent.push({
+                conversationIndex: currentConversationIndex,
+                visemesLength: visemes.length,
+                text: TTSSentence,
+                uuid: hexCode,
+            });
             globals.isProcessingResponse = false;
         } catch (error) {
             console.error("An error occurred:", error);

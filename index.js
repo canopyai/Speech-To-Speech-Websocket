@@ -60,6 +60,7 @@ wss.on('connection', (ws, req) => {
     globals.emotions = {}
     globals.ws = ws
     globals.conversationIndex = 0;
+    globals.animationsSent = []
 
 
 
@@ -126,7 +127,6 @@ wss.on('connection', (ws, req) => {
 
 
                         globals.mainThread.push({ role: role, content: content });
-                        return
                         ws.send(JSON.stringify({
                             messageType: "appendDialogueResponse",
                             success: true,
@@ -147,7 +147,6 @@ wss.on('connection', (ws, req) => {
                     return;
 
                 } else {
-                    return
                     ws.send(JSON.stringify({
                         messageType: "appendDialogueResponse",
                         success: false,
