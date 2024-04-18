@@ -9,7 +9,7 @@ import { handleAuthenticate } from './authenticate/handleAuthenticate.js';
 
 import { writeSessionCloseToFirebase } from './firebase/firestore.js';
 import { generateActionAgentsSystemPrompt } from './action_agents/generate_actions_prompt.js';
-
+import { initialiseForwardSocket } from './forwardSocket/initialiseForwardSocket.js';
 import { handleReadDialogue } from './canopy_methods/handleReadDialogue.js';
 import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
@@ -32,6 +32,10 @@ wss.on('connection', (ws, req) => {
     if(ip !== "34.141.221.82" && !ip.startsWith("192.76")){
         console.log("forward socket connected", ip)
         forwardSocket.ws = ws;
+        initialiseForwardSocket({
+            globals, 
+            forwardSocket
+        });
 
     
       
