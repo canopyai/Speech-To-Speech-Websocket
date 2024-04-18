@@ -6,7 +6,7 @@ let embeddingLayer = null;
 const semanticToAudioRatio = 0.75
 const previousToCurrentRatio = 0.5
 
-csvToMatrix("similarity_matrix.csv", (matrix) => {
+csvToMatrix("./emotions/similarity_matrix.csv", (matrix) => {
     embeddingLayer = matrix;
     console.log(embeddingLayer.length, embeddingLayer[0].length)
     // Now you have your matrix, you can use it as needed in your JavaScript code
@@ -107,17 +107,17 @@ const emotionSample = [
 ]
 
 const semanticsSample = { "Angry": 0.015201834587727737, "Concern": 0.0174366701264442, "Curiosity": 0.009760728792344532, "Disgust": 0.05711311709682893, "Excitement": 0.01819185437573322, "Fear": 0.07301013054488233, "Happy": 0.0289196786022471, "Interest": 0.0930067070471884, "Neutral": 0.54768447003173, "Sad": 0.150145699265289655, "Surprise": 0.11514789343919082 }
-const global = {}
-global.emotions = {
-    audioIntonation: emotionSample,
-    semantics: semanticsSample
-}
-setTimeout(() => {
-    const result = generateEmotionVector({
-        globals: global
-    })
-    console.log(result)
-}, 1000)
+// const global = {}
+// global.emotions = {
+//     audioIntonation: emotionSample,
+//     semantics: semanticsSample
+// }
+// setTimeout(() => {
+//     const result = generateEmotionVector({
+//         globals: global
+//     })
+//     console.log(result)
+// }, 1000)
 
 
 
