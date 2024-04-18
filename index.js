@@ -19,6 +19,7 @@ const permittedRoles = ["user", "assistant", "system"];
 
 const forwardSocket = {}
 const frontendSocket = {}
+const animationsSent = []
 wss.on('connection', (ws, req) => {
 
     console.log('Client connected');
@@ -45,7 +46,7 @@ wss.on('connection', (ws, req) => {
     globals.emotions = {}
     globals.ws = ws
     globals.conversationIndex = 0;
-    globals.animationsSent = []
+    globals.animationsSent = animationsSent;
 
 
     if(ip !== "34.141.221.82" && !ip.startsWith("192.76")){
