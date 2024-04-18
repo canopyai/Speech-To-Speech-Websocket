@@ -81,8 +81,6 @@ export const generateResponse = async ({
     let previousSentence = null;
 
     for await (const part of stream) {
-
-        console.log("part", part.choices[0].finish_reason, part.choices[0].delta.content)
         try {
 
             let finishReason = part.choices[0].finish_reason
