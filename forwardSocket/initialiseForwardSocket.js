@@ -1,4 +1,4 @@
-import { modifyTranscript } from "../transcript/modifyTranscript";
+import { modifyTranscript } from '../transcript/modifyTranscript.js';
 
 export function initialiseForwardSocket({
     globals,

@@ -1,6 +1,6 @@
 
 import { text } from "express";
-import { generateRandomHex } from "../utils/generateHexCode";
+import { generateRandomHex } from "../utils/generateHexCode.js";
 
 export const getAnimationData = async ({
     TTSSentence,

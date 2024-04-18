@@ -1,4 +1,4 @@
-import { writeTranscriptToFirebase } from "../firebase/firestore.js";
+// import { writeTranscriptToFirebase } from "../firebase/firestore.js";
 import { extractAgentFromTranscript } from "../action_agents/extract_action.js";
 import { callActionAgent } from "../action_agents/call_action.js";
 
