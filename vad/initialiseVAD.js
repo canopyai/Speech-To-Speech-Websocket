@@ -26,7 +26,7 @@ export const initialiseVAD = async ({
         const { vad_type } = data
 
         console.log("vad type: ", vad_type)
- 
+
 
         // if (vad_type === "end") {
 
@@ -38,6 +38,10 @@ export const initialiseVAD = async ({
         // else 
         if (vad_type === "start") {
             console.log("vad start detected")
+
+            globals.forwardSocket.ws.send(JSON.stringify({
+                messageType: "clearQueue",
+            }));
             // globals.isProcessingResponse = false;
             // ws.send(JSON.stringify({
             //     messageType: "vadStart",
