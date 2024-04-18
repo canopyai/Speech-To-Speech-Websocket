@@ -22,7 +22,7 @@ export const initialiseShallowgramTranscription = async ({
         if(!isEmpty){
             globals.emotions.audioIntonation = emotion_data;
 
-
+        }
 
 
             const { success, error } = modifyTranscript({
@@ -31,7 +31,7 @@ export const initialiseShallowgramTranscription = async ({
                 content: transcription,
     
             });
-        }
+     
         
    
         generateResponse({
