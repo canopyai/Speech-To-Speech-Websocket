@@ -55,6 +55,7 @@ wss.on('connection', (ws, req) => {
     globals.decoratorSocket = null;
     globals.projectId = null;
     globals.sessionId = null;
+    globals.emotions = {}
     globals.ws = ws
 
 

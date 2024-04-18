@@ -20,6 +20,8 @@ export const initialiseShallowgramTranscription = async ({
 
         const { transcription } = data;
 
+        console.log("transcription: ", transcription)
+
         const { success, error } = modifyTranscript({
             globals,
             role: "user",

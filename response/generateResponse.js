@@ -27,8 +27,10 @@ export const generateResponse = async ({
     const last3Messages = globals.mainThread.slice(-3);
     const startSem = Date.now();
     const semantics = await getSemantics(last3Messages);
+
+    globals.emotions.semantics = semantics;
     const endSem = Date.now();
-    console.log("semantics", semantics, endSem - startSem);
+
 
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
