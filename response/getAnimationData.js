@@ -30,6 +30,7 @@ export const getAnimationData = async ({
 
 
             globals.forwardSocket.ws.send(JSON.stringify({
+                messageType: "animationData",
                 audioData,
                 visemes
         }));

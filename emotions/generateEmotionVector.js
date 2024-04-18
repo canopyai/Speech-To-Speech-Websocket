@@ -12,7 +12,7 @@ csvToMatrix("similarity_matrix.csv", (matrix) => {
     // Now you have your matrix, you can use it as needed in your JavaScript code
 });
 
-function generateEmotionVector({
+export function generateEmotionVector({
     globals
 }) {
 
