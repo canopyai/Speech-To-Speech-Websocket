@@ -112,7 +112,9 @@ export const generateResponse = async ({
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
 
+                
                 const timePreFirstChunk = Date.now() - initialTimePreFirstChunk;
+                console.log("about to send chunk", currentConversationIndex, timePreFirstChunk )
                 globals.frontendSocket.ws.send(JSON.stringify({
                     messageType: "LLMLatency",
                     latency:timePreFirstChunk
