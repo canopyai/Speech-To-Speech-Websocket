@@ -90,6 +90,7 @@ export const generateResponse = async ({
 
     let previousSentence = null;
 
+
     for await (const part of stream) {
         try {
 
@@ -110,6 +111,12 @@ export const generateResponse = async ({
 
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
+
+                const timePreFirstChunk = Date.now() - initialTimePreFirstChunk;
+                globals.frontendSocket.send(JSON.stringify({
+                    messageType: "LLMLatency",
+                    latency:timePreFirstChunk
+                }));
 
                 if (finishReason === "stop") {
 
