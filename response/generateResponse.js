@@ -29,9 +29,18 @@ export const generateResponse = async ({
     const last3Messages = globals.mainThread.slice(-3);
     const startSem = Date.now();
     const semantics = await getSemantics(last3Messages);
+    const endSem = Date.now();
+
+    globals.frontendSocket.ws.send(JSON.stringify({
+        messageType: "empathy",
+        latency: endSem - startSem,
+    }))
+
+        
+
 
     globals.emotions.semantics = semantics;
-    const endSem = Date.now();
+    
 
     // generateEmotionVector({
     //     globals
