@@ -31,7 +31,7 @@ export const getAnimationData = async ({
             const { b64string: audioData, visemes, segments_latency:segmentsLatency, tts_latency:TTSLatency } = JSON.parse(data);
             const { hexCode } = generateRandomHex({ length: 13 });
 
-            globals.forwardSocket.ws.send(JSON.stringify({
+            globals.frontendSocket.ws.send(JSON.stringify({
                 messageType: "animationLatency",
                 segmentsLatency,
                 TTSLatency,
