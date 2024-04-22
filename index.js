@@ -132,7 +132,7 @@ wss.on('connection', (ws, req) => {
 
                     if (content) {
 
-
+                        return
                         globals.mainThread.push({ role: role, content: content });
                         ws.send(JSON.stringify({
                             messageType: "appendDialogueResponse",

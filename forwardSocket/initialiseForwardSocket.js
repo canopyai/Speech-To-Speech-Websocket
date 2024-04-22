@@ -15,6 +15,7 @@ export function initialiseForwardSocket({
             const { uuid, numberOfVisemesPlayed } = JSON.parse(message);
 
             const animationData = globals.animationsSent.find(animation => animation.uuid === uuid);
+            console.log(animationData)
 
             const { text, visemesLength } = animationData;
 

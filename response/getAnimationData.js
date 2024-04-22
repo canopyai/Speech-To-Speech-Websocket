@@ -3,7 +3,8 @@ import { generateRandomHex } from "../utils/generateHexCode.js";
 export const getAnimationData = async ({
     TTSSentence,
     globals,
-    currentConversationIndex
+    currentConversationIndex, 
+    isFirstChunk
 }) => {
     try {
         const remoteUrl = "http://34.32.228.101:8080/generate_animation";
@@ -31,12 +32,15 @@ export const getAnimationData = async ({
             const { b64string: audioData, visemes, segments_latency:segmentsLatency, tts_latency:TTSLatency } = JSON.parse(data);
             const { hexCode } = generateRandomHex({ length: 13 });
 
-            globals.frontendSocket.ws.send(JSON.stringify({
-                messageType: "animationLatency",
-                segmentsLatency,
-                TTSLatency,
-
-            }));
+            if(isFirstChunk){
+                globals.frontendSocket.ws.send(JSON.stringify({
+                    messageType: "animationLatency",
+                    segmentsLatency,
+                    TTSLatency,
+    
+                }));
+            }
+            
 
 
 

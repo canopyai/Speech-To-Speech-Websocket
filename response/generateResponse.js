@@ -42,11 +42,6 @@ export const generateResponse = async ({
     globals.emotions.semantics = semantics;
     
 
-    // generateEmotionVector({
-    //     globals
-    // })
-
-
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
 
@@ -141,13 +136,12 @@ export const generateResponse = async ({
 
 
 
-                isFirstChunk = false;
+                
 
                 processingQueue.push(processingObject);
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
-                console.log("getting animation data for", currentConversationIndex)
                 getAnimationData({
                     TTSSentence,
                     processingObject,
@@ -155,9 +149,10 @@ export const generateResponse = async ({
                     globals,
                     finishReason,
                     ws, 
-                    currentConversationIndex
+                    currentConversationIndex, 
+                    isFirstChunk
                 })
-
+                isFirstChunk = false;
                 previousSentence += TTSSentence;
 
             }
