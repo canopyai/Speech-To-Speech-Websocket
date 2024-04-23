@@ -1,18 +1,18 @@
 import { generateRandomHex } from '../utils/generateHexCode.js';
-import OpenAI from 'openai';
 import { parsePart } from './parsePart.js';
 import { shouldProcessContent } from './shouldProcessContent.js';
 import { reformatTextForTTS } from './reformatTextForTTS.js';
-import { openaiAPIKey } from '../config.js';
+import { groqKey } from '../config.js';
 import { getAnimationData } from './getAnimationData.js';
 import { getSemantics } from '../reactions/getSemantics.js';
 import { generateEmotionVector } from '../emotions/generateEmotionVector.js';
+import Groq from "groq-sdk"
 
 
 const pIdLength = 13;
 
-const openai = new OpenAI({
-    apiKey: openaiAPIKey
+const groq = new Groq({
+    apiKey: groqKey
 });
 
 
@@ -68,7 +68,7 @@ export const generateResponse = async ({
 
     const initialTimePreFirstChunk = Date.now();
 
-    const stream = await openai.chat.completions.create({
+    const stream = await groq.chat.completions.create({
         // model: "gpt-4-turbo",
         model: globals.LLM ? globals.LLM : "gpt-3.5-turbo",
         messages: globals.mainThread,
