@@ -54,6 +54,8 @@ export const initialiseDeepgramTranscription = async ({
                 if (shouldReturn) return;
 
                 if (data.speech_final && data.is_final) {
+
+     
                     const { success, error } = modifyTranscript({
                         globals,
                         role: "user",

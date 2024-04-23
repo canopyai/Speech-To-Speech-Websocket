@@ -24,6 +24,7 @@ export const initialiseShallowgramTranscription = async ({
         }
 
 
+        if(transcription.trim().length > 0){
             const { success, error } = modifyTranscript({
                 globals,
                 role: "user",
@@ -31,6 +32,8 @@ export const initialiseShallowgramTranscription = async ({
     
             });
      
+        }
+          
         
    
         generateResponse({
