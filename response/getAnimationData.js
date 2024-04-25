@@ -6,6 +6,8 @@ export const getAnimationData = async ({
     currentConversationIndex, 
     isFirstChunk
 }) => {
+
+    console.log("My tts sentence is ", TTSSentence)
     try {
         const remoteUrl = "http://34.32.228.101:8080/generate_animation";
         const url = new URL(remoteUrl);
