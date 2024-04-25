@@ -114,7 +114,6 @@ export const generateResponse = async ({
                         messageType: "LLMLatency",
                         latency:timePreFirstChunk
                     }));
-
                 }
           
 
