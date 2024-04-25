@@ -23,7 +23,7 @@ export const generateResponse = async ({
     ws
 }) => {
 
-    
+
 
     const currentConversationIndex = globals.conversationIndex;
     console.log("Beginning to generate response with conversation index", currentConversationIndex)
@@ -41,11 +41,11 @@ export const generateResponse = async ({
         latency: endSem - startSem,
     }))
 
-        
+
 
 
     globals.emotions.semantics = semantics;
-    
+
 
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
@@ -76,17 +76,25 @@ export const generateResponse = async ({
     let isSecondElement = true;
     let isThirdElement = true;
 
-    const stream = await groq.chat.completions.create({
-        // model: "gpt-4-turbo",
-        model: globals.LLM ? globals.LLM : "llama3-8b-8192",
-        messages: globals.mainThread,
-        stream: true,
-        temperature: 0,
-        max_tokens: 150,
+    console.log("starting stream for conversation index", currentConversationIndex)
+    console.log("main thread", globals.mainThread)
 
-    });
+    try {
 
-    console.log("started stream for conversation index", currentConversationIndex)
+
+        const stream = await groq.chat.completions.create({
+            // model: "gpt-4-turbo",
+            model: globals.LLM ? globals.LLM : "llama3-8b-8192",
+            messages: globals.mainThread,
+            stream: true,
+            temperature: 0,
+            max_tokens: 150,
+
+        });
+    } catch (error) {
+        console.log("error in stream", error)
+    }
+
 
 
 
@@ -98,23 +106,23 @@ export const generateResponse = async ({
         try {
 
 
-            if(isFirstElement){
+            if (isFirstElement) {
                 isFirstElement = false;
                 // console.log("First element hit", Date.now() - initialTimePreFirstChunk)
                 // console.log(part.choices[0].delta.content)
-            } else if (isSecondElement){
+            } else if (isSecondElement) {
                 isSecondElement = false;
                 // console.log("Second element hit", Date.now() - initialTimePreFirstChunk)
                 // console.log(part.choices[0].delta.content)
 
-            } else if (isThirdElement){
+            } else if (isThirdElement) {
                 isThirdElement = false;
                 // console.log("Third element hit", Date.now() - initialTimePreFirstChunk)
                 // console.log(part.choices[0].delta.content)
 
             }
 
-            
+
 
             let finishReason = part.choices[0].finish_reason
             const text = part.choices[0].delta.content
@@ -136,15 +144,15 @@ export const generateResponse = async ({
 
                 console.log("decided to parse content for conversation index", currentConversationIndex)
 
-                
-                if(isFirstChunk){
+
+                if (isFirstChunk) {
                     const timePreFirstChunk = Date.now() - initialTimePreFirstChunk;
                     globals.frontendSocket.ws.send(JSON.stringify({
                         messageType: "LLMLatency",
-                        latency:timePreFirstChunk
+                        latency: timePreFirstChunk
                     }));
                 }
-          
+
 
                 if (finishReason === "stop") {
 
@@ -164,7 +172,7 @@ export const generateResponse = async ({
 
 
 
-                
+
 
                 processingQueue.push(processingObject);
                 let TTSSentence = reformatTextForTTS({ sentence });
@@ -176,8 +184,8 @@ export const generateResponse = async ({
                     sentence,
                     globals,
                     finishReason,
-                    ws, 
-                    currentConversationIndex, 
+                    ws,
+                    currentConversationIndex,
                     isFirstChunk
                 })
                 isFirstChunk = false;
