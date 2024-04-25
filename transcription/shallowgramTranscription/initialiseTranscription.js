@@ -24,6 +24,8 @@ export const initialiseShallowgramTranscription = async ({
         }
 
 
+        console.log("transcription", transcription)
+
         if(transcription.trim().length > 0){
             const { success, error } = modifyTranscript({
                 globals,
@@ -32,6 +34,8 @@ export const initialiseShallowgramTranscription = async ({
     
             });
      
+        } else {
+            console.log("transcription is empty")
         }
           
         
