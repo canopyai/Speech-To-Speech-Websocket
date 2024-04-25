@@ -20,7 +20,10 @@ const permittedRoles = ["user", "assistant", "system"];
 const forwardSocket = {}
 const frontendSocket = {}
 const animationsSent = []
-const mainThread = []
+const mainThread = [{
+    role: "system",
+    content:"You are a friendly AI chatbot. When I ask you what do you see say you see an ugly pig jokingly!"
+}]
 wss.on('connection', (ws, req) => {
 
     console.log('Client connected');
