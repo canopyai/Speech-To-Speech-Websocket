@@ -8,7 +8,7 @@ export const getAnimationData = async ({
 }) => {
     try {
 
-        print("provisional sending text", TTSSentence)
+        console.log("provisional sending text", TTSSentence)
         const remoteUrl = "http://34.32.228.101:8080/generate_animation";
         const url = new URL(remoteUrl);
 
