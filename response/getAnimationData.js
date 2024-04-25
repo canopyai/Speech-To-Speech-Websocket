@@ -50,6 +50,7 @@ export const getAnimationData = async ({
                 messageType: "audioData"
             }));
 
+            console.log("currentConversationIndex", currentConversationIndex);
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "animationData",
                 audioData,
