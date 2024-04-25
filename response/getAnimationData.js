@@ -7,32 +7,32 @@ export const getAnimationData = async ({
     isFirstChunk
 }) => {
     try {
-
         const remoteUrl = "http://34.32.228.101:8080/generate_animation";
-        const url = new URL(remoteUrl);
 
-        const modifiedTTSSentence = TTSSentence.replace(/[^\w\s]/g, '');
-
-        console.log("modifiedTTSSentence", modifiedTTSSentence)
-        url.searchParams.append('text', modifiedTTSSentence);
-
-
-        // console.log("modifiedTTSSentence", modifiedTTSSentence)
-
+        console.log("Original TTSSentence", TTSSentence);
 
         if (TTSSentence.length === 0) {
             console.log("No text to process");
             return;
         }
-        const startTime = Date.now()
+
+        const startTime = Date.now();
         try {
-            const response = await fetch(url);
+            const response = await fetch(remoteUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: TTSSentence })
+            });
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const data = await response.text(); // or response.json() if your server responds with JSON
 
-            const { b64string: audioData, visemes, segments_latency:segmentsLatency, tts_latency:TTSLatency } = JSON.parse(data);
+            const data = await response.json(); // Assuming the server responds with JSON
+
+            const { b64string: audioData, visemes, segments_latency: segmentsLatency, tts_latency: TTSLatency } = data;
             const { hexCode } = generateRandomHex({ length: 13 });
 
             if(isFirstChunk){
@@ -41,17 +41,13 @@ export const getAnimationData = async ({
                     segmentsLatency,
                     TTSLatency,
                     audioData
-    
                 }));
             }
 
             globals.frontendSocket.ws.send(JSON.stringify({
                 audioData, 
-                messageType:"audioData"
-            }))
-            
-
-
+                messageType: "audioData"
+            }));
 
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "animationData",
@@ -69,8 +65,6 @@ export const getAnimationData = async ({
             }
 
             globals.animationsSent.push(animationSentData);
-
-
 
             globals.isProcessingResponse = false;
         } catch (error) {
