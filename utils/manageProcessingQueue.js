@@ -22,24 +22,16 @@ export const manageProcessingQueue = ({
             return a.timestamp - b.timestamp;
         });
 
-        const { base64String, visemesData, id, createdAt, headMovementVectors } = processingQueue[0];
+        const { forwardData, frontendData } = processingQueue[0];
 
         
 
-        // if (base64String && visemesData) {
-        if (base64String ) {
+        if (forwardData ) {
 
-            console.log("sending off data")
-            // console.log("prcess id", Date.now()-createdAt, processingQueue[0].id);
-            return
-            ws.send(
+            globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
-                JSON.stringify((
-                    {
-                        ...processingQueue[0],
-                        messageType: "audio"
-                    }
-                )));
+            globals.frontendSocket.ws.send(JSON.stringify(frontendData));
+
 
             processingQueue.shift();
         }

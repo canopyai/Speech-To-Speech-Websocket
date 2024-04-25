@@ -212,7 +212,7 @@ wss.on('connection', (ws, req) => {
             ws,
             globals
         })
-    }, 100);
+    }, 10);
 
 
 

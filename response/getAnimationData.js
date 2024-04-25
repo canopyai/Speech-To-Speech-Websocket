@@ -4,7 +4,8 @@ export const getAnimationData = async ({
     TTSSentence,
     globals,
     currentConversationIndex, 
-    isFirstChunk
+    isFirstChunk, 
+    processingObject
 }) => {
     try {
         const remoteUrl = "http://34.32.228.101:8080/generate_animation";
@@ -32,6 +33,8 @@ export const getAnimationData = async ({
             const data = await response.json(); // Assuming the server responds with JSON
 
             const { b64string: audioData, visemes, segments_latency: segmentsLatency, tts_latency: TTSLatency } = data;
+
+        
             const { hexCode } = generateRandomHex({ length: 13 });
 
             if(globals.conversationIndex>currentConversationIndex) return
@@ -46,19 +49,20 @@ export const getAnimationData = async ({
                 }));
             }
 
-            globals.frontendSocket.ws.send(JSON.stringify({
-                audioData, 
-                messageType: "audioData", 
-                conversationIndex: currentConversationIndex,
-            }));
-
-            globals.forwardSocket.ws.send(JSON.stringify({
+            processingObject.forwardData = {
                 messageType: "animationData",
                 audioData,
                 visemes,
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,
-            }));
+            }
+
+            processingObject.frontendData = {
+                audioData, 
+                messageType: "audioData", 
+                conversationIndex: currentConversationIndex,
+            }
+
 
             const animationSentData = {
                 conversationIndex: currentConversationIndex,
@@ -67,7 +71,7 @@ export const getAnimationData = async ({
                 uuid: hexCode,
             }
 
-            if(globals.conversationIndex>currentConversationIndex) return
+            
             
 
             globals.animationsSent.push(animationSentData);
