@@ -78,11 +78,11 @@ export const generateResponse = async ({
 
     console.log("starting stream for conversation index", currentConversationIndex)
     console.log("main thread", globals.mainThread)
-
+    let stream;
     try {
 
 
-        const stream = await groq.chat.completions.create({
+        stream = await groq.chat.completions.create({
             // model: "gpt-4-turbo",
             model: globals.LLM ? globals.LLM : "llama3-8b-8192",
             messages: globals.mainThread,
