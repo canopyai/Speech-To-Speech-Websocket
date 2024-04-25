@@ -11,7 +11,7 @@ export const shouldProcessContent = ({ sentence, part }) => {
                 content.includes("?") ||
                 content.includes("!") ||
                 content.includes("]"))
-        ) && sentence.sentence.split(" ").length > 0))),
+        ) && sentence.sentence.split(" ").length > 4))),
         (content === "?"),
         (content === "!"),
         (content === "."),

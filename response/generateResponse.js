@@ -78,8 +78,6 @@ export const generateResponse = async ({
     let isSecondElement = true;
     let isThirdElement = true;
 
-    console.log("starting stream for conversation index", currentConversationIndex)
-    console.log("main thread", globals.mainThread)
     let stream;
     try {
 
@@ -116,21 +114,7 @@ export const generateResponse = async ({
             }
 
 
-            if (isFirstElement) {
-                isFirstElement = false;
-                // console.log("First element hit", Date.now() - initialTimePreFirstChunk)
-                // console.log(part.choices[0].delta.content)
-            } else if (isSecondElement) {
-                isSecondElement = false;
-                // console.log("Second element hit", Date.now() - initialTimePreFirstChunk)
-                // console.log(part.choices[0].delta.content)
-
-            } else if (isThirdElement) {
-                isThirdElement = false;
-                // console.log("Third element hit", Date.now() - initialTimePreFirstChunk)
-                // console.log(part.choices[0].delta.content)
-
-            }
+           
 
 
 
