@@ -41,6 +41,11 @@ export const getAnimationData = async ({
     
                 }));
             }
+
+            globals.frontendSocket.ws.send(JSON.stringify({
+                audioData, 
+                messageType:"audioData"
+            }))
             
 
 
