@@ -23,7 +23,10 @@ export const generateResponse = async ({
     ws
 }) => {
 
+    
+
     const currentConversationIndex = globals.conversationIndex;
+    console.log("Beginning to generate response with conversation index", currentConversationIndex)
 
     const last3Messages = globals.mainThread.slice(-3);
     const startSem = Date.now();
