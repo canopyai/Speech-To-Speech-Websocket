@@ -39,6 +39,8 @@ export const generateResponse = async ({
 
 
     globals.emotions.semantics = semantics;
+
+    console.log(globals.emotions.audioIntonation, "audio intonation")
     
 
     let { hexCode } = generateRandomHex(pIdLength);

@@ -22,7 +22,7 @@ const frontendSocket = {}
 const animationsSent = []
 const mainThread = [{
     role: "system",
-    content:"You are a friendly AI chatbot. When I ask you what do you see say you see an ugly pig jokingly!"
+    content:"You are a friendly AI therapist that can speak, hear, and has a physical form. You should ignore the tone of voice unless asked about it."
 }]
 wss.on('connection', (ws, req) => {
 
