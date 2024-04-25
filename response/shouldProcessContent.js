@@ -16,8 +16,8 @@ export const shouldProcessContent = ({ sentence, part }) => {
         (content === "!"),
         (content === "."),
         (content === "-"),
-        ((content === ",") && (sentence.sentence.split(" ").length <3)|| (content === ",") && (sentence.sentence.split(" ").length > 3)),
-        additional_conditions({ sentence, part }).boolean,
+        // ((content === ",") && (sentence.sentence.split(" ").length <3)|| (content === ",") && (sentence.sentence.split(" ").length > 3)),
+        // additional_conditions({ sentence, part }).boolean,
 
 
         (part.choices[0].finish_reason === "stop")
