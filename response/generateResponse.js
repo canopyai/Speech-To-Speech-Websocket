@@ -53,15 +53,9 @@ export const generateResponse = async ({
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
 
-    if (globals.isProcessingResponse) {
-        console.log("claims to be processing response")
-        return
-    } else {
-        globals.isProcessingResponse = true;
-    }
 
     globals.currentProcessId = processId;
-    globals.isProcessingResponse = true;
+
 
     const sentence = { sentence: "", previousContent: "" }
     let isFirstChunk = true;
