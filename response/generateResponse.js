@@ -54,6 +54,7 @@ export const generateResponse = async ({
     let processId = hexCode;
 
     if (globals.isProcessingResponse) {
+        console.log("claims to be processing response")
         return
     } else {
         globals.isProcessingResponse = true;
