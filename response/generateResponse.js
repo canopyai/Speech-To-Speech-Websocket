@@ -67,6 +67,9 @@ export const generateResponse = async ({
 
 
     const initialTimePreFirstChunk = Date.now();
+    let isFirstElement = true;
+    let isSecondElement = true;
+    let isThirdElement = true;
 
     const stream = await groq.chat.completions.create({
         // model: "gpt-4-turbo",
@@ -77,10 +80,6 @@ export const generateResponse = async ({
         max_tokens: 150,
 
     });
-
-
-    let isFirstElement = true;
-
 
 
 
@@ -95,6 +94,12 @@ export const generateResponse = async ({
             if(isFirstElement){
                 isFirstElement = false;
                 console.log("First element hit", Date.now() - initialTimePreFirstChunk)
+            } else if (isSecondElement){
+                isSecondElement = false;
+                console.log("Second element hit", Date.now() - initialTimePreFirstChunk)
+            } else if (isThirdElement){
+                isThirdElement = false;
+                console.log("Third element hit", Date.now() - initialTimePreFirstChunk)
             }
 
             
