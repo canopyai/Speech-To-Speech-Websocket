@@ -84,6 +84,8 @@ export const generateResponse = async ({
     try {
 
 
+
+
         stream = await groq.chat.completions.create({
             // model: "gpt-4-turbo",
             model: globals.LLM ? globals.LLM : "llama3-8b-8192",
@@ -106,6 +108,12 @@ export const generateResponse = async ({
 
     for await (const part of stream) {
         try {
+
+
+            if(globals.conversationIndex>currentConversationIndex){
+                stream.controller.abort();
+                break;
+            }
 
 
             if (isFirstElement) {

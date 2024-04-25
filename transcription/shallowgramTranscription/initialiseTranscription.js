@@ -42,17 +42,3 @@ export const initialiseShallowgramTranscription = async ({
         
    
         generateResponse({
-            globals,
-            processingQueue,
-            createdAt: Date.now(),
-            ws
-        });
-    })
-
-
-
-
-
-
-}
-
