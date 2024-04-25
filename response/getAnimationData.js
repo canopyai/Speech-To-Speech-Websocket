@@ -63,4 +63,19 @@ export const getAnimationData = async ({
             const animationSentData = {
                 conversationIndex: currentConversationIndex,
                 visemesLength: visemes.length,
-                text: TTSSentence
+                text: TTSSentence,
+                uuid: hexCode,
+            }
+
+            if(globals.conversationIndex>currentConversationIndex) return
+            
+
+            globals.animationsSent.push(animationSentData);
+
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
+};

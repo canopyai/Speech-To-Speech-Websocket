@@ -227,4 +227,15 @@ wss.on('connection', (ws, req) => {
         }
 
         if (event.wasClean) {
-            console.log(`Connection closed 
+            console.log(`Connection closed cleanly, code=${event.code}, reason=${event.reason}`);
+        } else {
+            console.log('Connection died');
+        }
+
+        writeSessionCloseToFirebase(globals.projectId, globals.sessionId)
+    };
+
+
+});
+
+console.log('WebSocket server started on port 8080');

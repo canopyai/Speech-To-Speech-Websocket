@@ -35,4 +35,14 @@ export const initialiseVAD = async ({
             }));
             // globals.isProcessingResponse = false;
             // ws.send(JSON.stringify({
-            //     messageType: "va
+            //     messageType: "vadStart",
+            //     timestamp:Date.now()
+            // }))
+        }
+    });
+
+
+    ws.on('error', function (error) {
+        console.log('Stream error: ', error);
+    });
+}
