@@ -33,6 +33,9 @@ export const generateResponse = async ({
     const semantics = await getSemantics(last3Messages);
     const endSem = Date.now();
 
+    console.log("Successfully got semantics", currentConversationIndex)
+
+
     globals.frontendSocket.ws.send(JSON.stringify({
         messageType: "empathy",
         latency: endSem - startSem,
@@ -83,6 +86,8 @@ export const generateResponse = async ({
 
     });
 
+    console.log("started stream for conversation index", currentConversationIndex)
+
 
 
 
@@ -128,6 +133,8 @@ export const generateResponse = async ({
 
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
+
+                console.log("decided to parse content for conversation index", currentConversationIndex)
 
                 
                 if(isFirstChunk){
