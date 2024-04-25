@@ -15,7 +15,10 @@ export const getAnimationData = async ({
 
         const startTime = Date.now();
 
-        if(globals.conversationIndex>currentConversationIndex) return
+        if(globals.conversationIndex>currentConversationIndex) {
+            globals.isProcessingResponse = false;
+            return
+        }
         try {
             const response = await fetch(remoteUrl, {
                 method: 'POST',
@@ -34,7 +37,10 @@ export const getAnimationData = async ({
             const { b64string: audioData, visemes, segments_latency: segmentsLatency, tts_latency: TTSLatency } = data;
             const { hexCode } = generateRandomHex({ length: 13 });
 
-            if(globals.conversationIndex>currentConversationIndex) return
+            if(globals.conversationIndex>currentConversationIndex) {
+                globals.isProcessingResponse = false;
+                return
+            }
 
             if(isFirstChunk){
                 globals.frontendSocket.ws.send(JSON.stringify({
@@ -67,7 +73,10 @@ export const getAnimationData = async ({
                 uuid: hexCode,
             }
 
-            if(globals.conversationIndex>currentConversationIndex) return
+            if(globals.conversationIndex>currentConversationIndex) {
+                globals.isProcessingResponse = false;
+                return
+            }
 
             globals.animationsSent.push(animationSentData);
 

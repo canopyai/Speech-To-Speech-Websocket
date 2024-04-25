@@ -42,15 +42,22 @@ export const generateResponse = async ({
     }))
 
 
+    console.log("sending empathy for conversation index", currentConversationIndex)
 
 
     globals.emotions.semantics = semantics;
+
+    console.log("setting semantics for conversation index", currentConversationIndex)
 
 
     let { hexCode } = generateRandomHex(pIdLength);
     let processId = hexCode;
 
-    if (globals.isProcessingResponse) return;
+    if (globals.isProcessingResponse) {
+        return
+    } else {
+        globals.isProcessingResponse = true;
+    }
 
     globals.currentProcessId = processId;
     globals.isProcessingResponse = true;
