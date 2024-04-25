@@ -28,6 +28,11 @@ export const initialiseVAD = async ({
                 messageType: "clearQueue",
                 conversationIndex: globals.conversationIndex
             }));
+
+            globals.frontendSocket.ws.send(JSON.stringify({
+                messageType: "clearQueue",
+                conversationIndex: globals.conversationIndex
+            }));
             // globals.isProcessingResponse = false;
             // ws.send(JSON.stringify({
             //     messageType: "vadStart",

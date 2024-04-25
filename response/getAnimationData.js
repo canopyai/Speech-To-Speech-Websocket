@@ -40,7 +40,8 @@ export const getAnimationData = async ({
                     messageType: "animationLatency",
                     segmentsLatency,
                     TTSLatency,
-                    audioData
+                    audioData,
+                    conversationIndex: currentConversationIndex,
                 }));
             }
 
