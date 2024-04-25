@@ -79,6 +79,8 @@ export const generateResponse = async ({
     });
 
 
+    let isFirstElement = true;
+
 
 
 
@@ -88,6 +90,14 @@ export const generateResponse = async ({
 
     for await (const part of stream) {
         try {
+
+
+            if(isFirstElement){
+                isFirstElement = false;
+                console.log("First element hit", Date.now() - initialTimePreFirstChunk)
+            }
+
+            
 
             let finishReason = part.choices[0].finish_reason
             const text = part.choices[0].delta.content
