@@ -22,7 +22,6 @@ export const initialiseVAD = async ({
         // } 
         // else 
         if (vad_type === "start") {
-            console.log("vad start detected")
             globals.conversationIndex++;
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "clearQueue",

@@ -26,14 +26,11 @@ export const generateResponse = async ({
 
 
     const currentConversationIndex = globals.conversationIndex;
-    console.log("Beginning to generate response with conversation index", currentConversationIndex)
 
     const last3Messages = globals.mainThread.slice(-3);
     const startSem = Date.now();
     const semantics = await getSemantics(last3Messages);
     const endSem = Date.now();
-
-    console.log("Successfully got semantics", currentConversationIndex)
 
 
     globals.frontendSocket.ws.send(JSON.stringify({
@@ -42,12 +39,7 @@ export const generateResponse = async ({
     }))
 
 
-    console.log("sending empathy for conversation index", currentConversationIndex)
-
-
     globals.emotions.semantics = semantics;
-
-    console.log("setting semantics for conversation index", currentConversationIndex)
 
 
     let { hexCode } = generateRandomHex(pIdLength);
@@ -135,9 +127,6 @@ export const generateResponse = async ({
 
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
-
-                console.log("decided to parse content for conversation index", currentConversationIndex)
-
 
                 if (isFirstChunk) {
                     const timePreFirstChunk = Date.now() - initialTimePreFirstChunk;
