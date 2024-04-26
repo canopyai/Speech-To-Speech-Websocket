@@ -21,14 +21,16 @@ export const manageProcessingQueue = ({
             return a.timestamp - b.timestamp;
         });
 
-        const { forwardData, TTSSentence } = processingQueue[0];
+        const { forwardData } = processingQueue[0];
+
+        const { TTSSentence } = forwardData
 
         console.log("sending off", TTSSentence)
 
 
-        
 
-        if (forwardData ) {
+
+        if (forwardData) {
 
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
