@@ -53,7 +53,7 @@ export const getAnimationData = async ({
 
             processingObject.forwardData = {
                 messageType: "animationData",
-                audioData:loadJsonAudio(),
+                audioData,
                 visemes,
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,

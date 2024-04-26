@@ -5,3 +5,6 @@ export function loadJsonAudio() {
     const json = JSON.parse(data);
     return json.audioData
 }
+
+let decodedString = atob(loadJsonAudio());
+console.log(decodedString.slice(0,20))
