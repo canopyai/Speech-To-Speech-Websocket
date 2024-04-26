@@ -10,12 +10,6 @@ export const initialiseConnection = async ({
 }) => {
 
 
-    // initialiseDeepgramTranscription({
-    //     session,
-    //     ws,
-    //     globals,
-    //     processingQueue
-    // });
 
     initialiseShallowgramTranscription({
         ws,

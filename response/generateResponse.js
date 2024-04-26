@@ -53,22 +53,11 @@ export const generateResponse = async ({
     let isFirstChunk = true;
 
 
-    const processingObject = {
-        processId,
-        timestamp: Date.now(),
-    }
-
-    globals.processingQueue.push(processingObject);
-
-
     globals.wordBuffer = []
 
 
 
     const initialTimePreFirstChunk = Date.now();
-    let isFirstElement = true;
-    let isSecondElement = true;
-    let isThirdElement = true;
 
     let stream;
     try {

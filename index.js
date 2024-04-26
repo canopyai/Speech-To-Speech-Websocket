@@ -39,7 +39,6 @@ wss.on('connection', (ws, req) => {
     globals.forwardSocket = forwardSocket;
     globals.frontendSocket = frontendSocket;
     globals.messageThreadLength = 0;
-    globals.processingQueue = [];
     globals.finalTranscript = '';
     globals.lastTranscriptionTimeProcessed = 0;
     globals.wordBuffer = [];
