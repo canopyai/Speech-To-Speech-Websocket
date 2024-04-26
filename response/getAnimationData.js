@@ -8,6 +8,8 @@ export const getAnimationData = async ({
     processingObject
 }) => {
     try {
+
+        console.log("Sending sentence", TTSSentence)
         const remoteUrl = "http://34.32.228.101:8080/generate_animation";
 
         if (TTSSentence.length === 0) {
