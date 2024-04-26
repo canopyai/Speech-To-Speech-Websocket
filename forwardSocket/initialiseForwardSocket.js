@@ -16,6 +16,8 @@ export function initialiseForwardSocket({
 
             const animationData = globals.animationsSent.find(animation => animation.uuid === uuid);
 
+            if (!animationData) return
+
             const { text, visemesLength } = animationData;
 
             const fractionOfText = numberOfVisemesPlayed/visemesLength;
