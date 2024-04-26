@@ -15,7 +15,6 @@ export const manageProcessingQueue = ({
         }
     }
 
-    console.log(processingQueue.length)
     if (processingQueue.length) {
 
         processingQueue.sort((a, b) => {
@@ -24,7 +23,6 @@ export const manageProcessingQueue = ({
 
         const { forwardData } = processingQueue[0];
 
-        console.log("forwardData", forwardData)
 
         
 

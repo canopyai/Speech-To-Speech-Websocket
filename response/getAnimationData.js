@@ -1,5 +1,5 @@
 import { generateRandomHex } from "../utils/generateHexCode.js";
-
+import { loadJsonAudio } from "../loadJsonAudio.js";
 export const getAnimationData = async ({
     TTSSentence,
     globals,
@@ -53,7 +53,7 @@ export const getAnimationData = async ({
 
             processingObject.forwardData = {
                 messageType: "animationData",
-                audioData,
+                audioData:loadJsonAudio(),
                 visemes,
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,
