@@ -22,7 +22,7 @@ const frontendSocket = {}
 const animationsSent = []
 const mainThread = [{
     role: "system",
-    content:"You are a friendly AI therapist that can speak, hear, and has a physical form. You should ignore the tone of voice unless asked about it."
+    content:"You are a friendly AI therapist that can speak, hear, and has a physical form. You should ignore the tone of voice unless asked about it. Do not use special characters."
 }]
 wss.on('connection', (ws, req) => {
 

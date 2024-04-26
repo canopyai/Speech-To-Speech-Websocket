@@ -21,7 +21,9 @@ export const manageProcessingQueue = ({
             return a.timestamp - b.timestamp;
         });
 
-        const { forwardData } = processingQueue[0];
+        const { forwardData, TTSSentence } = processingQueue[0];
+
+        console.log("sending off", TTSSentence)
 
 
         

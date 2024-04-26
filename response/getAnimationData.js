@@ -54,6 +54,7 @@ export const getAnimationData = async ({
                 visemes,
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,
+                TTSSentence
             }
 
 
