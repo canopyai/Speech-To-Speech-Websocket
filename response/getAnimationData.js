@@ -46,7 +46,7 @@ export const getAnimationData = async ({
                     messageType: "animationLatency",
                     segmentsLatency,
                     TTSLatency,
-                    audioData,
+                    // audioData,
                     conversationIndex: currentConversationIndex,
                 }));
             }
@@ -59,11 +59,11 @@ export const getAnimationData = async ({
                 uuid: hexCode,
             }
 
-            processingObject.frontendData = {
-                audioData, 
-                messageType: "audioData", 
-                conversationIndex: currentConversationIndex,
-            }
+            // processingObject.frontendData = {
+            //     audioData, 
+            //     messageType: "audioData", 
+            //     conversationIndex: currentConversationIndex,
+            // }
 
 
             const animationSentData = {
