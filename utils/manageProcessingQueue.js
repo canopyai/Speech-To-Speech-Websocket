@@ -15,7 +15,7 @@ export const manageProcessingQueue = ({
         }
     }
 
-
+    console.log(processingQueue.length)
     if (processingQueue.length) {
 
         processingQueue.sort((a, b) => {
