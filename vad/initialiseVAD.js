@@ -12,15 +12,6 @@ export const initialiseVAD = async ({
 
         const { vad_type } = data
 
-
-        // if (vad_type === "end") {
-
-        //     ws.send(JSON.stringify({
-        //         messageType: "vadStop",
-        //         timestamp:Date.now()
-        //     }))
-        // } 
-        // else 
         if (vad_type === "start") {
             globals.conversationIndex++;
             globals.forwardSocket.ws.send(JSON.stringify({
@@ -32,11 +23,6 @@ export const initialiseVAD = async ({
                 messageType: "clearQueue",
                 conversationIndex: globals.conversationIndex
             }));
-            // globals.isProcessingResponse = false;
-            // ws.send(JSON.stringify({
-            //     messageType: "vadStart",
-            //     timestamp:Date.now()
-            // }))
         }
     });
 
