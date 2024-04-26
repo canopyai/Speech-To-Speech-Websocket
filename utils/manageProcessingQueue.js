@@ -28,9 +28,9 @@ export const manageProcessingQueue = ({
 
         if (forwardData ) {
 
-            // globals.forwardSocket.ws.send(JSON.stringify(forwardData));
+            globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
-            globals.frontendSocket.ws.send(JSON.stringify(forwardData));
+            // globals.frontendSocket.ws.send(JSON.stringify(forwardData));
 
 
             processingQueue.shift();
