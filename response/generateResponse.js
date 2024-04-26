@@ -78,7 +78,7 @@ export const generateResponse = async ({
 
         stream = await groq.chat.completions.create({
             // model: "gpt-4-turbo",
-            model: globals.LLM ? globals.LLM : "llama3-8b-8192",
+            model: globals.LLM ? globals.LLM : "llama3-70b-8192",
             messages: globals.mainThread,
             stream: true,
             temperature: 0,
