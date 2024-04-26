@@ -24,6 +24,8 @@ export const generateResponse = async ({
 }) => {
 
 
+    console.log(globals.mainThread)
+
 
     const currentConversationIndex = globals.conversationIndex;
 
