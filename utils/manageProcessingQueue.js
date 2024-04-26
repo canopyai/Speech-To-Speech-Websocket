@@ -24,6 +24,8 @@ export const manageProcessingQueue = ({
 
         const { forwardData, frontendData } = processingQueue[0];
 
+        console.log(forwardData)
+
         
 
         if (forwardData ) {
