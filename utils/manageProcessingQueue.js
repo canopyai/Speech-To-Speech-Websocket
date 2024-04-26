@@ -22,17 +22,17 @@ export const manageProcessingQueue = ({
             return a.timestamp - b.timestamp;
         });
 
-        const { forwardData } = processingQueue[0];
+        const { forwardData, frontendData } = processingQueue[0];
 
         console.log("forwardData", forwardData)
 
         
 
-        if (forwardData ) {
+        if (frontendData ) {
 
             // globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
-            globals.frontendSocket.ws.send(JSON.stringify(forwardData));
+            globals.frontendSocket.ws.send(JSON.stringify(frontendData));
 
 
             processingQueue.shift();
