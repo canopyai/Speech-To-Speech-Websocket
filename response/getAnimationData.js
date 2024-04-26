@@ -59,11 +59,6 @@ export const getAnimationData = async ({
                 uuid: hexCode,
             }
 
-            processingObject.frontendData = {
-                audioData, 
-                messageType: "audioData", 
-                conversationIndex: currentConversationIndex,
-            }
 
 
             const animationSentData = {
