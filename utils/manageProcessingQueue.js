@@ -15,7 +15,8 @@ export const manageProcessingQueue = ({
         }
     }
 
-    if (processingQueue.length) {
+    if (processingQueue.length && processingQueue[0].forwardData) {
+
 
         processingQueue.sort((a, b) => {
             return a.timestamp - b.timestamp;
