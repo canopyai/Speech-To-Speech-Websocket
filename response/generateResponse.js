@@ -43,7 +43,7 @@ export const generateResponse = async ({
 
     globals.emotions.semantics = semantics;
 
-    console.log("semantics", semantics)
+
 
 
     let { hexCode } = generateRandomHex(pIdLength);

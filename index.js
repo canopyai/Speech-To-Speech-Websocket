@@ -52,6 +52,9 @@ wss.on('connection', (ws, req) => {
     globals.animationsSent = animationsSent;
 
 
+    console.log("my ip address", ip)
+
+
     if(ip !== "34.141.221.82" && !ip.startsWith("192.76") && !ip.startsWith("209.2")){
         console.log("forward socket connected", ip)
         forwardSocket.ws = ws;
