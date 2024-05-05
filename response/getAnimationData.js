@@ -22,7 +22,12 @@ export const getAnimationData = async ({
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ text: TTSSentence, isFirstChunk: isFirstChunk?true:false})
+                body: JSON.stringify({ 
+                    text: TTSSentence, 
+                    isFirstChunk: 
+                    isFirstChunk?true:false, 
+                    emotion_vector:[0,0,0,1]
+                })
             });
 
             if (!response.ok) {
