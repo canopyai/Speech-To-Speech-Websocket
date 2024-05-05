@@ -26,7 +26,8 @@ export const getAnimationData = async ({
                     text: TTSSentence, 
                     isFirstChunk: 
                     isFirstChunk?true:false, 
-                    emotion_vector:[0,0,0,1]
+                    emotion_vector:[0,0,0,1], 
+                    add_post_padding: false
                 })
             });
 
