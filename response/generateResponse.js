@@ -156,6 +156,7 @@ export const generateResponse = async ({
 
                 const semantics = (await getSemantics({last3Messages, globals}));
                 const semanticsObj = semantics.emotion_prob_map
+                
 
                 const semanticsList = Object.keys(semanticsObj).sort().map(key => semanticsObj[key]); 
 

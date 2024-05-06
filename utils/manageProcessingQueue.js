@@ -26,11 +26,11 @@ export const manageProcessingQueue = ({
 
         const { forwardData } = processingQueue[0];
 
-        const { TTSSentence } = forwardData
 
-        const {animationType} = forwardData;
+        const {emotionSequences} = forwardData;
 
-        console.log("animationType", animationType  )
+
+
 
         if (forwardData) {
 
