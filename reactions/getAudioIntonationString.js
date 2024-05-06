@@ -3,7 +3,7 @@ export function getAudioIntonationString(results) {
 
     if (results[1].score > 0.2) {
         return `The user's tone of voice is mainly ${results[0].label} and is also ${results[1].label}.`;
-    } else if (results[1].score > 0.03)  {
+    } else if (results[1].score > 0.01)  {
         return `The user's tone of voice is mainly ${results[0].label} and is also very slightly ${results[1].label}.`;
 
     } else {
