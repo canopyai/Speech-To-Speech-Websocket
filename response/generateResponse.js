@@ -159,9 +159,11 @@ export const generateResponse = async ({
 
                 const semanticsObj = semantics[0]
 
-                const semanticsList = Object.keys(semantics)
+                console.log("semanticsObj", semanticsObj)
+
+                const semanticsList = Object.keys(semanticsObj)
                 .sort() // 
-                .map(key => semantics[key]); 
+                .map(key => semanticsObj[key]); 
 
                 console.log("semanticsList", semanticsList)
 
