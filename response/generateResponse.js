@@ -141,7 +141,7 @@ export const generateResponse = async ({
                     isFirstChunk,
                     finishReason,
 
-                };
+                }; 
 
 
 
