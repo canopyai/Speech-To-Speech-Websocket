@@ -79,13 +79,7 @@ export const getAnimationData = async ({
                 conversationIndex: currentConversationIndex,
             };
 
-            fs.writeFile('./emotions.json', JSON.stringify(emotionAnimationData), (err) => {
-                if (err) {
-                    console.error('An error occurred:', err);
-                } else {
-                    console.log('File written successfully.');
-                }
-            });
+      
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData))
 
             // processingObject.forwardData = {
