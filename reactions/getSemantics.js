@@ -1,5 +1,5 @@
 export async function getSemantics(messages) {
-    const url = "http://34.90.246.127:8080"; // Replace with the appropriate URL
+    const url = "http://34.91.168.188:8080"; // Replace with the appropriate URL
 
     try {
         const response = await fetch(url, {
