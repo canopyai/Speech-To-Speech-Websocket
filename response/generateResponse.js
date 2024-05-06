@@ -74,7 +74,8 @@ export const generateResponse = async ({
 
     let stream;
 
-    globals.mainThread[globals.mainThread.length - 1].content = globals.mainThread[globals.mainThread.length - 1].content + `\n <${audioIntonationString}>`
+    let mainThreadCopy = [...globals.mainThread];
+    mainThreadCopy[mainThreadCopy.length - 1].content = mainThreadCopy[mainThreadCopy.length - 1].content + `\n <${audioIntonationString}>`
 
     try {
 
@@ -84,7 +85,7 @@ export const generateResponse = async ({
         stream = await groq.chat.completions.create({
             // model: "gpt-4-turbo",
             model: globals.LLM ? globals.LLM : "llama3-70b-8192",
-            messages: globals.mainThread,
+            messages: mainThreadCopy,
             stream: true,
             temperature: 0,
             max_tokens: 150,
