@@ -1,5 +1,6 @@
 export async function getSemantics(messages) {
     const url = "http://34.91.168.188:8080"; // Replace with the appropriate URL
+    console.log("attempting to get semantics")
 
     try {
         const response = await fetch(url, {
