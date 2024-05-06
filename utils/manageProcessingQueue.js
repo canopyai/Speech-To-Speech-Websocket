@@ -5,7 +5,7 @@ export const manageProcessingQueue = ({
     ws
 }) => {
 
-    console.log(globals.emotions.semantics)
+
     const maxAge = 5000;
 
     let i = 0;
@@ -29,6 +29,7 @@ export const manageProcessingQueue = ({
         const { TTSSentence } = forwardData
 
         console.log("sending off", TTSSentence)
+        console.log(globals.emotions.semantics)
 
 
 
