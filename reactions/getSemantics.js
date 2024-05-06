@@ -1,3 +1,28 @@
+function scaleDominantEmotion(emotionMap) {
+    let maxEmotion = null;
+    let maxValue = 0;
+    for (const [emotion, value] of Object.entries(emotionMap)) {
+        if (emotion !== 'neutral' && value > maxValue) {
+            maxEmotion = emotion;
+            maxValue = value;
+        }
+    }
+
+    if (maxEmotion === null) {
+        return null;  // No non-neutral emotions found
+    }
+
+    // Calculate scale factor based on the minimum significant emotion value and 1
+    // Assuming the lowest significant value starts from 0.01
+    const minSignificantValue = 0.01;
+    const scaledValue = 0.3 + (0.7 * (maxValue - minSignificantValue) / (1 - minSignificantValue));
+
+    return {
+        emotion: maxEmotion,
+        scaledValue: Math.min(Math.max(scaledValue, 0.3), 1) // Ensure the value is clamped between 0.3 and 1
+    };
+}
+
 function checkEmotionChange(prevEmotion, currEmotion) {
     if(!prevEmotion || !currEmotion) return { change: false };
     const dominantEmotion = (emotionObj) => {
@@ -69,6 +94,7 @@ export async function getSemantics({last3Messages, globals}) {
 
         if(checkEmotionChange(globals.emotions.semantics, data.emotion_prob_map).change){
             globals.emotions.semantics = data.emotion_prob_map;
+            scaleDominantEmotion(data.emotion_prob_map)
             // globals.frontendSocket.ws.send(JSON.stringify({
             //     messageType: "empathy",
             //     emotion: checkEmotionChange(globals.emotions.semantics, data.emotion_prob_map).newMap,
