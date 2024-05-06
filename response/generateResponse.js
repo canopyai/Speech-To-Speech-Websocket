@@ -46,6 +46,7 @@ export const generateResponse = async ({
 
     let audioIntonationString;
     if(globals.emotions.audioIntonation){
+        console.log("audio intonation", globals.emotions.audioIntonation)
         audioIntonationString = getAudioIntonationString(globals.emotions.audioIntonation);
 
     }
