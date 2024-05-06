@@ -30,6 +30,7 @@ export const manageProcessingQueue = ({
 
         const {animationType} = forwardData;
 
+        console.log("animationType", animationType  )
 
         if (forwardData) {
 
