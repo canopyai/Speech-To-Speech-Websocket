@@ -155,17 +155,9 @@ export const generateResponse = async ({
                 sentence.sentence = "";
 
                 const semantics = (await getSemantics({last3Messages, globals}));
-                console.log("semantics", semantics)
-
                 const semanticsObj = semantics.emotion_prob_map
 
-                console.log("semanticsObj", semanticsObj)
-
-                const semanticsList = Object.keys(semanticsObj)
-                .sort() // 
-                .map(key => semanticsObj[key]); 
-
-                console.log("semanticsList", semanticsList)
+                const semanticsList = Object.keys(semanticsObj).sort().map(key => semanticsObj[key]); 
 
                 getAnimationData({
                     TTSSentence,
