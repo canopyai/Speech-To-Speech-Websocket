@@ -19,7 +19,6 @@ export async function getSemantics({last3Messages, globals}) {
         let data = await response.text();
         data = JSON.parse(data);
 
-        console.log("data.emotion_prob_map", data.emotion_prob_map);
 
         globals.frontendSocket.ws.send(JSON.stringify({
             messageType: "empathy",

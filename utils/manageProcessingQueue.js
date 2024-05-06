@@ -28,11 +28,6 @@ export const manageProcessingQueue = ({
 
         const { TTSSentence } = forwardData
 
-        console.log("sending off", TTSSentence)
-        console.log(globals.emotions.semantics)
-
-
-
 
         if (forwardData) {
 
