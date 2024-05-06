@@ -151,11 +151,10 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
-                const semantics = (await getSemantics({last3Messages, globals}));
-                const semanticsObj = semantics.emotion_prob_map
+                getSemantics({last3Messages, globals});
                 
 
-                const semanticsList = Object.keys(semanticsObj).sort().map(key => semanticsObj[key]); 
+
 
                 getAnimationData({
                     TTSSentence,
@@ -166,7 +165,6 @@ export const generateResponse = async ({
                     ws,
                     currentConversationIndex,
                     isFirstChunk, 
-                    semanticsList
                 })
                 isFirstChunk = false;
                 previousSentence += TTSSentence;

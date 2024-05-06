@@ -6,7 +6,6 @@ export const getAnimationData = async ({
     currentConversationIndex,
     isFirstChunk,
     processingObject,
-    semanticsList
 }) => {
     try {
         const remoteUrl = "http://34.91.82.222:8080/generate_animation";
@@ -27,7 +26,6 @@ export const getAnimationData = async ({
                 body: JSON.stringify({
                     text: TTSSentence,
                     isFirstChunk: isFirstChunk ? true : false,
-                    emotion_vector: semanticsList,
                     add_post_padding: false
                 })
             });
