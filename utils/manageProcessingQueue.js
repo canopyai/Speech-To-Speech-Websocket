@@ -4,6 +4,8 @@ export const manageProcessingQueue = ({
     globals,
     ws
 }) => {
+
+    console.log(globals.emotions.semantics)
     const maxAge = 5000;
 
     let i = 0;
