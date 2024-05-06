@@ -15,6 +15,7 @@ export async function getSemantics(messages) {
         }
 
         const data = await response.text();
+        console.log(data);
 
         globals.frontendSocket.ws.send(JSON.stringify({
             messageType: "empathy",
