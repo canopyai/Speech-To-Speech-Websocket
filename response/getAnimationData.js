@@ -2,9 +2,9 @@ import { generateRandomHex } from "../utils/generateHexCode.js";
 export const getAnimationData = async ({
     TTSSentence,
     globals,
-    currentConversationIndex, 
-    isFirstChunk, 
-    processingObject, 
+    currentConversationIndex,
+    isFirstChunk,
+    processingObject,
     semanticsList
 }) => {
     try {
@@ -16,18 +16,18 @@ export const getAnimationData = async ({
 
         const startTime = Date.now();
 
-        if(globals.conversationIndex>currentConversationIndex) return
+        if (globals.conversationIndex > currentConversationIndex) return
         try {
             const response = await fetch(remoteUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ 
-                    text: TTSSentence, 
-                    isFirstChunk: 
-                    isFirstChunk?true:false, 
-                    emotion_vector:semanticsList, 
+                body: JSON.stringify({
+                    text: TTSSentence,
+                    isFirstChunk:
+                        isFirstChunk ? true : false,
+                    emotion_vector: semanticsList,
                     add_post_padding: false
                 })
             });
@@ -38,16 +38,22 @@ export const getAnimationData = async ({
 
             const data = await response.json(); // Assuming the server responds with JSON
 
-            console.log("animation data", data)
 
-            const { b64string: audioData, visemes, segments_latency: segmentsLatency, tts_latency: TTSLatency } = data;
+            const {
+                b64string: audioData,
+                visemes, 
+                segments_latency: segmentsLatency, 
+                tts_latency: TTSLatency, 
+                emotion_sequences: emotionSequences 
+            } = data;
 
-        
+
             const { hexCode } = generateRandomHex({ length: 13 });
+            const {hexCode:secondaryHexCode} = generateRandomHex({length: 13});
 
-            if(globals.conversationIndex>currentConversationIndex) return
+            if (globals.conversationIndex > currentConversationIndex) return
 
-            if(isFirstChunk){
+            if (isFirstChunk) {
                 globals.frontendSocket.ws.send(JSON.stringify({
                     messageType: "animationLatency",
                     segmentsLatency,
@@ -63,7 +69,17 @@ export const getAnimationData = async ({
                 visemes,
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,
-                TTSSentence
+                TTSSentence, 
+                animationType: "facial"
+            }
+
+            processingObject.forwardData = {
+                messageType: "animationData",
+                visemes:emotionSequences,
+                conversationIndex: currentConversationIndex,
+                uuid: secondaryHexCode,
+                TTSSentence, 
+                animationType: "emotions"
             }
 
 
@@ -75,10 +91,18 @@ export const getAnimationData = async ({
                 uuid: hexCode,
             }
 
-            
-            
+            const secondaryAnimationSentData = {
+                conversationIndex: currentConversationIndex,
+                visemesLength: emotionSequences.length,
+                text: TTSSentence,
+                uuid: secondaryHexCode,
+            }
+
+
+
 
             globals.animationsSent.push(animationSentData);
+            globals.animationsSent.push(secondaryAnimationSentData);
 
         } catch (error) {
             console.error("An error occurred:", error);
