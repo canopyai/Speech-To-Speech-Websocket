@@ -1,4 +1,5 @@
 import { generateRandomHex } from "../utils/generateHexCode.js";
+const fs = require('fs');
 export const getAnimationData = async ({
     TTSSentence,
     globals,
@@ -73,12 +74,18 @@ export const getAnimationData = async ({
 
 
             const emotionAnimationData = {
-                messageType:"emotions", 
+                messageType: "emotions",
                 visemes: emotionSequences,
                 conversationIndex: currentConversationIndex,
-            }
+            };
 
-            console.log(emotionAnimationData)
+            fs.writeFile('emotions.json', JSON.stringify(emotionAnimationData), (err) => {
+                if (err) {
+                    console.error('An error occurred:', err);
+                } else {
+                    console.log('File written successfully.');
+                }
+            });
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData))
 
             // processingObject.forwardData = {
