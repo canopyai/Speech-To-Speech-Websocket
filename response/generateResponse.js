@@ -73,6 +73,9 @@ export const generateResponse = async ({
     const initialTimePreFirstChunk = Date.now();
 
     let stream;
+
+    globals.mainThread[globals.mainThread.length - 1].content = globals.mainThread[globals.mainThread.length - 1].content + `\n <${audioIntonationString}>`
+
     try {
 
 
