@@ -1,5 +1,5 @@
 import { generateRandomHex } from "../utils/generateHexCode.js";
-const fs = require('fs');
+import fs from 'fs';
 export const getAnimationData = async ({
     TTSSentence,
     globals,
