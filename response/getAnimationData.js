@@ -49,7 +49,6 @@ export const getAnimationData = async ({
 
 
             const { hexCode } = generateRandomHex({ length: 13 });
-            const {hexCode:secondaryHexCode} = generateRandomHex({length: 13});
 
             if (globals.conversationIndex > currentConversationIndex) return
 
@@ -93,7 +92,6 @@ export const getAnimationData = async ({
 
 
             globals.animationsSent.push(animationSentData);
-            globals.animationsSent.push(secondaryAnimationSentData);
 
         } catch (error) {
             console.error("An error occurred:", error);
