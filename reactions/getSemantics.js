@@ -2,7 +2,7 @@ export async function getSemantics({last3Messages, globals}) {
     console.log("last3Messages", last3Messages)
     const url = "http://34.91.168.188:8080/classify"; // Replace with the appropriate URL
     console.log("attempting to get semantics")
-
+    const startSem = Date.now();
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -17,11 +17,11 @@ export async function getSemantics({last3Messages, globals}) {
         }
 
         const data = await response.text();
-        console.log(data.emotion_prob_map);
+        console.log("data.emotion_prob_map", data.emotion_prob_map);
 
         globals.frontendSocket.ws.send(JSON.stringify({
             messageType: "empathy",
-            latency: endSem - startSem,
+            latency: Date.now() - startSem,
         }))
     
     
