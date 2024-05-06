@@ -154,7 +154,7 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
-                const semantics = await getSemantics({last3Messages, globals});
+                const semantics = (await getSemantics({last3Messages, globals}))[0];
                 console.log("semantics", semantics)
 
                 const semanticsList = Object.keys(semantics)
