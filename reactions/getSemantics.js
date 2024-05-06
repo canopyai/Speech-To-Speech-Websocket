@@ -94,7 +94,7 @@ export async function getSemantics({last3Messages, globals}) {
 
         if(checkEmotionChange(globals.emotions.semantics, data.emotion_prob_map).change){
             globals.emotions.semantics = data.emotion_prob_map;
-            scaleDominantEmotion(data.emotion_prob_map)
+            
             // globals.frontendSocket.ws.send(JSON.stringify({
             //     messageType: "empathy",
             //     emotion: checkEmotionChange(globals.emotions.semantics, data.emotion_prob_map).newMap,
@@ -103,6 +103,9 @@ export async function getSemantics({last3Messages, globals}) {
         } else {
             console.log("not changing semantics")
         }
+
+        const scaled = scaleDominantEmotion(data.emotion_prob_map);
+        print("scaled", scaled)
 
 
         
