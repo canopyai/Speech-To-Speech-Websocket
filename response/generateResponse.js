@@ -61,9 +61,6 @@ export const generateResponse = async ({
 
     let mainThreadCopy = [...globals.mainThread];
     mainThreadCopy[mainThreadCopy.length - 1].content = mainThreadCopy[mainThreadCopy.length - 1].content + `\n <${audioIntonationString}>`
-
-    console.log("mainThreadCopy", mainThreadCopy)
-
     try {
 
 
