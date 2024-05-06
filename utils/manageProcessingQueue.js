@@ -28,12 +28,18 @@ export const manageProcessingQueue = ({
 
         const { TTSSentence } = forwardData
 
+        const {animationType} = forwardData;
+
 
         if (forwardData) {
 
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
+            
 
-            globals.frontendSocket.ws.send(JSON.stringify(forwardData));
+            if(animationType==="facial"){
+                globals.frontendSocket.ws.send(JSON.stringify(forwardData));
+            }
+
 
 
             processingQueue.shift();
