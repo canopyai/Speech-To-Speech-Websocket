@@ -70,17 +70,16 @@ export const getAnimationData = async ({
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,
                 TTSSentence, 
-                animationType: "facial"
             }
 
-            processingObject.forwardData = {
-                messageType: "animationData",
-                visemes:emotionSequences,
-                conversationIndex: currentConversationIndex,
-                uuid: secondaryHexCode,
-                TTSSentence, 
-                animationType: "emotions"
-            }
+            // processingObject.forwardData = {
+            //     messageType: "animationData",
+            //     visemes:emotionSequences,
+            //     conversationIndex: currentConversationIndex,
+            //     uuid: secondaryHexCode,
+            //     TTSSentence, 
+            //     animationType: "emotions"
+            // }
 
 
 
@@ -90,14 +89,6 @@ export const getAnimationData = async ({
                 text: TTSSentence,
                 uuid: hexCode,
             }
-
-            const secondaryAnimationSentData = {
-                conversationIndex: currentConversationIndex,
-                visemesLength: emotionSequences.length,
-                text: TTSSentence,
-                uuid: secondaryHexCode,
-            }
-
 
 
 
