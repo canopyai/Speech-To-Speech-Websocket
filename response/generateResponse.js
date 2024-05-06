@@ -43,6 +43,8 @@ export const generateResponse = async ({
 
     globals.emotions.semantics = semantics;
 
+    console.log("*** emotions ***", globals.emotions.audioIntonation)
+
 
 
 

@@ -7,8 +7,6 @@ export const initialiseShallowgramTranscription = async ({
     processingQueue,
     globals
 }) => {
-    // return
-
 
     ws.on("message", function (message) {
 
