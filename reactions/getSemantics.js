@@ -15,7 +15,14 @@ export async function getSemantics(messages) {
         }
 
         const data = await response.text();
-        return data;
+
+        globals.frontendSocket.ws.send(JSON.stringify({
+            messageType: "empathy",
+            latency: endSem - startSem,
+        }))
+    
+    
+        globals.emotions.semantics = data;
     } catch (error) {
         console.error(`Error posting messages: ${error}`);
     }

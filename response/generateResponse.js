@@ -28,18 +28,10 @@ export const generateResponse = async ({
     const currentConversationIndex = globals.conversationIndex;
 
     const last3Messages = globals.mainThread.slice(-3);
-    const startSem = Date.now();
-    const semantics = await getSemantics(last3Messages);
-    const endSem = Date.now();
+    getSemantics({last3Messages, globals});
 
 
-    globals.frontendSocket.ws.send(JSON.stringify({
-        messageType: "empathy",
-        latency: endSem - startSem,
-    }))
 
-
-    globals.emotions.semantics = semantics;
 
     let audioIntonationString;
 
