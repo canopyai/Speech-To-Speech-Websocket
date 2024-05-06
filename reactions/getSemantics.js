@@ -1,5 +1,5 @@
 export async function getSemantics({last3Messages, globals}) {
-    const url = "http://34.91.168.188:8080"; // Replace with the appropriate URL
+    const url = "http://34.91.168.188:8080/classify"; // Replace with the appropriate URL
     console.log("attempting to get semantics")
 
     try {
