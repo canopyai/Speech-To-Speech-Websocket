@@ -25,9 +25,6 @@ export const generateResponse = async ({
 }) => {
 
 
-    console.log(globals.mainThread)
-
-
     const currentConversationIndex = globals.conversationIndex;
 
     const last3Messages = globals.mainThread.slice(-3);
@@ -49,10 +46,6 @@ export const generateResponse = async ({
         audioIntonationString = getAudioIntonationString(globals.emotions.audioIntonation.result);
 
     }
-
-    console.log("audio intonation string", audioIntonationString)
-
-
 
 
     let { hexCode } = generateRandomHex(pIdLength);
@@ -76,6 +69,8 @@ export const generateResponse = async ({
 
     let mainThreadCopy = [...globals.mainThread];
     mainThreadCopy[mainThreadCopy.length - 1].content = mainThreadCopy[mainThreadCopy.length - 1].content + `\n <${audioIntonationString}>`
+
+    console.log("mainThreadCopy", mainThreadCopy)
 
     try {
 
