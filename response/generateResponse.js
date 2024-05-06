@@ -155,10 +155,11 @@ export const generateResponse = async ({
                 sentence.sentence = "";
 
                 const semantics = await getSemantics({last3Messages, globals});
+                console.log("semantics", semantics)
 
                 const semanticsList = Object.keys(semantics)
-                .sort() 
-                .map(key => semantics[key]);
+                .sort() // 
+                .map(key => semantics[key]); 
 
                 console.log("semanticsList", semanticsList)
 
