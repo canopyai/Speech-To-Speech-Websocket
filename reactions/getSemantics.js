@@ -25,9 +25,13 @@ export async function getSemantics({last3Messages, globals}) {
             messageType: "empathy",
             latency: Date.now() - startSem,
         }))
+
+
     
     
         globals.emotions.semantics = data;
+
+        return data
     } catch (error) {
         console.error(`Error posting messages: ${error}`);
     }

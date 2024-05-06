@@ -28,7 +28,7 @@ export const generateResponse = async ({
     const currentConversationIndex = globals.conversationIndex;
 
     const last3Messages = globals.mainThread.slice(-3);
-    getSemantics({last3Messages, globals});
+
 
 
 
@@ -154,6 +154,14 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
+                const semantics = await getSemantics({last3Messages, globals});
+
+                const semanticsList = Object.keys(semantics)
+                .sort() 
+                .map(key => semantics[key]);
+
+                print("semanticsList", semanticsList)
+
                 getAnimationData({
                     TTSSentence,
                     processingObject,
@@ -162,7 +170,8 @@ export const generateResponse = async ({
                     finishReason,
                     ws,
                     currentConversationIndex,
-                    isFirstChunk
+                    isFirstChunk, 
+                    semanticsList
                 })
                 isFirstChunk = false;
                 previousSentence += TTSSentence;
