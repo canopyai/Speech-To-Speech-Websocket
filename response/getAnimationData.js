@@ -26,8 +26,7 @@ export const getAnimationData = async ({
                 },
                 body: JSON.stringify({
                     text: TTSSentence,
-                    isFirstChunk:
-                        isFirstChunk ? true : false,
+                    isFirstChunk: isFirstChunk ? true : false,
                     emotion_vector: semanticsList,
                     add_post_padding: false
                 })
@@ -45,7 +44,6 @@ export const getAnimationData = async ({
                 visemes, 
                 segments_latency: segmentsLatency, 
                 tts_latency: TTSLatency, 
-                emotion_sequences: emotionSequences 
             } = data;
 
 
@@ -72,12 +70,6 @@ export const getAnimationData = async ({
                 TTSSentence, 
             }
 
-
-            const emotionAnimationData = {
-                messageType: "emotions",
-                visemes: emotionSequences,
-                conversationIndex: currentConversationIndex,
-            };
 
       
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData))
