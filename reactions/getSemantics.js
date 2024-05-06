@@ -1,4 +1,5 @@
 function checkEmotionChange(prevEmotion, currEmotion) {
+    if(!prevEmotion || !currEmotion) return { change: false };
     const dominantEmotion = (emotionObj) => {
         let maxEmotion = 'neutral';
         let maxValue = emotionObj.neutral;
