@@ -160,7 +160,7 @@ export const generateResponse = async ({
                 .sort() 
                 .map(key => semantics[key]);
 
-                print("semanticsList", semanticsList)
+                console.log("semanticsList", semanticsList)
 
                 getAnimationData({
                     TTSSentence,
