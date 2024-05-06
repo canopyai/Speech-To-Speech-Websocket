@@ -1,4 +1,4 @@
-export async function getSemantics(messages) {
+export async function getSemantics({last3Messages, globals}) {
     const url = "http://34.91.168.188:8080"; // Replace with the appropriate URL
     console.log("attempting to get semantics")
 
@@ -8,7 +8,7 @@ export async function getSemantics(messages) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(messages)
+            body: JSON.stringify(last3Messages)
         });
 
         if (!response.ok) {
