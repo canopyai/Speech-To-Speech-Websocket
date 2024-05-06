@@ -77,6 +77,8 @@ export const getAnimationData = async ({
                 visemes: emotionSequences,
                 conversationIndex: currentConversationIndex,
             }
+
+            console.log(emotionAnimationData)
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData))
 
             // processingObject.forwardData = {
