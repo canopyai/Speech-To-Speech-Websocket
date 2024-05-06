@@ -16,7 +16,9 @@ export async function getSemantics({last3Messages, globals}) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const data = await response.text();
+        let data = await response.text();
+        data = JSON.parse(data);
+
         console.log("data.emotion_prob_map", data.emotion_prob_map);
 
         globals.frontendSocket.ws.send(JSON.stringify({
