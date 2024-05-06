@@ -72,11 +72,12 @@ export const getAnimationData = async ({
             }
 
 
-            globals.forwardSocket.ws.send(JSON.stringify({
+            const emotionAnimationData = {
                 messageType:"emotions", 
                 visemes: emotionSequences,
                 conversationIndex: currentConversationIndex,
-            }))
+            }
+            globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData))
 
             // processingObject.forwardData = {
             //     messageType: "animationData",
