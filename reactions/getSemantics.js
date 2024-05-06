@@ -9,7 +9,7 @@ export async function getSemantics({last3Messages, globals}) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(last3Messages)
+            body: JSON.stringify({messages:last3Messages})
         });
 
         if (!response.ok) {
