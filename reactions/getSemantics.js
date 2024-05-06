@@ -27,6 +27,7 @@ export async function getSemantics({last3Messages, globals}) {
     
     
         globals.emotions.semantics = data;
+        console.log("semantics", data)
 
         return data
     } catch (error) {
