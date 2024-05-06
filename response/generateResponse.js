@@ -157,7 +157,7 @@ export const generateResponse = async ({
                 const semantics = (await getSemantics({last3Messages, globals}));
                 console.log("semantics", semantics)
 
-                semanticsObj = semantics[0]
+                const semanticsObj = semantics[0]
 
                 const semanticsList = Object.keys(semantics)
                 .sort() // 
