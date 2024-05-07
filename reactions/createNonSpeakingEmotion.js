@@ -27,7 +27,25 @@ export function createNonSpeakingEmotion({
             strength
         });
 
-        console.log("animation curve", curve)
+        const emotionIndex = emotionStateSpace({
+            strength, 
+            label: emotion
+        })
+
+        const visemes = []
+
+        for (let i = 0; i < curve.length; i++) {
+            if (emotionIndex.includes(i)) {
+                targets = [0,0,0,0,0,0,0,0];
+                targets[emotionIndex] = curve[i];
+                visemes.push({
+                    targets,
+                    duration: 15,
+                });
+            }
+        }
+
+        print("visemes", visemes)
 
 
 
@@ -71,7 +89,12 @@ function emotionStateSpace({
         fear: [3,4]
     }
 
-    const emotionVector = [0,0,0,0,0,0,0,0]
+    //randomly select an element from the array corresponding to the emotion
+
+    const elements = emotionsMap[label];
+    const element = elements[Math.floor(Math.random() * elements.length)];
+
+    return element
 
     
 

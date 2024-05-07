@@ -38,6 +38,8 @@ export const manageProcessingQueue = ({
 
             console.log("*** sending forward data  ***")
 
+            globals.isEmotionCycleSet = false;
+
             
 
 
