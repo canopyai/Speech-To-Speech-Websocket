@@ -25,6 +25,8 @@ function scaleDominantEmotion(emotionMap) {
 
 
 function getEmotionList(dominantEmotion) {
+
+
     const startingVector = [0, 0, 0, 0, 0, 0, 0, 0];
 
     const indices = {
@@ -98,6 +100,7 @@ export async function getSemantics({ last3Messages, globals }) {
         if (scaleDominantEmotion(data.emotion_prob_map).emotion !== scaleDominantEmotion(globals.emotions.semantics).emotion) {
             globals.emotions.semantics = data.emotion_prob_map;
             const scaled = scaleDominantEmotion(data.emotion_prob_map);
+            globals.dominantEmotion = scaled;
             let emotionList = getEmotionList(scaled);
             console.log(emotionList)
             const emotionAnimationData = {
