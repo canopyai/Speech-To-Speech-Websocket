@@ -44,7 +44,7 @@ export function createNonSpeakingEmotion({
         
         }
 
-        print("visemes", visemes)
+        console.log("visemes", visemes)
 
 
 
