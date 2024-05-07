@@ -1,18 +1,18 @@
 export function createNonSpeakingEmotion({
-    globals, 
+    globals,
 }) {
     let dominantEmotion = null;
 
-    if(globals.dominantEmotion){
+    if (globals.dominantEmotion) {
         dominantEmotion = globals.dominantEmotion;
     }
 
-    if(!globals.isEmotionCycleSet) return null;
+    if (!globals.isEmotionCycleSet) return null;
 
-    if(dominantEmotion){
+    if (dominantEmotion) {
         // const { }
         console.log("dominant emotion", dominantEmotion)
-        const {emotion, scaledValue} = dominantEmotion;
+        const { emotion, scaledValue } = dominantEmotion;
 
 
         // linearly fit scaledValue between 0.6 and 1.2
@@ -22,7 +22,7 @@ export function createNonSpeakingEmotion({
 
         //randomly generate a number between 0.7 and 1.2
 
-        const duration = (700 + Math.random() * 500)*strength;
+        const duration = (700 + Math.random() * 500) * strength;
 
         const curve = createAnimationCurve({
             duration,
@@ -30,23 +30,32 @@ export function createNonSpeakingEmotion({
         });
 
         const emotionIndex = emotionStateSpace({
-            strength, 
+            strength,
             label: emotion
         })
 
         const visemes = []
 
         for (let i = 0; i < curve.length; i++) {
-                const targets = [0,0,0,0,0,0,0,0];
-                targets[emotionIndex] = curve[i];
-                visemes.push({
-                    targets,
-                    duration: 15,
-                });
-        
+            const targets = [0, 0, 0, 0, 0, 0, 0, 0];
+            targets[emotionIndex] = curve[i];
+            visemes.push({
+                targets,
+                duration: 15,
+            });
+
         }
 
         console.log("emotions while talking visemes")
+
+
+        globals.forwardSocket.ws.send(JSON.stringify({
+            messageType: "emotionsSpeaking",
+            visemes
+        }));
+
+
+        console.log("sending global forward socket stuff")
 
 
 
@@ -60,9 +69,9 @@ export function createNonSpeakingEmotion({
 
 }
 
-function createAnimationCurve({ 
-    duration, 
-    strength 
+function createAnimationCurve({
+    duration,
+    strength
 }) {
     const steps = Math.round(duration / 15);
     const curve = [];
@@ -77,17 +86,17 @@ function createAnimationCurve({
 }
 
 function emotionStateSpace({
-    strength, 
+    strength,
     label
-}){
+}) {
     const emotionsMap = {
-        happy:[0,1,2], 
-        neutral:[1,4],
-        angry:[3,5],
-        sad:[3,4],
-        concerned:[3,4,5],
-        excited:[1,2,6],
-        fear: [3,4]
+        happy: [0, 1, 2],
+        neutral: [1, 4],
+        angry: [3, 5],
+        sad: [3, 4],
+        concerned: [3, 4, 5],
+        excited: [1, 2, 6],
+        fear: [3, 4]
     }
 
     //randomly select an element from the array corresponding to the emotion
@@ -97,7 +106,7 @@ function emotionStateSpace({
 
     return element
 
-    
+
 
 }
 
