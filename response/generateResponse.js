@@ -98,7 +98,7 @@ export const generateResponse = async ({
             let finishReason = part.choices[0].finish_reason
             const text = part.choices[0].delta.content
 
-            console.log("text", text)
+            // console.log("text", text)
 
             if(!text){
                 console.log("no text", part)
@@ -116,7 +116,7 @@ export const generateResponse = async ({
                 sentence
             });
 
-            console.log("sentence", sentence.sentence)
+            // console.log("sentence", sentence.sentence)
 
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
@@ -148,12 +148,6 @@ export const generateResponse = async ({
                 processingQueue.push(processingObject);
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
-
-  
-                
-
-                console.log("about to get animation data")
-
 
                 getAnimationData({
                     TTSSentence,
