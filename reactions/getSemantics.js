@@ -102,7 +102,7 @@ export async function getSemantics({last3Messages, globals}) {
             console.log("changing semantics", data)
 
             const emotionSequences = [{
-                targets:[1,0,0,0,0,0,0,0],
+                targets:[1,0,0,0,1,0,0,0],
                 duration:5000
             }]
             const emotionAnimationData = {
