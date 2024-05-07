@@ -60,7 +60,9 @@ export const generateResponse = async ({
     let stream;
 
     let mainThreadCopy = [...globals.mainThread];
-    mainThreadCopy[mainThreadCopy.length - 1].content = mainThreadCopy[mainThreadCopy.length - 1].content + `\n <${audioIntonationString}>`
+    const lastMessage = mainThreadCopy[mainThreadCopy.length - 1];
+    const contentWithoutString = lastMessage.content.replace(/<[^>]+>/g, '');
+    lastMessage.content = contentWithoutString + `\n <${audioIntonationString}>`;
 
     console.log(mainThreadCopy)
     try {
