@@ -118,7 +118,7 @@ export async function getSemantics({ last3Messages, globals }) {
         }
 
         const scaled = scaleDominantEmotion(data.emotion_prob_map);
-        console.log("scaled", scaled)
+    
 
 
 
