@@ -1,3 +1,4 @@
+import {createNonSpeakingEmotion } from './reactions/createNonSpeakingEmotion.js';
 
 export const initialiseVAD = async ({
     ws,
@@ -14,6 +15,10 @@ export const initialiseVAD = async ({
         if (vad_type === "start") {
 
             console.log("*** user has started speaking  ***")
+            
+            createNonSpeakingEmotion({
+                globals,
+            });
 
             
             globals.conversationIndex++;
