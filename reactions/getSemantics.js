@@ -82,7 +82,7 @@ export async function getSemantics({ last3Messages, globals }) {
             globals.emotions.semantics = data.emotion_prob_map;
             const scaled = scaleDominantEmotion(data.emotion_prob_map);
             let emotionList = getEmotionList(scaled);
-            emotionList = [0,0,0,0,0,1,1,0]
+            emotionList = [1,0,0,0,0,1,1,0]
             const emotionAnimationData = {
                 messageType: "emotions",
                 visemes: emotionList,
@@ -96,7 +96,7 @@ export async function getSemantics({ last3Messages, globals }) {
             globals.emotions.semantics = data.emotion_prob_map;
             const scaled = scaleDominantEmotion(data.emotion_prob_map);
             let emotionList = getEmotionList(scaled);
-            emotionList = [0,0,0,0,0,1,1,0]
+            emotionList = [1,0,0,0,0,1,1,0]
             const emotionAnimationData = {
                 messageType: "emotions",
                 visemes: emotionList,
