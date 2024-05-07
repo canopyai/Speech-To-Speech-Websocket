@@ -28,14 +28,14 @@ function getEmotionList(dominantEmotion) {
     const startingVector = [0, 0, 0, 0, 0, 0, 0, 0];
 
     const indices = {
+        angry: 0,
+        concern: 1,
+        disgust: 2,
+        excitement: 3,
+        fear:4,
+        happy: 6,
         neutral: 5,
-        anger: 1,
-        contempt: 2,
-        disgust: 3,
-        fear: 4,
-        happiness: 0,
-        sadness: 6,
-        surprise: 7
+        sad: 7
     };
 
     const dominantEmotionLabel = dominantEmotion.emotion;
