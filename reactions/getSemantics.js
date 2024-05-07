@@ -85,7 +85,10 @@ export async function getSemantics({ last3Messages, globals }) {
             emotionList = [1,0,0,0,0,1,1,0]
             const emotionAnimationData = {
                 messageType: "emotions",
-                visemes: emotionList,
+                visemes: [{
+                    targets: emotionList,
+                    duration: 200
+                }],
             };
 
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
@@ -99,7 +102,10 @@ export async function getSemantics({ last3Messages, globals }) {
             emotionList = [1,0,0,0,0,1,1,0]
             const emotionAnimationData = {
                 messageType: "emotions",
-                visemes: emotionList,
+                visemes: [{
+                    targets: emotionList,
+                    duration: 200
+                }],
             };
 
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
