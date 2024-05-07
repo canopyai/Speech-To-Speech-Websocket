@@ -50,7 +50,7 @@ export function createNonSpeakingEmotion({
 
 
         globals.forwardSocket.ws.send(JSON.stringify({
-            messageType: "emotionsSpeaking",
+            messageType: "emotionsNonSpeaking",
             visemes
         }));
 
