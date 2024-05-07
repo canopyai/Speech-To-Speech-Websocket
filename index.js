@@ -223,9 +223,7 @@ wss.on('connection', (ws, req) => {
 
     ws.onclose = function (event) {
 
-        let eventData = {
 
-        }
 
         if (event.reason == "Authentication failed") {
             return;

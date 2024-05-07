@@ -35,6 +35,9 @@ export const manageProcessingQueue = ({
         if (forwardData) {
 
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
+
+            console.log("*** sending forward data  ***")
+
             
 
             globals.frontendSocket.ws.send(JSON.stringify(forwardData));
