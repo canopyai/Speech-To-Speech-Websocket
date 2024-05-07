@@ -154,6 +154,7 @@ export const generateResponse = async ({
   
                 
 
+                console.log("about to get animation data")
 
 
                 getAnimationData({
@@ -169,7 +170,7 @@ export const generateResponse = async ({
                 isFirstChunk = false;
                 previousSentence += TTSSentence;
 
-                // getSemantics({last3Messages, globals});
+                getSemantics({last3Messages, globals});
 
             }
 
