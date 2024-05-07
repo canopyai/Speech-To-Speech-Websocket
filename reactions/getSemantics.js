@@ -23,8 +23,34 @@ function scaleDominantEmotion(emotionMap) {
     };
 }
 
+
+function getEmotionList({
+    dominantEmotion
+}) {
+    const startingVector = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    const indices = {
+        neutral: 5,
+        anger: 1,
+        contempt: 2,
+        disgust: 3,
+        fear: 4,
+        happiness: 0,
+        sadness: 6,
+        surprise: 7
+    };
+
+    const dominantEmotionLabel = dominantEmotion.emotion;
+    const dominantEmotionValue = dominantEmotion.scaledValue;
+    const dominantEmotionIndex = indices[dominantEmotionLabel];
+
+    const emotionList = startingVector.map((_, index) => {
+        return index === dominantEmotionIndex ? dominantEmotionValue : 0;
+    }
+}
+
 function checkEmotionChange(prevEmotion, currEmotion) {
-    if(!prevEmotion || !currEmotion) return { change: false };
+    if (!prevEmotion || !currEmotion) return { change: false };
     const dominantEmotion = (emotionObj) => {
         let maxEmotion = 'neutral';
         let maxValue = emotionObj.neutral;
@@ -63,7 +89,7 @@ function checkEmotionChange(prevEmotion, currEmotion) {
     return { change: false };
 }
 
-export async function getSemantics({last3Messages, globals}) {
+export async function getSemantics({ last3Messages, globals }) {
     const url = "http://34.91.168.188:8080/classify"; // Replace with the appropriate URL
     const startSem = Date.now();
     try {
@@ -72,7 +98,7 @@ export async function getSemantics({last3Messages, globals}) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({messages:last3Messages})
+            body: JSON.stringify({ messages: last3Messages })
         });
 
         if (!response.ok) {
@@ -89,23 +115,32 @@ export async function getSemantics({last3Messages, globals}) {
         }))
 
 
-    
-  
-        if(!globals.emotions.semantics){
+
+
+        if (!globals.emotions.semantics) {
             globals.emotions.semantics = data.emotion_prob_map;
+
+            const emotionSequences = [{
+                targets: [1, 0, 0, 0, 1, 0, 0, 0],
+                duration: 5000
+            }]
+            const emotionAnimationData = {
+                messageType: "emotions",
+                visemes: emotionSequences,
+            };
+
+            globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+
+
         }
-        if(scaleDominantEmotion(data.emotion_prob_map).emotion !== scaleDominantEmotion(globals.emotions.semantics).emotion){
+        if (scaleDominantEmotion(data.emotion_prob_map).emotion !== scaleDominantEmotion(globals.emotions.semantics).emotion) {
             globals.emotions.semantics = data.emotion_prob_map;
-            
-            // globals.frontendSocket.ws.send(JSON.stringify({
-            //     messageType: "empathy",
-            //     emotion: checkEmotionChange(globals.emotions.semantics, data.emotion_prob_map).newMap,
-            // }))
+
             console.log("changing semantics", data)
 
             const emotionSequences = [{
-                targets:[1,0,0,0,1,0,0,0],
-                duration:5000
+                targets: [1, 0, 0, 0, 1, 0, 0, 0],
+                duration: 5000
             }]
             const emotionAnimationData = {
                 messageType: "emotions",
@@ -121,9 +156,9 @@ export async function getSemantics({last3Messages, globals}) {
         console.log("scaled", scaled)
 
 
-        
 
-        
+
+
 
         return data
     } catch (error) {
