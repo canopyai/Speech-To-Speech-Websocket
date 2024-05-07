@@ -110,7 +110,6 @@ export async function getSemantics({last3Messages, globals}) {
             const emotionAnimationData = {
                 messageType: "emotions",
                 visemes: emotionSequences,
-                conversationIndex: currentConversationIndex,
             };
 
             globals.frontendSocket.ws.send(JSON.stringify(emotionAnimationData));
