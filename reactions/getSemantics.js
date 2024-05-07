@@ -100,6 +100,14 @@ export async function getSemantics({last3Messages, globals}) {
             //     emotion: checkEmotionChange(globals.emotions.semantics, data.emotion_prob_map).newMap,
             // }))
             console.log("changing semantics", data)
+
+            const emotionAnimationData = {
+                messageType: "emotions",
+                visemes: emotionSequences,
+                conversationIndex: currentConversationIndex,
+            };
+
+            globals.frontendSocket.ws.send(JSON.stringify(emotionAnimationData));
         } else {
             console.log("not changing semantics")
         }
