@@ -33,8 +33,8 @@ function getEmotionList(dominantEmotion) {
         disgust: 2,
         excitement: 3,
         fear:4,
-        happy: 5,
-        neutral: 6,
+        happy: 6,
+        neutral: 5,
         sad: 7
     };
 
@@ -82,7 +82,6 @@ export async function getSemantics({ last3Messages, globals }) {
             globals.emotions.semantics = data.emotion_prob_map;
             const scaled = scaleDominantEmotion(data.emotion_prob_map);
             let emotionList = getEmotionList(scaled);
-            emotionList = [1,0,0,0,0,1,1,0]
             const emotionAnimationData = {
                 messageType: "emotions",
                 visemes: [{
@@ -99,7 +98,6 @@ export async function getSemantics({ last3Messages, globals }) {
             globals.emotions.semantics = data.emotion_prob_map;
             const scaled = scaleDominantEmotion(data.emotion_prob_map);
             let emotionList = getEmotionList(scaled);
-            emotionList = [1,0,0,0,0,1,1,0]
             const emotionAnimationData = {
                 messageType: "emotions",
                 visemes: [{
