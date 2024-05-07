@@ -33,8 +33,8 @@ function getEmotionList(dominantEmotion) {
         disgust: 2,
         excitement: 3,
         fear:4,
-        happy: 6,
-        neutral: 5,
+        happy: 5,
+        neutral: 6,
         sad: 7
     };
 
