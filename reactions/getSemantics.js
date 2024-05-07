@@ -24,9 +24,7 @@ function scaleDominantEmotion(emotionMap) {
 }
 
 
-function getEmotionList({
-    dominantEmotion
-}) {
+function getEmotionList(dominantEmotion) {
     const startingVector = [0, 0, 0, 0, 0, 0, 0, 0];
 
     const indices = {
