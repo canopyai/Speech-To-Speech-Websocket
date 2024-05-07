@@ -121,9 +121,11 @@ export async function getSemantics({ last3Messages, globals }) {
 
         if (!globals.emotions.semantics) {
             globals.emotions.semantics = data.emotion_prob_map;
+            const emotionList = getEmotionList(scaleDominantEmotion(data.emotion_prob_map));
+            console.log("changing emotionList", emotionList)
             const emotionAnimationData = {
                 messageType: "emotions",
-                visemes: getEmotionList(scaleDominantEmotion(data.emotion_prob_map)),
+                visemes: emotionList,
             };
 
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
@@ -132,11 +134,11 @@ export async function getSemantics({ last3Messages, globals }) {
         }
         if (scaleDominantEmotion(data.emotion_prob_map).emotion !== scaleDominantEmotion(globals.emotions.semantics).emotion) {
             globals.emotions.semantics = data.emotion_prob_map;
-
-            console.log("changing semantics", data)
+            const emotionList = getEmotionList(scaleDominantEmotion(data.emotion_prob_map));
+            console.log("changing emotionList", emotionList)
             const emotionAnimationData = {
                 messageType: "emotions",
-                visemes: getEmotionList(scaleDominantEmotion(data.emotion_prob_map)),
+                visemes: emotionList,
 
             };
 
