@@ -16,9 +16,7 @@ export const initialiseVAD = async ({
 
             console.log("*** user has started speaking  ***")
 
-            // createNonSpeakingEmotion({
-            //     globals,
-            // });
+
 
             
             globals.conversationIndex++;
@@ -33,6 +31,10 @@ export const initialiseVAD = async ({
                 messageType: "clearQueue",
                 conversationIndex: globals.conversationIndex
             }));
+
+            createNonSpeakingEmotion({
+                globals,
+            });
         }
     });
 

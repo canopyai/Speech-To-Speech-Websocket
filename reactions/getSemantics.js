@@ -84,6 +84,7 @@ export async function getSemantics({ last3Messages, globals }) {
             globals.emotions.semantics = data.emotion_prob_map;
             const scaled = scaleDominantEmotion(data.emotion_prob_map);
             let emotionList = getEmotionList(scaled);
+            globals.dominantEmotion = scaled;
             console.log(emotionList)
             const emotionAnimationData = {
                 messageType: "emotions",
