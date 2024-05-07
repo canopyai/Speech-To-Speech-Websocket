@@ -103,7 +103,7 @@ export async function getSemantics({last3Messages, globals}) {
 
             const emotionSequences = [{
                 targets:[1,0,0,0,0,0,0,0],
-                duration:100
+                duration:5000
             }]
             const emotionAnimationData = {
                 messageType: "emotions",
