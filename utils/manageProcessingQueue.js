@@ -27,7 +27,7 @@ export const manageProcessingQueue = ({
         const { forwardData } = processingQueue[0];
 
 
-        const {emotionSequences} = forwardData;
+        const { emotionSequences } = forwardData;
 
 
 
@@ -38,18 +38,31 @@ export const manageProcessingQueue = ({
 
             console.log("*** sending forward data  ***")
 
-            globals.isEmotionCycleSet = false;
+            if (globals.isEmotionCycleSet) {
+                setTimeout(() => {
+                    globals.isEmotionCycleSet = false;
+                }, 500)
 
-            
+                globals.forwardSocket.ws.send(JSON.stringify({
+                    messageType: "emotionsSpeaking",
+                    visemes: [{
+                        targets: [0, 0, 0, 0, 0, 0, 0],
+                        duration: 300
+                    }]
+                }));
+            }
 
 
-            
 
 
-            
+
+
+
+
+
 
             globals.frontendSocket.ws.send(JSON.stringify(forwardData));
-            
+
 
 
 
