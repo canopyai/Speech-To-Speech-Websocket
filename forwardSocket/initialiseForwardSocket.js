@@ -7,11 +7,12 @@ export function initialiseForwardSocket({
 
 }) {
 
+    setTimeout(() => {
+        dispatchBlinking({
+            globals
+        })
+    }, 5000)
 
-    dispatchBlinking({
-        globals
-    })
-    
     forwardSocket.ws.on('message', (message) => {
         const { messageType } = JSON.parse(message);
         if (messageType === "updateThread") {
