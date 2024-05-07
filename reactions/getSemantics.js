@@ -112,7 +112,7 @@ export async function getSemantics({last3Messages, globals}) {
                 visemes: emotionSequences,
             };
 
-            globals.frontendSocket.ws.send(JSON.stringify(emotionAnimationData));
+            globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
         } else {
             console.log("not changing semantics")
         }
