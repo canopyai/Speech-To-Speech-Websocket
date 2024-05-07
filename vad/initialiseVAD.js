@@ -15,6 +15,7 @@ export const initialiseVAD = async ({
         if (vad_type === "start") {
 
             console.log("*** user has started speaking  ***")
+            globals.isEmotionCycleSet = true;
 
 
 
