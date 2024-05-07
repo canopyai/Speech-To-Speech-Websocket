@@ -169,7 +169,7 @@ export const generateResponse = async ({
                 isFirstChunk = false;
                 previousSentence += TTSSentence;
 
-                getSemantics({last3Messages, globals});
+                // getSemantics({last3Messages, globals});
 
             }
 
