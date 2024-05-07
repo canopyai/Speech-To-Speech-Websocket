@@ -151,7 +151,7 @@ export const generateResponse = async ({
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
-                getSemantics({last3Messages, globals});
+  
                 
 
 
@@ -168,6 +168,8 @@ export const generateResponse = async ({
                 })
                 isFirstChunk = false;
                 previousSentence += TTSSentence;
+
+                getSemantics({last3Messages, globals});
 
             }
 
