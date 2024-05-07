@@ -35,14 +35,13 @@ export function createNonSpeakingEmotion({
         const visemes = []
 
         for (let i = 0; i < curve.length; i++) {
-            if (emotionIndex.includes(i)) {
                 targets = [0,0,0,0,0,0,0,0];
                 targets[emotionIndex] = curve[i];
                 visemes.push({
                     targets,
                     duration: 15,
                 });
-            }
+        
         }
 
         print("visemes", visemes)
