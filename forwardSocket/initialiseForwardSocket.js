@@ -1,4 +1,5 @@
 import { modifyTranscript } from '../transcript/modifyTranscript.js';
+import { dispatchBlinking } from '../reactions/dispatchBlinking.js';
 
 export function initialiseForwardSocket({
     globals,
@@ -6,6 +7,11 @@ export function initialiseForwardSocket({
 
 }) {
 
+
+    dispatchBlinking({
+        globals
+    })
+    
     forwardSocket.ws.on('message', (message) => {
         const { messageType } = JSON.parse(message);
         if (messageType === "updateThread") {
