@@ -7,9 +7,12 @@ export function initialiseForwardSocket({
 
 }) {
     
-    dispatchBlinking({
-        globals
-    })
+    setTimeout(()=>{
+        dispatchBlinking({
+            globals
+        })
+    }, 3000)
+
 
     forwardSocket.ws.on('message', (message) => {
         const { messageType } = JSON.parse(message);
