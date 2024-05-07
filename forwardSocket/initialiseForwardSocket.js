@@ -6,12 +6,10 @@ export function initialiseForwardSocket({
     forwardSocket
 
 }) {
-
-    setTimeout(() => {
-        dispatchBlinking({
-            globals
-        })
-    }, 5000)
+    
+    dispatchBlinking({
+        globals
+    })
 
     forwardSocket.ws.on('message', (message) => {
         const { messageType } = JSON.parse(message);
