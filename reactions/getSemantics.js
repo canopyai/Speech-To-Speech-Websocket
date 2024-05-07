@@ -91,7 +91,9 @@ export async function getSemantics({last3Messages, globals}) {
 
     
   
-
+        if(!globals.emotions.semantics){
+            globals.emotions.semantics = data.emotion_prob_map;
+        }
         if(scaleDominantEmotion(data.emotion_prob_map).emotion !== scaleDominantEmotion(globals.emotions.semantics)){
             globals.emotions.semantics = data.emotion_prob_map;
             
