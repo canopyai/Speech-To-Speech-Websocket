@@ -92,7 +92,7 @@ export async function getSemantics({last3Messages, globals}) {
     
   
 
-        if(checkEmotionChange(globals.emotions.semantics, data.emotion_prob_map).change){
+        if(scaleDominantEmotion(data.emotion_prob_map).emotion !== scaleDominantEmotion(globals.emotions.semantics)){
             globals.emotions.semantics = data.emotion_prob_map;
             
             // globals.frontendSocket.ws.send(JSON.stringify({
