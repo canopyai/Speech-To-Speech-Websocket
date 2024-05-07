@@ -2,7 +2,6 @@
 export const initialiseVAD = async ({
     ws,
     globals,
-    processingQueue
 }) => {
     ws.on('message', async function (message) {
 
@@ -13,7 +12,11 @@ export const initialiseVAD = async ({
         const { vad_type } = data
 
         if (vad_type === "start") {
+
+            console.log("*** user has started speaking  ***")
             globals.conversationIndex++;
+
+
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "clearQueue",
                 conversationIndex: globals.conversationIndex
