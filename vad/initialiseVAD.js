@@ -16,9 +16,9 @@ export const initialiseVAD = async ({
 
             console.log("*** user has started speaking  ***")
 
-            createNonSpeakingEmotion({
-                globals,
-            });
+            // createNonSpeakingEmotion({
+            //     globals,
+            // });
 
             
             globals.conversationIndex++;
