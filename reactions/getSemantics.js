@@ -46,7 +46,9 @@ function getEmotionList({
 
     const emotionList = startingVector.map((_, index) => {
         return index === dominantEmotionIndex ? dominantEmotionValue : 0;
-    }
+    }  );
+
+    return emotionList;
 }
 
 function checkEmotionChange(prevEmotion, currEmotion) {
@@ -119,14 +121,9 @@ export async function getSemantics({ last3Messages, globals }) {
 
         if (!globals.emotions.semantics) {
             globals.emotions.semantics = data.emotion_prob_map;
-
-            const emotionSequences = [{
-                targets: [1, 0, 0, 0, 1, 0, 0, 0],
-                duration: 5000
-            }]
             const emotionAnimationData = {
                 messageType: "emotions",
-                visemes: emotionSequences,
+                visemes: getEmotionList(scaleDominantEmotion(data.emotion_prob_map)),
             };
 
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
@@ -137,14 +134,10 @@ export async function getSemantics({ last3Messages, globals }) {
             globals.emotions.semantics = data.emotion_prob_map;
 
             console.log("changing semantics", data)
-
-            const emotionSequences = [{
-                targets: [1, 0, 0, 0, 1, 0, 0, 0],
-                duration: 5000
-            }]
             const emotionAnimationData = {
                 messageType: "emotions",
-                visemes: emotionSequences,
+                visemes: getEmotionList(scaleDominantEmotion(data.emotion_prob_map)),
+
             };
 
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
