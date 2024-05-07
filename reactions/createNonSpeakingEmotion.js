@@ -10,6 +10,29 @@ export function createNonSpeakingEmotion({
     if(dominantEmotion){
         // const { }
         console.log("dominant emotion", dominantEmotion)
+        const {emotion, scaledValue} = dominantEmotion;
+
+
+        // linearly fit scaledValue between 0.6 and 1.2
+        const preStrength = 0.6 + 0.6 * scaledValue;
+
+        strength = Math.min(1, preStrength);
+
+        //randomly generate a number between 0.7 and 1.2
+
+        const duration = (700 + Math.random() * 500)*strength;
+
+        const curve = createAnimationCurve({
+            duration,
+            strength
+        });
+
+        console.log("animation curve", curve)
+
+
+
+
+
 
     }
 
