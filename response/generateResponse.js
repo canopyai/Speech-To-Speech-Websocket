@@ -95,13 +95,10 @@ export const generateResponse = async ({
                 break;
             }
 
-
-           
-
-
-
             let finishReason = part.choices[0].finish_reason
             const text = part.choices[0].delta.content
+
+            console.log("text", text)
 
 
             if (globals.currentProcessId !== processId) {
