@@ -115,6 +115,8 @@ export const generateResponse = async ({
                 sentence
             });
 
+            console.log("sentence", sentence.sentence)
+
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
 
@@ -124,11 +126,6 @@ export const generateResponse = async ({
                         messageType: "LLMLatency",
                         latency: timePreFirstChunk
                     }));
-                }
-
-
-                if (finishReason === "stop") {
-
                 }
 
                 const processingObject = {
