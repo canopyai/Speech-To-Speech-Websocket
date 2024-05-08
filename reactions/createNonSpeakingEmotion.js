@@ -1,3 +1,4 @@
+import fs from 'fs';
 export function createNonSpeakingEmotion({
     globals,
 }) {
@@ -45,10 +46,19 @@ export function createNonSpeakingEmotion({
 
         }
 
-        globals.forwardSocket.ws.send(JSON.stringify({
+        const emotionsNonSpeaking = {
             messageType: "emotionsNonSpeaking",
             visemes
-        }));
+        }
+
+        globals.forwardSocket.ws.send(JSON.stringify(emotionsNonSpeaking));
+
+        //write to json file
+
+        const data = JSON.stringify(emotionsNonSpeaking);
+        fs.writeFileSync('./emotionsNonSpeaking.json', data);
+
+
 
 
 
