@@ -19,10 +19,10 @@ export function generateBlinking({
                 targets: [1],
                 duration: anaBlink
             },
-            {
-                targets: [1],
-                duration: blinkHoldDur
-            },
+            // {
+            //     targets: [1],
+            //     duration: blinkHoldDur
+            // },
             {
                 targets: [0],
                 duration: cataBlink
