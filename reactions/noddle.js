@@ -29,7 +29,7 @@ export function noddle({
     const decayFactor = -((1 / 4) ** (1 / numberOfNods))
     console.log("numberOfNods", numberOfNods, decayFactor)
 
-    const duration = strength * 500
+    let duration = strength * 500
 
 
     let emotion = "happy"
