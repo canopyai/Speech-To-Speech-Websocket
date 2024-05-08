@@ -105,7 +105,7 @@ export const generateResponse = async ({
             // console.log("text", text)
 
             if(!text){
-                console.log("no text", part)
+
             }
 
 

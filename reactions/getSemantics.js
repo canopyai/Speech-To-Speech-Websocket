@@ -115,7 +115,6 @@ export async function getSemantics({ last3Messages, globals }) {
 
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
         } else {
-            console.log("not changing semantics")
         }
 
         const scaled = scaleDominantEmotion(data.emotion_prob_map);

@@ -8,8 +8,6 @@ export const getAnimationData = async ({
     processingObject,
 }) => {
     try {
-
-        console.log("getting animation data for: ", TTSSentence)
         const remoteUrl = "http://34.91.82.222:8080/generate_animation";
 
         if (TTSSentence.length === 0) {
@@ -37,8 +35,6 @@ export const getAnimationData = async ({
             }
 
             const data = await response.json(); // Assuming the server responds with JSON
-
-            console.log("animation data received in: ", Date.now() - startTime, "ms");
 
             const {
                 b64string: audioData,

@@ -36,8 +36,6 @@ export const manageProcessingQueue = ({
 
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
-            console.log("*** sending forward data  ***")
-
             if (globals.isEmotionCycleSet) {
                 setTimeout(() => {
                     globals.isEmotionCycleSet = false;
