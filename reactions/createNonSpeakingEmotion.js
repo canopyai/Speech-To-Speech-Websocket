@@ -96,7 +96,8 @@ function emotionStateSpace({
         sad: [3, 4],
         concerned: [3, 4, 5],
         excited: [1, 2, 6],
-        fear: [3, 4]
+        fear: [3, 4], 
+        disgust: [4, 5],
     }
 
     //randomly select an element from the array corresponding to the emotion

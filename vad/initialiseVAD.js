@@ -1,5 +1,5 @@
 import {createNonSpeakingEmotion } from '../reactions/createNonSpeakingEmotion.js';
-
+import { noddle } from '../reactions/noddle.js';
 export const initialiseVAD = async ({
     ws,
     globals,
@@ -34,6 +34,9 @@ export const initialiseVAD = async ({
             }));
 
             createNonSpeakingEmotion({
+                globals,
+            });
+            noddle({
                 globals,
             });
         }
