@@ -33,6 +33,7 @@ export function noddle({
 
     let emotion = "happy"
     if (globals.dominantEmotion) {
+        console.log("globals.dominantEmotion", globals.dominantEmotion)
         emotion = globals.dominantEmotion.emotion
         getScaleMultiplier(emotion)
         strength = strength * getScaleMultiplier(emotion)[0]
@@ -105,6 +106,8 @@ const nod = noddle({
 
 
 function getScaleMultiplier(emotion) {
+
+    console.log(emotion)
     switch (emotion) {
         case "happy":
             return [1, 1]
