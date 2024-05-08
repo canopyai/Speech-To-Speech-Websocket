@@ -102,7 +102,10 @@ function emotionStateSpace({
 
     //randomly select an element from the array corresponding to the emotion
 
-    const elements = emotionsMap[label];
+    let elements = emotionsMap[label];
+    if(!elements) return n{
+        elements = emotionsMap["neutral"]
+    }
     const element = elements[Math.floor(Math.random() * elements.length)];
 
     return element
