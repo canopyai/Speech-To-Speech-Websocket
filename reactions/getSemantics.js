@@ -101,7 +101,6 @@ export async function getSemantics({ last3Messages, globals }) {
         if (scaleDominantEmotion(data.emotion_prob_map).emotion !== scaleDominantEmotion(globals.emotions.semantics).emotion) {
             globals.emotions.semantics = data.emotion_prob_map;
             const scaled = scaleDominantEmotion(data.emotion_prob_map);
-            console.log("setting dominant emotion", scaled)
             globals.dominantEmotion = scaled;
             let emotionList = getEmotionList(scaled);
             console.log(emotionList)

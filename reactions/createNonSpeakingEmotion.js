@@ -10,8 +10,7 @@ export function createNonSpeakingEmotion({
     if (!globals.isEmotionCycleSet) return null;
 
     if (dominantEmotion) {
-        // const { }
-        console.log("dominant emotion", dominantEmotion)
+
         const { emotion, scaledValue } = dominantEmotion;
 
 
@@ -45,9 +44,6 @@ export function createNonSpeakingEmotion({
             });
 
         }
-
-        console.log("emotions while talking visemes")
-
 
         globals.forwardSocket.ws.send(JSON.stringify({
             messageType: "emotionsNonSpeaking",
