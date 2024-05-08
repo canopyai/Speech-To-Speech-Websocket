@@ -5,7 +5,6 @@ import { reformatTextForTTS } from './reformatTextForTTS.js';
 import { groqKey } from '../config.js';
 import { getAnimationData } from './getAnimationData.js';
 import { getSemantics } from '../reactions/getSemantics.js';
-import { generateEmotionVector } from '../emotions/generateEmotionVector.js';
 import {getAudioIntonationString } from '../reactions/getAudioIntonationString.js';
 import Groq from "groq-sdk"
 

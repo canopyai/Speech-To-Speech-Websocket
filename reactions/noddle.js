@@ -122,7 +122,7 @@ function getScaleMultiplier(emotion) {
             return [0.8, 1]
         case "excited":
             return [1.2, 1]
-        case "sad":
+        case "fear":
             return [0.5, 1.5]
         case "disgust":
             return [0.5, 1.5]
