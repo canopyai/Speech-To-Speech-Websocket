@@ -27,7 +27,6 @@ export function noddle({
     const nodVisemes = [];
 
     const decayFactor = -((1 / 4) ** (1 / numberOfNods))
-    console.log("numberOfNods", numberOfNods, decayFactor)
 
     let duration = strength * 500
 
@@ -54,7 +53,6 @@ export function noddle({
     let lastSegment = initialSegment[initialSegment.length - 1]
     for (let i = 0; i < numberOfNods; i++) {
         strength = strength * decayFactor
-        console.log(strength, lastSegment)
 
         const targets = computeSegments(lastSegment, strength, numberOfTicks)
         lastSegment = targets[targets.length - 1]

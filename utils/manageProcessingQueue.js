@@ -42,7 +42,7 @@ export const manageProcessingQueue = ({
                 }, 500)
 
                 globals.forwardSocket.ws.send(JSON.stringify({
-                    messageType: "emotionsSpeaking",
+                    messageType: "emotionsNonSpeaking",
                     visemes: [{
                         targets: [0, 0, 0, 0, 0, 0, 0],
                         duration: 300
