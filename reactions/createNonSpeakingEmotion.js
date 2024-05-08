@@ -55,16 +55,11 @@ export function createNonSpeakingEmotion({
         }));
 
 
-        console.log("sending global forward socket stuff")
-
-
 
 
 
 
     }
-
-    console.log("creating non speaking emotion")
 
 
 }
