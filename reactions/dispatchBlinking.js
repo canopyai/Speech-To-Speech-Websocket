@@ -18,14 +18,14 @@ export function dispatchBlinking({
 }){
     // predict a random number between 150 and 400
 
-    const duration = Math.floor(Math.random() * 250) + 150;
+    const duration = Math.floor(Math.random() * 250) + 50;
     const blinkingData = generateBlinking({
         duration
     });
 
     globals.forwardSocket.ws.send(JSON.stringify(blinkingData));
 
-    const nextBlinkDelay = gaussianRandom(4000, 1800, 600, 8000);
+    const nextBlinkDelay = gaussianRandom(4000, 2800, 600, 8000);
 
     setTimeout(()=>{
         dispatchBlinking({globals})
