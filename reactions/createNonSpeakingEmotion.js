@@ -1,7 +1,9 @@
 import fs from 'fs';
 export function createNonSpeakingEmotion({
     globals,
+
 }) {
+    const tickLength = 100
     let dominantEmotion = null;
 
     if (globals.dominantEmotion) {
@@ -26,7 +28,8 @@ export function createNonSpeakingEmotion({
 
         const curve = createAnimationCurve({
             duration,
-            strength
+            strength, 
+            tickLength
         });
 
         const emotionIndex = emotionStateSpace({
@@ -41,7 +44,7 @@ export function createNonSpeakingEmotion({
             targets[emotionIndex] = curve[i];
             visemes.push({
                 targets,
-                duration: 15,
+                duration: tickLength,
             });
 
         }
@@ -72,9 +75,11 @@ export function createNonSpeakingEmotion({
 
 function createAnimationCurve({
     duration,
-    strength
+    strength,
+    tickLength
 }) {
-    const steps = Math.round(duration / 15);
+
+    const steps = Math.round(duration / tickLength);
     const curve = [];
 
     for (let i = 0; i <= steps; i++) {
