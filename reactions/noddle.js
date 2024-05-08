@@ -38,6 +38,7 @@ export function noddle({
         getScaleMultiplier(emotion)
         strength = strength * getScaleMultiplier(emotion)[0]
         duration = duration * getScaleMultiplier(emotion)[1]
+        return;
     }
 
    
