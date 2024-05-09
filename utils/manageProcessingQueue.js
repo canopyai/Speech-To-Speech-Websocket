@@ -52,19 +52,20 @@ export const manageProcessingQueue = ({
 
             }, 20)
 
+            if(!globals.lastNonSpeakingTimestamp){
+                globals.lastNonSpeakingTimestamp = Date.now()
+            }
+
+            if(Date.now()>globals.lastNonSpeakingTimestamp){
+                console.log("resetting last nonSpeaking TS")
+                globals.lastNonSpeakingTimestamp = Date.now()
+            }
 
             if (globals.isEmotionCycleSet) {
                 setTimeout(() => {
                     globals.isEmotionCycleSet = false;
                 }, 500)
 
-                if(!globals.lastNonSpeakingTimestamp){
-                    globals.lastNonSpeakingTimestamp = Date.now()
-                }
-
-                if(Date.now()>globals.lastNonSpeakingTimestamp){
-                    globals.lastNonSpeakingTimestamp = Date.now()
-                }
 
 
                 globals.forwardSocket.ws.send(JSON.stringify({
