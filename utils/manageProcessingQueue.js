@@ -36,8 +36,6 @@ export const manageProcessingQueue = ({
         if (forwardData) {
 
 
-            console.log("forward data that counts is", forwardData)
-
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
             if (globals.isEmotionCycleSet) {

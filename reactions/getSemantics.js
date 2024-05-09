@@ -57,7 +57,6 @@ export async function getSemantics({ last3Messages, globals }) {
 
     const lastMessages = cleanAndCloneContent(last3Messages)
 
-    console.log("last messages", lastMessages)
 
 
     try {
