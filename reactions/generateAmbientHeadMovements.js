@@ -24,8 +24,10 @@ export function generateAmbientHeadMovements({
             }
         });
 
+        console.log(targets)
+
         movements.push({
-            targets: targets,
+            targets,
             duration: timestep
         });
     }
