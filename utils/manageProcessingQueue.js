@@ -27,16 +27,27 @@ export const manageProcessingQueue = ({
         const { forwardData } = processingQueue[0];
 
 
-        const { emotionSequences } = forwardData;
+        const { emotionSequences, isFirstChunk } = forwardData;
 
 
+        
         
 
 
         if (forwardData) {
 
+            if(isFirstChunk){
+                globals.forwardSocket.ws.send(JSON.stringify({
+                    messageType: "clearQueue",
+                    conversationIndex: globals.conversationIndex
+                }));
+            } 
 
-            globals.forwardSocket.ws.send(JSON.stringify(forwardData));
+            setTimeout(()=>{
+                globals.forwardSocket.ws.send(JSON.stringify(forwardData));
+
+            }, 20)
+
 
             if (globals.isEmotionCycleSet) {
                 setTimeout(() => {
