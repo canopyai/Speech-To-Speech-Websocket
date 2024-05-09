@@ -12,6 +12,8 @@ export function manageAmbientMovements({
             globals
         })
 
+        console.log("manage ambient movements")
+
         globals.forwardSocket.ws.send(JSON.stringify({
             visemes, 
             messageType:"ambientMovements"
