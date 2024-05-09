@@ -73,10 +73,13 @@ export function noddle({
     const endSegment = computeSegments(lastSegment, 0, numberOfTicks)
     console.log("endSegment", endSegment)
 
-    nodVisemes.push({
-        targets: endSegment,
-        duration: 15,
-    });
+    for(let es of endSegment){
+        nodVisemes.push({
+            targets: [es],
+            duration: 15,
+        });
+    }
+
 
 
     // return nodVisemes
