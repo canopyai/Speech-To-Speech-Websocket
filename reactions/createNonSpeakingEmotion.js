@@ -54,9 +54,13 @@ export function createNonSpeakingEmotion({
             visemes
         }
 
-        if ((Date.now() - 3000) > globals.lastNonSpeakingTimestamp) {
+        if ((Date.now() - 10000) > globals.lastNonSpeakingTimestamp) {
             console.log("timestamp deficit", Date.now() - globals.lastNonSpeakingTimestamp)
             globals.forwardSocket.ws.send(JSON.stringify(emotionsNonSpeaking));
+
+            console.log("resetting last nonSpeaking TS")
+            globals.lastNonSpeakingTimestamp = Date.now()
+
         }
 
         //write to json file
