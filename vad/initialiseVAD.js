@@ -65,10 +65,10 @@ export const initialiseVAD = async ({
         } else if (vad_type === "end") {
 
             globals.forwardSocket.ws.send(JSON.stringify({
-                visemes: {
+                visemes: [{
                     duration: 100,
                     targets: [0, 0, 0, 0]
-                }, 
+                }], 
                 messageType: "brows"
             }))
 
