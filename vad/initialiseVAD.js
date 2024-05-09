@@ -33,8 +33,7 @@ export const initialiseVAD = async ({
                 messageType: "clearQueue",
                 conversationIndex: globals.conversationIndex
             }));
-
-            console.log("shutting mouth")
+            
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "animationData",
                 visemes: [{

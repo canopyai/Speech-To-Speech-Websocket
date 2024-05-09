@@ -88,7 +88,6 @@ function createAnimationCurve({
         curve.push(value);
     }
 
-    console.log("curve length", curve.length)
 
     return curve;
 }

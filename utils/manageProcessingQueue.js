@@ -41,14 +41,14 @@ export const manageProcessingQueue = ({
             if (globals.isEmotionCycleSet) {
                 setTimeout(() => {
                     globals.isEmotionCycleSet = false;
-                }, 500)
+                }, 3000)
 
 
                 globals.forwardSocket.ws.send(JSON.stringify({
                     messageType: "emotionsNonSpeaking",
                     visemes: [{
                         targets: [0, 0, 0, 0, 0, 0, 0, 0],
-                        duration: 300
+                        duration: 100
                     }]
                 }));
             }
