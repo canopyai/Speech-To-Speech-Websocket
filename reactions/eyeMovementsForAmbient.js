@@ -15,7 +15,7 @@ export function eyeMovementsForAmbient({
         eyeTargets[2] = ratio3 * viseme.targets[4];
 
         newVisemes.push({
-            targets: viseme.targets.extend(eyeTargets), 
+            targets: viseme.target.extend(eyeTargets), 
             duration: 15
         })
 
