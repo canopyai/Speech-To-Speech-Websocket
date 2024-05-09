@@ -59,8 +59,6 @@ export const getAnimationData = async ({
                 }));
             }
 
-
-            console.log("headVisemes", headVisemes)
             processingObject.forwardData = {
                 messageType: "animationData",
                 audioData,
