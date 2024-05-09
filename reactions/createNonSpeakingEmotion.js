@@ -10,7 +10,10 @@ export function createNonSpeakingEmotion({
         dominantEmotion = globals.dominantEmotion;
     }
 
-    if (!globals.isEmotionCycleSet) return null;
+    if (!globals.isEmotionCycleSet) {
+        console.log("there is no cycle reset")
+        return null
+    };
 
     if (dominantEmotion) {
 
