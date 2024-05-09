@@ -108,13 +108,13 @@ function emotionStateSpace({
 }) {
     const emotionsMap = {
         happy: [0, 1, 2],
-        neutral: [1, 4],
+        neutral: [1],
         angry: [3, 5],
-        sad: [3, 4],
-        concern: [3, 4, 5],
+        sad: [3],
+        concern: [3, 5],
         excited: [1, 2, 6],
-        fear: [3, 4],
-        disgust: [4, 5],
+        fear: [3],
+        disgust: [5],
     }
 
     //randomly select an element from the array corresponding to the emotion
