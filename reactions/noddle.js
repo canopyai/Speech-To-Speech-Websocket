@@ -5,7 +5,7 @@ export function noddle({
     
     // if (Math.random() > nodPercentage) return;
 
-    if(!globals.forwardSocket.ws) return
+    if(!globals.forwardSocket) return
 
     if (!globals.lastNodTime) {
         globals.lastNodTime = Date.now()
