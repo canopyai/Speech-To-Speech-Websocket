@@ -92,6 +92,8 @@ export function noddle({
         visemes: nodVisemes
     }));
 
+    console.log("sending nods message")
+
 
 }
 
