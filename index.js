@@ -14,7 +14,7 @@ import { handleReadDialogue } from './canopy_methods/handleReadDialogue.js';
 import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
 import { handleConfig } from "./authenticate/handle_config/handleConfig.js"
-import { manageAmbientMovements } from "./reactions/manage_ambient_movements.js   "
+import { manageAmbientMovements } from "./reactions/manageAmbientMovements.js"
 
 const permittedRoles = ["user", "assistant", "system"];
 
