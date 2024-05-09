@@ -60,7 +60,7 @@ export function noddle({
         const targets = computeSegments(lastSegment, strength, numberOfTicks)
         lastSegment = targets[targets.length - 1]
 
-        for(let target in targets){
+        for(let target of targets){
             console.log("target is ", target)
             nodVisemes.push({
                 targets:[target],
