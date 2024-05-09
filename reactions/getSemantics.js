@@ -98,11 +98,8 @@ export async function getSemantics({ last3Messages, globals }) {
             };
 
 
-            
-            if((Date.now()-3000)>globals.lastNonSpeakingTimestamp){
-                console.log("timestamp deficit",Date.now() -globals.lastNonSpeakingTimestamp)
                 globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
-            }
+            
 
 
         }
@@ -120,10 +117,9 @@ export async function getSemantics({ last3Messages, globals }) {
                 }],
             };
 
-            if((Date.now()-3000)>globals.lastNonSpeakingTimestamp){
-                console.log("timestamp deficit",Date.now() -globals.lastNonSpeakingTimestamp)
+
                 globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
-            }
+            
 
         }
 

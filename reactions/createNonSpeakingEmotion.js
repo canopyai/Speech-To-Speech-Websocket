@@ -28,7 +28,7 @@ export function createNonSpeakingEmotion({
 
         const curve = createAnimationCurve({
             duration,
-            strength, 
+            strength,
             tickLength
         });
 
@@ -54,7 +54,10 @@ export function createNonSpeakingEmotion({
             visemes
         }
 
-        globals.forwardSocket.ws.send(JSON.stringify(emotionsNonSpeaking));
+        if ((Date.now() - 3000) > globals.lastNonSpeakingTimestamp) {
+            console.log("timestamp deficit", Date.now() - globals.lastNonSpeakingTimestamp)
+            globals.forwardSocket.ws.send(JSON.stringify(emotionsNonSpeaking));
+        }
 
         //write to json file
 
@@ -103,14 +106,14 @@ function emotionStateSpace({
         sad: [3, 4],
         concerned: [3, 4, 5],
         excited: [1, 2, 6],
-        fear: [3, 4], 
+        fear: [3, 4],
         disgust: [4, 5],
     }
 
     //randomly select an element from the array corresponding to the emotion
 
     let elements = emotionsMap[label];
-    if(!elements) {
+    if (!elements) {
         elements = emotionsMap["neutral"]
     }
     const element = elements[Math.floor(Math.random() * elements.length)];
