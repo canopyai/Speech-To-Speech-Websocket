@@ -27,7 +27,8 @@ export const manageProcessingQueue = ({
         const { forwardData } = processingQueue[0];
 
 
-        const { emotionSequences, isFirstChunk } = forwardData;
+        // const { emotionSequences, isFirstChunk } = forwardData;
+        const { emotionSequences } = forwardData;
 
 
         
@@ -38,18 +39,18 @@ export const manageProcessingQueue = ({
 
             console.log("there is forward data")
 
-            if(isFirstChunk){
-                console.log("sending clear queue message")
-                globals.forwardSocket.ws.send(JSON.stringify({
-                    messageType: "clearQueue",
-                    conversationIndex: globals.conversationIndex
-                }));
-            } 
+            // if(isFirstChunk){
+            //     console.log("sending clear queue message")
+            //     globals.forwardSocket.ws.send(JSON.stringify({
+            //         messageType: "clearQueue",
+            //         conversationIndex: globals.conversationIndex
+            //     }));
+            // } 
 
-            setTimeout(()=>{
+            // setTimeout(()=>{
                 globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
-            }, 20)
+            // }, 20)
 
 
             if (globals.isEmotionCycleSet) {
