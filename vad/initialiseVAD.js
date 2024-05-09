@@ -1,4 +1,4 @@
-import {createNonSpeakingEmotion } from '../reactions/createNonSpeakingEmotion.js';
+import { createNonSpeakingEmotion } from '../reactions/createNonSpeakingEmotion.js';
 import { noddle } from '../reactions/noddle.js';
 import { sendBrowsMovement } from "../reactions/getBrowsMovement.js"
 export const initialiseVAD = async ({
@@ -14,7 +14,7 @@ export const initialiseVAD = async ({
         const { vad_type } = data
 
         if (vad_type === "start") {
-            
+
             noddle({
                 globals,
             });
@@ -23,7 +23,7 @@ export const initialiseVAD = async ({
             globals.isUserSpeaking = true
 
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 sendBrowsMovement({
                     globals
                 })
@@ -33,7 +33,7 @@ export const initialiseVAD = async ({
 
 
 
-            
+
             globals.conversationIndex++;
 
 
@@ -46,14 +46,14 @@ export const initialiseVAD = async ({
                 messageType: "clearQueue",
                 conversationIndex: globals.conversationIndex
             }));
-            
+
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "animationData",
                 visemes: [{
-                    targets:[0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0], 
-                    duration:200
+                    targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    duration: 200
                 }],
-                audioData:"",
+                audioData: "",
                 uuid: "shutmouth",
             }));
 
@@ -61,12 +61,15 @@ export const initialiseVAD = async ({
             createNonSpeakingEmotion({
                 globals,
             });
-       
-        } else if (vad_type === "end"){
+
+        } else if (vad_type === "end") {
 
             globals.forwardSocket.ws.send(JSON.stringify({
-                duration: 100, 
-                targets: [0,0,0,0]
+                visemes: {
+                    duration: 100,
+                    targets: [0, 0, 0, 0]
+                }, 
+                messageType: "brows"
             }))
 
 

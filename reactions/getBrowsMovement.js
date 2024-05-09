@@ -11,8 +11,13 @@ export function sendBrowsMovement({
 
     if(globals.forwardSocket && globals.forwardSocket.ws){
         globals.forwardSocket.ws.send(JSON.stringify({
-            duration: 100, 
-            targets: [1,1,0,0]
+
+            visemes: [{
+                duration: 100, 
+                targets: [1,1,0,0]
+            }], 
+            messageType:"brows"
+   
         }))
 
 
