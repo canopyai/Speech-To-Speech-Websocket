@@ -5,7 +5,7 @@ export function noddle({
 
     console.log("nodding function being called")
     
-    // if (Math.random() > nodPercentage) return;
+    if (Math.random() > nodPercentage) return;
 
     if(!globals.forwardSocket) return
 
@@ -19,7 +19,7 @@ export function noddle({
     
     const minNodInterval = 5500
 
-    // if (Date.now() - globals.lastNodTime < minNodInterval) return;
+    if (Date.now() - globals.lastNodTime < minNodInterval) return;
 
     globals.lastNodTime = Date.now()
 
@@ -46,7 +46,6 @@ export function noddle({
         getScaleMultiplier(emotion)
         strength = strength * getScaleMultiplier(emotion)[0]
         duration = duration * getScaleMultiplier(emotion)[1]
-        
     }
 
    
