@@ -36,6 +36,8 @@ export const manageProcessingQueue = ({
 
         if (forwardData) {
 
+            console.log("there is forward data")
+
             if(isFirstChunk){
                 console.log("sending clear queue message")
                 globals.forwardSocket.ws.send(JSON.stringify({
