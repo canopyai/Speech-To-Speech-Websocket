@@ -2,15 +2,21 @@ export function noddle({
     globals
 }) {
     const nodPercentage = 0.5;
+
+    console.log("nodding function being called")
     
     // if (Math.random() > nodPercentage) return;
 
     if(!globals.forwardSocket) return
 
+    console.log("nodding function being called with forward socket")
+
+
     if (!globals.lastNodTime) {
         globals.lastNodTime = Date.now()
     }
 
+    
     const minNodInterval = 5500
 
     // if (Date.now() - globals.lastNodTime < minNodInterval) return;
@@ -24,6 +30,7 @@ export function noddle({
     const numberOfNods = Math.floor(Math.random() * 4) + 4;
     // const numberOfNods = 8
 
+    console.log("nodding function being called somewhere in mid")
 
 
     const nodVisemes = [];
@@ -114,10 +121,6 @@ function computeSegments(startValue, stopValue, numberOfSegments) {
 
     return segments;
 }
-
-const nod = noddle({
-    globals: {}
-})
 
 
 function getScaleMultiplier(emotion) {
