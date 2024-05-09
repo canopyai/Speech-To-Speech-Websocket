@@ -5,13 +5,20 @@ export function manageAmbientMovements({
 }) {
 
 
-    const overAllDuration = 600000
-    const movements = generateAmbientHeadMovements({
-        duration:overAllDuration, 
-        globals
-    })
-
-    globals.forwardSocket.ws.send(JSON.stringify(movements))
+    if(globals.forwardSocket){
+        const overAllDuration = 600000
+        const movements = generateAmbientHeadMovements({
+            duration:overAllDuration, 
+            globals
+        })
+    
+        globals.forwardSocket.ws.send(JSON.stringify(movements))
+    } else {
+        manageAmbientMovements({
+            globals
+        })
+    }
+  
 
 
 }
