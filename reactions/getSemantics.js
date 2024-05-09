@@ -12,8 +12,7 @@ function scaleDominantEmotion(emotionMap) {
         return null;  // No non-neutral emotions found
     }
 
-    // Calculate scale factor based on the minimum significant emotion value and 1
-    // Assuming the lowest significant value starts from 0.01
+
     const minSignificantValue = 0.01;
     const scaledValue = 0.3 + (0.7 * (maxValue - minSignificantValue) / (1 - minSignificantValue));
 
@@ -55,13 +54,19 @@ function getEmotionList(dominantEmotion) {
 export async function getSemantics({ last3Messages, globals }) {
     const url = "http://34.91.168.188:8080/classify"; // Replace with the appropriate URL
     const startSem = Date.now();
+
+    const lastMessages = cleanAndCloneContent(last3Messages)
+
+    console.log("last messages", lastMessages)
+
+
     try {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ messages: last3Messages })
+            body: JSON.stringify({ messages: lastMessages })
         });
 
         if (!response.ok) {
@@ -132,3 +137,10 @@ export async function getSemantics({ last3Messages, globals }) {
 
 
 
+
+function cleanAndCloneContent(messages) {
+    return messages.map(message => ({
+        ...message,
+        content: message.content.replace(/<.*?>/g, '')
+    }));
+}

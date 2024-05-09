@@ -116,7 +116,7 @@ function getScaleMultiplier(emotion) {
             return [0.5, 1.5]
         case "angry":
             return [1, 0.8]
-        case "concerned":
+        case "concern":
             return [0.75, 1.4]
         case "neutral":
             return [0.8, 1]
