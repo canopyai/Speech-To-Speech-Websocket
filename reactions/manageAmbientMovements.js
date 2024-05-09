@@ -9,7 +9,7 @@ export function manageAmbientMovements({
 
 
     if (globals.forwardSocket && globals.forwardSocket.ws) {
-        const overAllDuration = 120000
+        const overAllDuration = 60000
         const visemes = generateAmbientHeadMovements({
             duration: overAllDuration,
             globals
