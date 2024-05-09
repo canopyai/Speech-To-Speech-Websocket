@@ -14,9 +14,12 @@ export function manageAmbientMovements({
     
         globals.forwardSocket.ws.send(JSON.stringify(movements))
     } else {
-        manageAmbientMovements({
-            globals
-        })
+        setTimeout(()=>{
+            manageAmbientMovements({
+                globals
+            })
+        }, 500)
+     
     }
   
 
