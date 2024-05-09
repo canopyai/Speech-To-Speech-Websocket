@@ -17,6 +17,9 @@ export const initialiseVAD = async ({
 
 
 
+
+
+
             
             globals.conversationIndex++;
 
@@ -30,6 +33,18 @@ export const initialiseVAD = async ({
                 messageType: "clearQueue",
                 conversationIndex: globals.conversationIndex
             }));
+
+            console.log("shutting mouth")
+            globals.forwardSocket.ws.send(JSON.stringify({
+                messageType: "animationData",
+                visemes: [{
+                    targets:[0,0,0,0,0,0,0,0], 
+                    duration:200
+                }],
+                audioData:"",
+                uuid: "shutmouth",
+            }));
+
 
             createNonSpeakingEmotion({
                 globals,
