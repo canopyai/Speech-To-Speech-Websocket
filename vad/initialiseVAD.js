@@ -23,6 +23,13 @@ export const initialiseVAD = async ({
             globals.isUserSpeaking = true
 
 
+            setTimeout(()=>{
+                sendBrowsMovement({
+                    globals
+                })
+            }, 300)
+
+
 
 
 
@@ -56,6 +63,13 @@ export const initialiseVAD = async ({
             });
        
         } else if (vad_type === "end"){
+
+            globals.forwardSocket.ws.send(JSON.stringify({
+                duration: 100, 
+                targets: [0,0,0,0]
+            }))
+
+
             globals.isUserSpeaking = false
         }
     });
