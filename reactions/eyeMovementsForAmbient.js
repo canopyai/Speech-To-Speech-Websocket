@@ -10,12 +10,13 @@ export function eyeMovementsForAmbient({
 
 
 
+        console.log("viseme targets", viseme.targets)
         const eyeTargets = [0,0,0,0]
         eyeTargets[3] = ratio1 * viseme.targets[0];
         eyeTargets[2] = ratio3 * viseme.targets[4];
 
         newVisemes.push({
-            targets: viseme.target.extend(eyeTargets), 
+            targets: viseme.targets.extend(eyeTargets), 
             duration: 15
         })
 
