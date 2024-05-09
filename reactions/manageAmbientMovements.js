@@ -7,12 +7,16 @@ export function manageAmbientMovements({
 
     if (globals.forwardSocket && globals.forwardSocket.ws) {
         const overAllDuration = 600000
-        const movements = generateAmbientHeadMovements({
+        const visemes = generateAmbientHeadMovements({
             duration: overAllDuration,
             globals
         })
 
-        globals.forwardSocket.ws.send(JSON.stringify(movements))
+        globals.forwardSocket.ws.send(JSON.stringify({
+            visemes, 
+            messageType:"ambientMovements"
+        }))
+        console.log()
     } else {
         setTimeout(() => {
             manageAmbientMovements({
