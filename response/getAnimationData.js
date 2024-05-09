@@ -41,6 +41,7 @@ export const getAnimationData = async ({
                 visemes, 
                 segments_latency: segmentsLatency, 
                 tts_latency: TTSLatency, 
+                head_movement_curves:headVisemes
             } = data;
 
 
@@ -58,6 +59,8 @@ export const getAnimationData = async ({
                 }));
             }
 
+
+            console.log("headVisemes", headVisemes)
             processingObject.forwardData = {
                 messageType: "animationData",
                 audioData,
@@ -65,6 +68,7 @@ export const getAnimationData = async ({
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,
                 TTSSentence, 
+                headVisemes, 
                 isFirstChunk
             }
 
