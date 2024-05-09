@@ -3,7 +3,7 @@ export function noddle({
 }) {
     const nodPercentage = 0.5;
 
-    if (Math.random() > nodPercentage) return;
+    // if (Math.random() > nodPercentage) return;
 
     if (!globals.lastNodTime) {
         globals.lastNodTime = Date.now()
