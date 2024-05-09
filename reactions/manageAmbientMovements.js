@@ -4,6 +4,8 @@ export function manageAmbientMovements({
     globals
 }) {
 
+    return
+
 
     if (globals.forwardSocket && globals.forwardSocket.ws) {
         const overAllDuration = 600000
