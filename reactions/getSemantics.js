@@ -97,10 +97,16 @@ export async function getSemantics({ last3Messages, globals }) {
                 }],
             };
 
-            globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+
+            
+            if((Date.now()-3000)>globals.lastNonSpeakingTimestamp){
+                console.log("timestamp deficit",Date.now() -globals.lastNonSpeakingTimestamp)
+                globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+            }
 
 
         }
+
         if (scaleDominantEmotion(data.emotion_prob_map).emotion !== scaleDominantEmotion(globals.emotions.semantics).emotion) {
             globals.emotions.semantics = data.emotion_prob_map;
             const scaled = scaleDominantEmotion(data.emotion_prob_map);
@@ -115,10 +121,10 @@ export async function getSemantics({ last3Messages, globals }) {
             };
 
             if((Date.now()-3000)>globals.lastNonSpeakingTimestamp){
+                console.log("timestamp deficit",Date.now() -globals.lastNonSpeakingTimestamp)
                 globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
             }
 
-        } else {
         }
 
         const scaled = scaleDominantEmotion(data.emotion_prob_map);
