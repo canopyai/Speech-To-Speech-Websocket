@@ -1,4 +1,4 @@
-import { generateAmbientHeadMovements } from "./generateAmbientHeadMovements"
+import { generateAmbientHeadMovements } from "./generateAmbientHeadMovements.js"
 
 export function manageAmbientMovements({
     globals
