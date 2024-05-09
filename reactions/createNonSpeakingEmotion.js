@@ -111,7 +111,7 @@ function emotionStateSpace({
         neutral: [1, 4],
         angry: [3, 5],
         sad: [3, 4],
-        concerned: [3, 4, 5],
+        concern: [3, 4, 5],
         excited: [1, 2, 6],
         fear: [3, 4],
         disgust: [4, 5],
