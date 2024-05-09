@@ -14,6 +14,7 @@ import { handleReadDialogue } from './canopy_methods/handleReadDialogue.js';
 import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
 import { handleConfig } from "./authenticate/handle_config/handleConfig.js"
+import { manageAmbientMovements } from "./reactions/manage_ambient_movements.js   "
 
 const permittedRoles = ["user", "assistant", "system"];
 
@@ -22,7 +23,7 @@ const frontendSocket = {}
 const animationsSent = []
 const mainThread = [{
     role: "system",
-    content:"You are a friendly AI therapist that can speak, hear, and has a physical form. You should ignore the tone of voice unless asked about it. Do not use special characters."
+    content: "You are a friendly AI therapist that can speak, hear, and has a physical form. You should ignore the tone of voice unless asked about it. Do not use special characters."
 }]
 wss.on('connection', (ws, req) => {
 
@@ -55,24 +56,27 @@ wss.on('connection', (ws, req) => {
     console.log("my ip address", ip)
 
 
-    if(ip !== "34.91.125.203" && !ip.startsWith("192.76") && !ip.startsWith("209.2.231")){
+    if (ip !== "34.91.125.203" && !ip.startsWith("192.76") && !ip.startsWith("209.2.231")) {
         console.log("forward socket connected", ip)
+        manageAmbientMovements({
+            globals
+        })
         forwardSocket.ws = ws;
         ({
-            globals, 
+            globals,
             forwardSocket
         });
 
-    
-      
-    initialiseForwardSocket({
-        globals,
-        forwardSocket
-    })
+
+
+        initialiseForwardSocket({
+            globals,
+            forwardSocket
+        })
     } else if (ip.startsWith("192.76") || ip.startsWith("209.2")) {
         console.log("frontend socket connected")
         frontendSocket.ws = ws;
-        while(globals.mainThread.length > 1){
+        while (globals.mainThread.length > 1) {
             globals.mainThread.pop();
         }
     }
@@ -85,8 +89,8 @@ wss.on('connection', (ws, req) => {
     ws.on('message', async function (message) {
 
         const parsedMessageAB = JSON.parse(message);
-        if(frontendSocket.ws){
-            frontendSocket.ws.send(JSON.stringify(parsedMessageAB));    
+        if (frontendSocket.ws) {
+            frontendSocket.ws.send(JSON.stringify(parsedMessageAB));
         }
 
         let parsedMessage;

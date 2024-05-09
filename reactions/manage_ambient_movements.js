@@ -5,10 +5,13 @@ export function manageAmbientMovements({
 }) {
 
 
-    const overAllDuration = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
-    const movements = generateAmbientHeadMovements(overAllDuration)
+    const overAllDuration = 600000
+    const movements = generateAmbientHeadMovements({
+        duration:overAllDuration, 
+        globals
+    })
 
-    globals.forwardSocket.ws.send(JSON.stringify())
+    globals.forwardSocket.ws.send(JSON.stringify(movements))
 
 
 }
