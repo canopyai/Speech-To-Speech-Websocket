@@ -41,7 +41,15 @@ export const manageProcessingQueue = ({
             if (globals.isEmotionCycleSet) {
                 setTimeout(() => {
                     globals.isEmotionCycleSet = false;
-                }, 3000)
+                }, 500)
+
+                if(!globals.lastNonSpeakingTimestamp){
+                    globals.lastNonSpeakingTimestamp = Date.now()
+                }
+
+                if(Date.now()>globals.lastNonSpeakingTimestamp){
+                    globals.lastNonSpeakingTimestamp = Date.now()
+                }
 
 
                 globals.forwardSocket.ws.send(JSON.stringify({

@@ -114,7 +114,10 @@ export async function getSemantics({ last3Messages, globals }) {
                 }],
             };
 
-            globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+            if((Date.now()-3000)>globals.lastNonSpeakingTimestamp){
+                globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+            }
+
         } else {
         }
 
