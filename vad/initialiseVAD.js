@@ -38,7 +38,7 @@ export const initialiseVAD = async ({
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "animationData",
                 visemes: [{
-                    targets:[0,0,0,0,0,0,0,0], 
+                    targets:[0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0], 
                     duration:200
                 }],
                 audioData:"",
