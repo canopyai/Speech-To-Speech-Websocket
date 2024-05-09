@@ -30,9 +30,13 @@ export const manageProcessingQueue = ({
         const { emotionSequences } = forwardData;
 
 
+        
 
 
         if (forwardData) {
+
+
+            console.log("forward data that counts is", forwardData)
 
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
