@@ -1,5 +1,6 @@
 import {createNonSpeakingEmotion } from '../reactions/createNonSpeakingEmotion.js';
 import { noddle } from '../reactions/noddle.js';
+import { sendBrowsMovement } from "../reactions/getBrowsMovement.js"
 export const initialiseVAD = async ({
     ws,
     globals,
