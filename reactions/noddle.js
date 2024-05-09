@@ -2,7 +2,7 @@ export function noddle({
     globals
 }) {
     const nodPercentage = 0.5;
-
+    
     // if (Math.random() > nodPercentage) return;
 
     if (!globals.lastNodTime) {
@@ -11,7 +11,7 @@ export function noddle({
 
     const minNodInterval = 5500
 
-    if (Date.now() - globals.lastNodTime < minNodInterval) return;
+    // if (Date.now() - globals.lastNodTime < minNodInterval) return;
 
     globals.lastNodTime = Date.now()
 

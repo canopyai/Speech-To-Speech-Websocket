@@ -13,6 +13,10 @@ export const initialiseVAD = async ({
         const { vad_type } = data
 
         if (vad_type === "start") {
+            
+            noddle({
+                globals,
+            });
             globals.isEmotionCycleSet = true;
 
             globals.isUserSpeaking = true
@@ -49,9 +53,7 @@ export const initialiseVAD = async ({
             createNonSpeakingEmotion({
                 globals,
             });
-            noddle({
-                globals,
-            });
+       
         } else if (vad_type === "end"){
             globals.isUserSpeaking = false
         }
