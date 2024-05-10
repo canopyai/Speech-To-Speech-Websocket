@@ -64,7 +64,7 @@ export const getAnimationData = async ({
 
             const lookUpRatio = 0.1 //index 5
             const lookDownRatio = 0.45 //index 4
-            const lookLeftRatio = 0.2//index 0
+            const lookLeftRatio = 0.3//index 0
             for (let hv of headVisemes) {
 
                 
