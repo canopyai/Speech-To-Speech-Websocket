@@ -65,14 +65,14 @@ export const getAnimationData = async ({
             const lookUpRatio = 0.1 //index 5
             const lookDownRatio = 0.45 //index 4
             const lookLeftRatio = 0.3//index 0
+            const lookRightRatio = 0.3//index 1
             for (let hv of headVisemes) {
 
                 
                 
                 const { targets } = hv;
-                hv.targets = [1,0,0,0,0,0,0,0,0,0]
                 //add 4 elements to targets queue
-                hv.targets.push(0,0,0,hv.targets[0]*lookLeftRatio)
+                targets.push(targets[5] * lookUpRatio,lookRightRatio*targets[1],targets[4]*lookDownRatio,hv.targets[0]*lookLeftRatio)
                 console.log("hv targets", targets.length)
             }
             processingObject.forwardData = {
