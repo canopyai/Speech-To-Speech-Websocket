@@ -5,7 +5,7 @@ export function manageAmbientMovements({
     globals
 }) {
 
-    return
+    // return
 
 
     if (globals.forwardSocket && globals.forwardSocket.ws) {
@@ -27,6 +27,7 @@ export function manageAmbientMovements({
             manageAmbientMovements({
                 globals
             })
+            console.log("sent manage ambient moves")
         }, 500)
 
     }

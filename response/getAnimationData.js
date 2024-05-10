@@ -62,7 +62,7 @@ export const getAnimationData = async ({
 
             console.log("headVisemes", headVisemes)
 
-            const lookUpRatio = 0.1 //index 5
+            const lookUpRatio = 0.2 //index 5
             const lookDownRatio = 0.45 //index 4
             const lookLeftRatio = 0.3//index 0
             const lookRightRatio = 0.3//index 1
