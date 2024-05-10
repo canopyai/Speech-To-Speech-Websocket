@@ -2,7 +2,7 @@ export function noddle({
     globals
 }) {
 
-    return;
+    // return;
     const nodPercentage = 0.2;
 
     console.log("nodding function being called")
@@ -59,7 +59,7 @@ export function noddle({
 
     for(let is of initialSegment){
         nodVisemes.push({
-            targets: [is,  Math.random()],
+            targets: [is,  1],
             duration: 15,
         });
     }
@@ -75,7 +75,7 @@ export function noddle({
 
         for(let target of targets){
             nodVisemes.push({
-                targets:[target,  Math.random()],
+                targets:[target,  1],
                 duration: 15,
             });
         }
@@ -87,7 +87,7 @@ export function noddle({
 
     for(let es of endSegment){
         nodVisemes.push({
-            targets: [es, Math.random()],
+            targets: [es, 1],
             duration: 15,
         });
     }
