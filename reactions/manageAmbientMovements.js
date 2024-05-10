@@ -17,8 +17,11 @@ export function manageAmbientMovements({
 
         console.log("manage ambient movements")
 
+        const visemesWithEyes = eyeMovementsForAmbient({visemes})
+        console.log("visemesWithEyes", visemesWithEyes)
+
         globals.forwardSocket.ws.send(JSON.stringify({
-            visemes: eyeMovementsForAmbient({visemes}), 
+            visemes: visemesWithEyes, 
             messageType:"ambientMovements"
         }))
         console.log()
