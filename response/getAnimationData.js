@@ -61,7 +61,7 @@ export const getAnimationData = async ({
             }
 
             console.log("headVisemes", headVisemes)
-            for (let hv in headVisemes) {
+            for (let hv of headVisemes) {
                 const { targets } = hv;
                 console.log("hv targets", targets.length)
             }
