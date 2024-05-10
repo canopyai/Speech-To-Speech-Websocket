@@ -1,6 +1,8 @@
 export function noddle({
     globals
 }) {
+
+    return;
     const nodPercentage = 0.2;
 
     console.log("nodding function being called")

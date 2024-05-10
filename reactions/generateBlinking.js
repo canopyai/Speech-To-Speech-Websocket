@@ -2,6 +2,8 @@ export function generateBlinking({
     duration
 }){
 
+    return
+
     const blinkHoldDur = 15;
 
     const blinkRatio = 1.5

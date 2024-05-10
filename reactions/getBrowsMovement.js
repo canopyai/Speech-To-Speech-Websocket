@@ -1,6 +1,8 @@
 export function sendBrowsMovement({
     globals
 }) {
+
+    return;
     if(!globals.lastBrowMovement){
         globals.lastBrowMovement = Date.now()
     }
