@@ -7,7 +7,7 @@ export function noddle({
 
     console.log("nodding function being called")
     
-    if (Math.random() > nodPercentage) return;
+    // if (Math.random() > nodPercentage) return;
 
     if(!globals.forwardSocket) return
 
