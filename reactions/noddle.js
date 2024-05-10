@@ -57,7 +57,7 @@ export function noddle({
 
     for(let is of initialSegment){
         nodVisemes.push({
-            targets: [is],
+            targets: [is,  Math.random()],
             duration: 15,
         });
     }
@@ -73,7 +73,7 @@ export function noddle({
 
         for(let target of targets){
             nodVisemes.push({
-                targets:[target],
+                targets:[target,  Math.random()],
                 duration: 15,
             });
         }
@@ -85,7 +85,7 @@ export function noddle({
 
     for(let es of endSegment){
         nodVisemes.push({
-            targets: [es],
+            targets: [es, Math.random()],
             duration: 15,
         });
     }
