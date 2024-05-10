@@ -103,6 +103,12 @@ export function noddle({
 
 }
 
+function addEyeStabiliser({
+    visemes
+}){
+    console.log(visemes)
+}
+
 
 function computeSegments(startValue, stopValue, numberOfSegments) {
     let segments = [];
