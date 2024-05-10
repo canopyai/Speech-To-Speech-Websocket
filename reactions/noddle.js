@@ -154,8 +154,3 @@ function getScaleMultiplier(emotion) {
 
 }
 
-setInterval(()=>{
-    noddle({
-        globals
-    })
-}, 5000)

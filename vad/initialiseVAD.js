@@ -14,10 +14,11 @@ export const initialiseVAD = async ({
         const { vad_type } = data
 
         if (vad_type === "start") {
-
-            noddle({
-                globals,
-            });
+setInterval(()=>{
+    noddle({
+        globals
+    })
+}, 5000)
             globals.isEmotionCycleSet = true;
 
             globals.isUserSpeaking = true
