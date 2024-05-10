@@ -19,7 +19,7 @@ export function noddle({
     }
 
     
-    const minNodInterval = 5500
+    const minNodInterval = 4500
 
     if (Date.now() - globals.lastNodTime < minNodInterval) return;
 
@@ -53,7 +53,7 @@ export function noddle({
    
 
     const numberOfTicks = duration / 15
-    const lookDownRatio = 0.45
+    const lookDownRatio = 0.1
 
     const initialSegment = computeSegments(0, strength, numberOfTicks)
 
