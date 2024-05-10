@@ -29,7 +29,7 @@ export function noddle({
 
 
     let strength = 0.4
-    const numberOfNods = Math.floor(Math.random() * 4) + 4;
+    const numberOfNods = Math.floor(Math.random() * 6) + 1;
     // const numberOfNods = 8
 
     console.log("nodding function being called somewhere in mid")
