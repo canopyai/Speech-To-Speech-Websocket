@@ -62,7 +62,10 @@ export const getAnimationData = async ({
 
             console.log("headVisemes", headVisemes)
             for (let hv of headVisemes) {
+                
                 const { targets } = hv;
+                //add 4 elements to targets queue
+                targets.push(0,0,0,0)
                 console.log("hv targets", targets.length)
             }
             processingObject.forwardData = {
