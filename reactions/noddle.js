@@ -28,7 +28,7 @@ export function noddle({
 
 
 
-    let strength = 1
+    let strength = 0.4
     const numberOfNods = Math.floor(Math.random() * 4) + 4;
     // const numberOfNods = 8
 
@@ -53,13 +53,14 @@ export function noddle({
    
 
     const numberOfTicks = duration / 15
+    const lookDownRatio = 0.45
 
     const initialSegment = computeSegments(0, strength, numberOfTicks)
 
 
     for(let is of initialSegment){
         nodVisemes.push({
-            targets: [is,  1],
+            targets: [is,  lookDownRatio],
             duration: 15,
         });
     }
@@ -75,7 +76,7 @@ export function noddle({
 
         for(let target of targets){
             nodVisemes.push({
-                targets:[target,  1],
+                targets:[target,  lookDownRatio],
                 duration: 15,
             });
         }
@@ -87,7 +88,7 @@ export function noddle({
 
     for(let es of endSegment){
         nodVisemes.push({
-            targets: [es, 1],
+            targets: [es, lookDownRatio],
             duration: 15,
         });
     }
