@@ -3,11 +3,11 @@ export function noddle({
 }) {
 
     // return;
-    // const nodPercentage = 0.2;
+    const nodPercentage = 1;
 
-    console.log("nodding function being called")
+    // console.log("nodding function being called")
     
-    // if (Math.random() > nodPercentage) return;
+    if (Math.random() > nodPercentage) return;
 
     if(!globals.forwardSocket) return
 
