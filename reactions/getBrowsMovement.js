@@ -7,7 +7,7 @@ export function sendBrowsMovement({
         globals.lastBrowMovement = Date.now()
     }
 
-    const activationProbs = 1
+    const activationProbs = 0.2
 
     if(Math.random()>activationProbs) return;
     if(Date.now() - globals.lastBrowMovement<10000) return;
@@ -27,7 +27,7 @@ export function sendBrowsMovement({
 
             visemes: [{
                 duration: 100, 
-                targets: [1,0,0,0]
+                targets: normalizedProspectiveTargs
             }], 
             messageType:"brows"
    
