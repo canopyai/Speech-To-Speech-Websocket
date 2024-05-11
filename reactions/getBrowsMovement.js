@@ -17,7 +17,7 @@ export function sendBrowsMovement({
 
         const sum = prospectiveTargs.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
         
-        const strength = 0.1
+        const strength = 0.3
         const normalizedProspectiveTargs = prospectiveTargs.map(value => (value * strength) / sum);
 
         
