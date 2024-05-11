@@ -33,7 +33,7 @@ export const generateResponse = async ({
 
 
     let audioIntonationString;
-    if(globals.emotions.audioIntonation){
+    if(globals.emotions.audioIntonation && globals.isAudioEmpathy){
         audioIntonationString = getAudioIntonationString(globals.emotions.audioIntonation.result);
 
     }

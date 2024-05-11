@@ -50,6 +50,7 @@ wss.on('connection', (ws, req) => {
     globals.emotions = {}
     globals.ws = ws
     globals.conversationIndex = 0;
+    globals.isAudioEmpathy = false
     globals.animationsSent = animationsSent;
 
 
@@ -201,6 +202,14 @@ wss.on('connection', (ws, req) => {
                     globals
                 });
                 break;
+
+            case "audioEmpathy":
+
+                const { isAudioEmpathy } = data;
+
+                globals.isAudioEmpathy = isAudioEmpathy
+
+
 
 
         }
