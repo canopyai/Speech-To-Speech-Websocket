@@ -72,7 +72,7 @@ export const getAnimationData = async ({
                 
                 const { targets } = hv;
    
-                // targets.push(targets[5] * lookUpRatio,lookRightRatio*targets[1],targets[4]*lookDownRatio,hv.targets[0]*lookLeftRatio)
+                targets.push(targets[5] * lookUpRatio,lookRightRatio*targets[1],targets[4]*lookDownRatio,hv.targets[0]*lookLeftRatio)
                 console.log("hv targets", targets.length)
             }
             processingObject.forwardData = {
