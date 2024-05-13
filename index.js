@@ -70,7 +70,7 @@ wss.on('connection', (ws, req) => {
             manageAmbientMovements({
                 globals
             })
-        }, 500
+        }, 500)
 
 
 
