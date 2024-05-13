@@ -42,10 +42,12 @@ function prolongSomeMovements({ movements }) {
     //random number between 2000 and 20000
     let prolongueDuration = ((Math.random() * 18) + 2) * 1000;
     let isProlongueIndex = Math.floor(Math.random() * 1300)
+    console.log("isProlongueIndex", isProlongueIndex*15/1000)
 
     let indexCounter = 0;
 
     for (let m of movements) {
+        
         indexCounter++;
         if (indexCounter == isProlongueIndex) {
             m["duration"] = prolongueDuration
