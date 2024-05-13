@@ -48,15 +48,16 @@ function prolongSomeMovements({ movements }) {
     let indexCounter = 0;
 
     for (let m of movements) {
-        console.log("m is", movements)
-        
-        indexCounter++;
-        if (indexCounter == isProlongueIndex) {
-            m["duration"] = prolongueDuration
-            prolongueDuration = ((Math.random() * 18) + 2) * 1000;
-            isProlongueIndex = Math.floor(Math.random() * 1300)
-            indexCounter = 0;
+        for (let n of m){
+            indexCounter++;
+            if (indexCounter == isProlongueIndex) {
+                n["duration"] = prolongueDuration
+                prolongueDuration = ((Math.random() * 18) + 2) * 1000;
+                isProlongueIndex = Math.floor(Math.random() * 1300)
+                indexCounter = 0;
+            }
         }
+     
     }
 
 }
