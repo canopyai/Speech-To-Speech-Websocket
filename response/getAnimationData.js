@@ -83,7 +83,7 @@ export const getAnimationData = async ({
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,
                 TTSSentence,
-                headVisemes,
+                headVisemes, 
                 isFirstChunk, 
                 headBrowVisemes
             }
