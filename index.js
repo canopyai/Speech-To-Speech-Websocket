@@ -57,7 +57,7 @@ wss.on('connection', (ws, req) => {
     console.log("my ip address", ip)
  
 
-    if (ip == "94.252.122.131" ||ip == "35.204.82.115") {
+    if (ip == "94.252.122.131" ||ip == "35.204.82.115"||ip == "35.204.158.8") {
         console.log("forward socket connected", ip)
      
         forwardSocket.ws = ws;
