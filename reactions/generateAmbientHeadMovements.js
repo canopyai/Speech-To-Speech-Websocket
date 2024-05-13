@@ -20,7 +20,7 @@ export function generateAmbientHeadMovements({
 
         // Calculate sin values and interleave them with zeros
         frequencies.forEach((freq, index) => {
-            targets.push(baseScalar * relativeMagnitudes[index] * absoluteMagnitude * Math.sin(2 * Math.PI * freq * timeInSeconds)); // Filled
+            targets.push(baseScalar * relativeMagnitudes[index] * absoluteMagnitude * Math.sin(2 * Math.PI * freq/5 * timeInSeconds)); // Filled
             if (index < frequencies.length) {
                 targets.push(0); // Empty
             }
