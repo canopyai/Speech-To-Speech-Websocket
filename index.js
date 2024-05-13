@@ -59,14 +59,18 @@ wss.on('connection', (ws, req) => {
 
     if (ip == "94.252.122.131" ||ip == "35.204.82.115") {
         console.log("forward socket connected", ip)
-        manageAmbientMovements({
-            globals
-        })
+     
         forwardSocket.ws = ws;
         ({
             globals,
             forwardSocket
         });
+
+        setTimeout(()=>{
+            manageAmbientMovements({
+                globals
+            })
+        }, 500
 
 
 
