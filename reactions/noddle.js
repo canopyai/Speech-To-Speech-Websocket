@@ -96,10 +96,10 @@ export function noddle({
 
 
     // // return nodVisemes
-    // globals.forwardSocket.ws.send(JSON.stringify({
-    //     messageType: "nods",
-    //     visemes: nodVisemes
-    // }));
+    globals.forwardSocket.ws.send(JSON.stringify({
+        messageType: "nods",
+        visemes: nodVisemes
+    }));
 
     console.log("successfully sent nods message")
 

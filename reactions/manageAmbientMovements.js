@@ -5,7 +5,6 @@ export function manageAmbientMovements({
     globals
 }) {
 
-    return
 
 
     if (globals.forwardSocket && globals.forwardSocket.ws) {

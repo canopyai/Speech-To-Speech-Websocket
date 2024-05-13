@@ -67,13 +67,13 @@ export const manageProcessingQueue = ({
                 setTimeout(() => {
                     //check if user is still speaking 
                     globals.isEmotionCycleSet = false;
-                    // globals.forwardSocket.ws.send(JSON.stringify({
-                    //     messageType: "emotionsNonSpeaking",
-                    //     visemes: [{
-                    //         targets: [0, 0, 0, 0, 0, 0, 0, 0],
-                    //         duration: 100
-                    //     }]
-                    // }));
+                    globals.forwardSocket.ws.send(JSON.stringify({
+                        messageType: "emotionsNonSpeaking",
+                        visemes: [{
+                            targets: [0, 0, 0, 0, 0, 0, 0, 0],
+                            duration: 100
+                        }]
+                    }));
                 }, 500)
 
             
