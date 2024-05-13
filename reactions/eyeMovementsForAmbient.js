@@ -9,6 +9,7 @@ export function eyeMovementsForAmbient({
     const lookLeftRatio = 0.3//index 0
     const lookRightRatio = 0.3//index 1
     const newVisemes = []
+    const timestep = 15
     for (let viseme of visemes) {
         const { targets } = viseme
 
@@ -16,7 +17,7 @@ export function eyeMovementsForAmbient({
 
         newVisemes.push({
             targets: viseme.targets.concat(eyeTargets),
-            duration: 15
+            duration: (Math.random()<0.01)?(Math.random()*7000):timestep
         })
 
     }

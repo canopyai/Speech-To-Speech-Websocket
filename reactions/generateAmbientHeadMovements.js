@@ -28,7 +28,7 @@ export function generateAmbientHeadMovements({
 
         movements.push({
             targets,
-            duration: 1000
+            duration: (Math.random()<0.01)?(Math.random()*7000):timestep
         });
     }
     // prolongSomeMovements({
