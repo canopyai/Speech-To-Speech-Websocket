@@ -1,20 +1,20 @@
 export function eyeMovementsForAmbient({
-    globals, 
+    globals,
     visemes
 }) {
-    const ratio1 = 1 //x left vs eyes right
-    const ratio3 = 1 //z up vs eyes down
 
+
+    const lookUpRatio = 0.2 //index 5
+    const lookDownRatio = 0.45 //index 4
+    const lookLeftRatio = 0.3//index 0
+    const lookRightRatio = 0.3//index 1
     const newVisemes = []
-    for(let viseme of visemes){
-
-
-        const eyeTargets = [0,0,0,0]
-        eyeTargets[3] = ratio1 * viseme.targets[0];
-        eyeTargets[2] = ratio3 * viseme.targets[4];
+    for (let viseme of visemes) {
+        const { targets } = visemes
+        const eyeTargets = [targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio]
 
         newVisemes.push({
-            targets: viseme.targets.concat(eyeTargets), 
+            targets: viseme.targets.concat(eyeTargets),
             duration: 15
         })
 
