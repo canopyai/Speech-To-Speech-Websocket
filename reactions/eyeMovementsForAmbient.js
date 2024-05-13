@@ -17,7 +17,7 @@ export function eyeMovementsForAmbient({
 
         newVisemes.push({
             targets: viseme.targets.concat(eyeTargets),
-            duration: (Math.random()<0.01)?(Math.random()*1500):timestep
+            duration: (Math.random()<0.01)?((Math.random()*1500)+3000):timestep
         })
 
     }
