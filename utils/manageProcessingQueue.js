@@ -27,11 +27,12 @@ export const manageProcessingQueue = ({
         const { forwardData } = processingQueue[0];
 
 
-        const { emotionSequences, isFirstChunk } = forwardData;
+        const { emotionSequences, isFirstChunk, headVisemes, headBrowVisemes } = forwardData;
         // const { emotionSequences } = forwardData;
 
 
-        
+        console.log("headBrowVisemes",headBrowVisemes[0].targets.length)
+        console.log("headVisemes",headVisemes[0].targets.length)
         
 
 
