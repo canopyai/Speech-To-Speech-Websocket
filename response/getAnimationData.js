@@ -75,8 +75,11 @@ export const getAnimationData = async ({
                 targets.push(targets[5] * lookUpRatio,lookRightRatio*targets[1],targets[4]*lookDownRatio,hv.targets[0]*lookLeftRatio)
 
             }
-            console.log("headBrowVisemes",headBrowVisemes[0].targets.length)
-            console.log("headVisemes",headVisemes[0].targets.length)
+            for (let hbv of headBrowVisemes){
+                
+                hbv.targets = [1,0,0,0]
+            }
+
             processingObject.forwardData = {
                 messageType: "animationData",
                 audioData,
