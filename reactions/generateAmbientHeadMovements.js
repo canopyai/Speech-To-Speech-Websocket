@@ -5,7 +5,7 @@ export function generateAmbientHeadMovements({
     const baseScalar = 0.3;
     const frequencies = [1 / 2, 1 / 1, 1 / 0.7];
     const relativeMagnitudes = [1, 0.7, 0.4]
-    const absoluteMagnitude = 0.4
+    const absoluteMagnitude = 1.2
     const timestep = 15;
     const numSteps = Math.floor(duration / timestep);
     let movements = [];
