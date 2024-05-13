@@ -6,7 +6,7 @@ export function generateAmbientHeadMovements({
     const frequencies = [1 / 2, 1 / 1, 1 / 0.7];
     const relativeMagnitudes = [1, 0.7, 0.4]
     const absoluteMagnitude = 0.4
-    const timestep = 150;
+    const timestep = 15;
     const numSteps = Math.floor(duration / timestep);
     let movements = [];
     let isEyebrows = false;
@@ -28,7 +28,7 @@ export function generateAmbientHeadMovements({
 
         movements.push({
             targets,
-            duration: timestep
+            duration: (Math.random()<0.01)?(Math.random()*7000):timestep
         });
     }
     prolongSomeMovements({
@@ -38,25 +38,3 @@ export function generateAmbientHeadMovements({
     return movements;
 }
 
-function prolongSomeMovements({ movements }) {
-    //random number between 2000 and 20000
-    let prolongueDuration = ((Math.random() * 18) + 2) * 1000;
-    let isProlongueIndex = Math.floor(Math.random() * 1300)
-    console.log("isProlongueIndex", isProlongueIndex*15/1000)
-    console.log("prolongue duration", prolongueDuration)
-
-    let indexCounter = 0;
-
-    for (let m of movements) {
-        console.log("m is", m)
-            indexCounter++;
-            if (indexCounter == isProlongueIndex) {
-                m["duration"] = prolongueDuration
-                prolongueDuration = ((Math.random() * 18) + 2) * 1000;
-                isProlongueIndex = Math.floor(Math.random() * 1300)
-                indexCounter = 0;
-            }
-    
-    }
-
-}
