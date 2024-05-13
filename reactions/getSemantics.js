@@ -98,7 +98,7 @@ export async function getSemantics({ last3Messages, globals }) {
             };
 
 
-                globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+                // globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
             
 
 
@@ -118,7 +118,7 @@ export async function getSemantics({ last3Messages, globals }) {
             };
 
 
-                globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+                // globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
             
 
         }
