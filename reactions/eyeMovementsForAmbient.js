@@ -10,8 +10,7 @@ export function eyeMovementsForAmbient({
     const lookRightRatio = 0.3//index 1
     const newVisemes = []
     for (let viseme of visemes) {
-        console.log("viseme is ", viseme)
-        const { targets } = visemes
+        const { targets } = viseme
 
         const eyeTargets = [targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio]
 
