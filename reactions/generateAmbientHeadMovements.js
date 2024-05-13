@@ -1,14 +1,16 @@
 export function generateAmbientHeadMovements({
-    duration, 
+    duration,
     globals
 }) {
     const baseScalar = 0.3;
-    const frequencies = [1/2, 1/1, 1/0.7];
-    const timestep = 15; 
-    const numSteps = Math.floor(duration / timestep);  
+    const frequencies = [1 / 2, 1 / 1, 1 / 0.7];
+    const relativeMagnitudes = [1, 0.7, 0.4]
+    const absoluteMagnitude = 0.2
+    const timestep = 15;
+    const numSteps = Math.floor(duration / timestep);
     let movements = [];
     let isEyebrows = false;
-    if(globals.isUserSpeaking){
+    if (globals.isUserSpeaking) {
         isEyebrows = Math.random() > 0.5; // Corrected to call Math.random() as a function
     }
 
@@ -18,7 +20,7 @@ export function generateAmbientHeadMovements({
 
         // Calculate sin values and interleave them with zeros
         frequencies.forEach((freq, index) => {
-            targets.push(baseScalar * Math.sin(2 * Math.PI * freq * timeInSeconds)); // Filled
+            targets.push(baseScalar * relativeMagnitudes[index] * absoluteMagnitude * Math.sin(2 * Math.PI * freq * timeInSeconds)); // Filled
             if (index < frequencies.length) {
                 targets.push(0); // Empty
             }
