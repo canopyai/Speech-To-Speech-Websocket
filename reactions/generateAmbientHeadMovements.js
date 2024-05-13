@@ -43,7 +43,7 @@ function prolongSomeMovements({ movements }) {
     let prolongueDuration = ((Math.random() * 18) + 2) * 1000;
     let isProlongueIndex = Math.floor(Math.random() * 1300)
 
-    const indexCounter = 0;
+    let indexCounter = 0;
 
     for (let m of movements) {
         indexCounter++;
