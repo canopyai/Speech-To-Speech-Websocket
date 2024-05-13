@@ -31,8 +31,9 @@ export const manageProcessingQueue = ({
         // const { emotionSequences } = forwardData;
 
 
-        console.log("headBrowVisemes",headBrowVisemes[0].targets.length)
-        console.log("headVisemes",headVisemes[0].targets.length)
+        console.log("headBrowVisemes",headBrowVisemes)
+
+        // console.log("headVisemes",headVisemes[0].targets.length)
         
 
 
