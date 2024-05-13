@@ -48,6 +48,7 @@ function prolongSomeMovements({ movements }) {
     let indexCounter = 0;
 
     for (let m of movements) {
+        console.log("m is", m)
         for (let n of m){
             indexCounter++;
             if (indexCounter == isProlongueIndex) {
