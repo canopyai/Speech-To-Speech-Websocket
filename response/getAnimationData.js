@@ -76,6 +76,7 @@ export const getAnimationData = async ({
 
             }
             console.log("headBrowVisemes",headBrowVisemes[0].targets.length)
+            console.log("headVisemes",headVisemes[0].targets.length)
             processingObject.forwardData = {
                 messageType: "animationData",
                 audioData,
