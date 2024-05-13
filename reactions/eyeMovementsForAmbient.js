@@ -12,7 +12,7 @@ export function eyeMovementsForAmbient({
     for (let viseme of visemes) {
         const { targets } = viseme
 
-        const eyeTargets = [targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio]
+        const eyeTargets = [targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, targets[0] * lookLeftRatio]
 
         newVisemes.push({
             targets: viseme.targets.concat(eyeTargets),
