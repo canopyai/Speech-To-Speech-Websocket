@@ -77,7 +77,7 @@ export const getAnimationData = async ({
             }
             for (let hbv of headBrowVisemes){
                 
-                hbv.targets = [1,0,0,0]
+                hbv.targets = [Math.random(),Math.random(),Math.random(),Math.random()]
             }
 
             processingObject.forwardData = {
