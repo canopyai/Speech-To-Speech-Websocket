@@ -61,7 +61,6 @@ export const getAnimationData = async ({
                 }));
             }
 
-            console.log("headVisemes", headVisemes, headBrowVisemes)
 
             const lookUpRatio = 0.2 //index 5
             const lookDownRatio = 0.45 //index 4
@@ -74,8 +73,9 @@ export const getAnimationData = async ({
                 const { targets } = hv;
    
                 targets.push(targets[5] * lookUpRatio,lookRightRatio*targets[1],targets[4]*lookDownRatio,hv.targets[0]*lookLeftRatio)
-                console.log("hv targets", targets.length)
+
             }
+            console.log("headBrowVisemes",headBrowVisemes[0].targets.length)
             processingObject.forwardData = {
                 messageType: "animationData",
                 audioData,
