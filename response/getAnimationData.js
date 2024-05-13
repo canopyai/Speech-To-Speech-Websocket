@@ -42,7 +42,8 @@ export const getAnimationData = async ({
                 visemes,
                 segments_latency: segmentsLatency,
                 tts_latency: TTSLatency,
-                head_movement_curves: headVisemes
+                head_movement_curves: headVisemes, 
+                int_alvs_brows: headBrowVisemes
             } = data;
 
 
@@ -60,7 +61,7 @@ export const getAnimationData = async ({
                 }));
             }
 
-            console.log("headVisemes", headVisemes)
+            console.log("headVisemes", headVisemes, headBrowVisemes)
 
             const lookUpRatio = 0.2 //index 5
             const lookDownRatio = 0.45 //index 4
@@ -83,7 +84,8 @@ export const getAnimationData = async ({
                 uuid: hexCode,
                 TTSSentence,
                 headVisemes,
-                isFirstChunk
+                isFirstChunk, 
+                headBrowVisemes
             }
 
 
