@@ -1,3 +1,5 @@
+import fs
+
 
 export const manageProcessingQueue = ({
     processingQueue,
@@ -50,7 +52,19 @@ export const manageProcessingQueue = ({
             } 
 
             setTimeout(()=>{
-                globals.forwardSocket.ws.send(JSON.stringify(forwardData));
+                const jsonData = JSON.stringify(forwardData);
+
+                // Save json data to json file
+                fs.writeFile('./forward.json', jsonData, (err) => {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.log('Data saved to file successfully.');
+                    }
+                });
+
+
+                // globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
             }, 20)
 

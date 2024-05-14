@@ -22,7 +22,7 @@ export function manageAmbientMovements({
         //     visemes: visemesWithEyes, 
         //     messageType:"ambientMovements"
         // }))
-        console.log()
+
     } else {
         setTimeout(() => {
             manageAmbientMovements({
