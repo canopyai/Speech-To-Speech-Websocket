@@ -27,7 +27,8 @@ export const getAnimationData = async ({
                 body: JSON.stringify({
                     text: TTSSentence,
                     isFirstChunk: isFirstChunk ? true : false,
-                    add_post_padding: false
+                    add_post_padding: false, 
+                    voice_vector:[1,0,0]
                 })
             });
 
@@ -44,7 +45,7 @@ export const getAnimationData = async ({
                 tts_latency: TTSLatency,
                 head_movement_curves: headVisemes, 
                 int_alvs_brows: headBrowVisemes, 
-                voice_vector:[1,0,0]
+                
             } = data;
 
 
