@@ -26,7 +26,7 @@ export const generateResponse = async ({
 
     const currentConversationIndex = globals.conversationIndex;
 
-    const last3Messages = globals.mainThread.slice(-6);
+    const last3Messages = globals.mainThread;
 
 
 

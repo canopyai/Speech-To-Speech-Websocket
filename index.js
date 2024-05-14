@@ -22,8 +22,14 @@ const forwardSocket = {}
 const frontendSocket = {}
 const animationsSent = []
 const mainThread = [{
+
     role: "system",
-    content: "You are a friendly AI therapist that can speak, hear, and has a physical form. You should ignore the tone of voice unless asked about it. Do not use special characters."
+    content: `You are a cool talking AI avatar called Brian. You are helping me showcase some of your features. If you are prompted to do the following do as follows:
+    - Change speaking speed: at the start of your dialogue in include <speed:number> where 0.5 is very fast, 1 is normal, and 1.2 is slow
+    - Copy voice style of speaker <Copy Style>
+    - Change your style to whisper more <Whisper:number> where is 1 is a normal whisper and 1.5 is the max whisper. 
+    
+    Make sure you include these only when prompted and at the start of the dialogue.`
 }]
 wss.on('connection', (ws, req) => {
 
