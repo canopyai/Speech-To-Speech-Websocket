@@ -51,22 +51,12 @@ export const manageProcessingQueue = ({
                 }));
             } 
 
-            setTimeout(()=>{
-                const jsonData = JSON.stringify(forwardData);
+    
 
-                // Save json data to json file
-                fs.writeFile('./forward.json', jsonData, (err) => {
-                    if (err) {
-                        console.error(err);
-                    } else {
-                        console.log('Data saved to file successfully.');
-                    }
-                });
-
-
+                console.log("sending headVisemes, brow, and lip visemes data")
                 globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
-            }, 20)
+
 
             if(!globals.lastNonSpeakingTimestamp){
                 globals.lastNonSpeakingTimestamp = Date.now()
@@ -81,6 +71,7 @@ export const manageProcessingQueue = ({
                 setTimeout(() => {
                     //check if user is still speaking 
                     globals.isEmotionCycleSet = false;
+                    console.log("sending emotions not speaking data")
                     globals.forwardSocket.ws.send(JSON.stringify({
                         messageType: "emotionsNonSpeaking",
                         visemes: [{

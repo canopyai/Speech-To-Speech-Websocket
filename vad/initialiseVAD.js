@@ -48,6 +48,7 @@ export const initialiseVAD = async ({
                 conversationIndex: globals.conversationIndex
             }));
 
+            console.log("sending empty globals animation data")
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "animationData",
                 visemes: [{
@@ -65,6 +66,7 @@ export const initialiseVAD = async ({
 
         } else if (vad_type === "end") {
 
+            console.log("sending isolated brows datas")
             globals.forwardSocket.ws.send(JSON.stringify({
                 visemes: [{
                     duration: 100,

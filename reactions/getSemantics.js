@@ -118,6 +118,7 @@ export async function getSemantics({ last3Messages, globals }) {
             };
 
 
+                console.log("sending emotion animation data")
                  globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
             
 

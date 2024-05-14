@@ -21,17 +21,18 @@ export function sendBrowsMovement({
         const normalizedProspectiveTargs = prospectiveTargs.map(value => (value * strength) / sum);
 
         
-        // globals.forwardSocket.ws.send(JSON.stringify({
+        console.log("sending brows movement data")
+        globals.forwardSocket.ws.send(JSON.stringify({
 
             
 
-        //     visemes: [{
-        //         duration: 100, 
-        //         targets: normalizedProspectiveTargs
-        //     }], 
-        //     messageType:"brows"
+            visemes: [{
+                duration: 100, 
+                targets: normalizedProspectiveTargs
+            }], 
+            messageType:"brows"
    
-        // }))
+        }))
 
 
     }

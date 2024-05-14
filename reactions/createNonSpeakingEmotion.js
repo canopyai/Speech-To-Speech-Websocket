@@ -58,7 +58,7 @@ export function createNonSpeakingEmotion({
         }
 
         if ((Date.now() - 10000) > globals.lastNonSpeakingTimestamp) {
-            console.log("timestamp deficit", Date.now() - globals.lastNonSpeakingTimestamp)
+            console.log("sending emotions not speaking")
             globals.forwardSocket.ws.send(JSON.stringify(emotionsNonSpeaking));
 
             console.log("resetting last nonSpeaking TS")

@@ -14,14 +14,14 @@ export function manageAmbientMovements({
             globals
         })
 
-        console.log("manage ambient movements")
 
         const visemesWithEyes = eyeMovementsForAmbient({visemes})
-
-        // globals.forwardSocket.ws.send(JSON.stringify({
-        //     visemes: visemesWithEyes, 
-        //     messageType:"ambientMovements"
-        // }))
+        
+        console.log("sending ambient movements")
+        globals.forwardSocket.ws.send(JSON.stringify({
+            visemes: visemesWithEyes, 
+            messageType:"ambientMovements"
+        }))
 
     } else {
         setTimeout(() => {

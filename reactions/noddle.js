@@ -96,6 +96,8 @@ export function noddle({
 
 
     // // return nodVisemes
+    console.log("sending nods event")
+
     globals.forwardSocket.ws.send(JSON.stringify({
         messageType: "nods",
         visemes: nodVisemes
