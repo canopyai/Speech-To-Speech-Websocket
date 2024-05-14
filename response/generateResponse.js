@@ -6,6 +6,7 @@ import { groqKey } from '../config.js';
 import { getAnimationData } from './getAnimationData.js';
 import { getSemantics } from '../reactions/getSemantics.js';
 import { getAudioIntonationString } from '../reactions/getAudioIntonationString.js';
+import { extractCommandsFromSentence } from "./extractCommandsFromSentence.js"
 import Groq from "groq-sdk"
 
 
