@@ -48,7 +48,6 @@ export const initialiseVAD = async ({
                 conversationIndex: globals.conversationIndex
             }));
 
-            console.log("sending empty globals animation data")
             globals.forwardSocket.ws.send(JSON.stringify({
                 messageType: "animationData",
                 visemes: [{

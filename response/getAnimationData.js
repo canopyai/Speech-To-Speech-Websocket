@@ -43,7 +43,8 @@ export const getAnimationData = async ({
                 segments_latency: segmentsLatency,
                 tts_latency: TTSLatency,
                 head_movement_curves: headVisemes, 
-                int_alvs_brows: headBrowVisemes
+                int_alvs_brows: headBrowVisemes, 
+                voice_vector:[1,0,0]
             } = data;
 
 
