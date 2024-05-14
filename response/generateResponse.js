@@ -152,7 +152,7 @@ export const generateResponse = async ({
                 processingQueue.push(processingObject);
                 extractCommandsFromSentence({ 
                     sentence, 
-                    commands
+                    globals
                  })
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
