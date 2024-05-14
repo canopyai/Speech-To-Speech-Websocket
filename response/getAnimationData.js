@@ -19,6 +19,7 @@ export const getAnimationData = async ({
 
         console.log("strings", TTSSentence)
 
+
         if (globals.conversationIndex > currentConversationIndex) return
         try {
             const response = await fetch(remoteUrl, {
@@ -30,8 +31,8 @@ export const getAnimationData = async ({
                     text: TTSSentence,
                     isFirstChunk: isFirstChunk ? true : false,
                     add_post_padding: false, 
-                    voice_vector:[1,0,0], 
-                    speed:0.9
+                    voice_vector:globals.voice_vector,
+                    speed:globals.speed
                 })
             });
 

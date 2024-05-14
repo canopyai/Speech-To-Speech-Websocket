@@ -5,7 +5,7 @@ import { reformatTextForTTS } from './reformatTextForTTS.js';
 import { groqKey } from '../config.js';
 import { getAnimationData } from './getAnimationData.js';
 import { getSemantics } from '../reactions/getSemantics.js';
-import {getAudioIntonationString } from '../reactions/getAudioIntonationString.js';
+import { getAudioIntonationString } from '../reactions/getAudioIntonationString.js';
 import Groq from "groq-sdk"
 
 
@@ -33,7 +33,7 @@ export const generateResponse = async ({
 
 
     let audioIntonationString;
-    if(globals.emotions.audioIntonation && globals.isAudioEmpathy){
+    if (globals.emotions.audioIntonation && globals.isAudioEmpathy) {
         audioIntonationString = getAudioIntonationString(globals.emotions.audioIntonation.result);
 
     }
@@ -93,7 +93,7 @@ export const generateResponse = async ({
         try {
 
 
-            if(globals.conversationIndex>currentConversationIndex){
+            if (globals.conversationIndex > currentConversationIndex) {
                 stream.controller.abort();
                 break;
             }
@@ -103,7 +103,7 @@ export const generateResponse = async ({
 
             console.log("text", text)
 
-            if(!text){
+            if (!text) {
 
             }
 
@@ -142,13 +142,14 @@ export const generateResponse = async ({
                     isFirstChunk,
                     finishReason,
 
-                }; 
+                };
 
 
 
 
 
                 processingQueue.push(processingObject);
+                let extractSentence = extractCommandsFromSentence({ sentence })
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
@@ -160,12 +161,12 @@ export const generateResponse = async ({
                     finishReason,
                     ws,
                     currentConversationIndex,
-                    isFirstChunk, 
+                    isFirstChunk,
                 })
                 isFirstChunk = false;
                 previousSentence += TTSSentence;
 
-                getSemantics({last3Messages, globals});
+                getSemantics({ last3Messages, globals });
 
             }
 
