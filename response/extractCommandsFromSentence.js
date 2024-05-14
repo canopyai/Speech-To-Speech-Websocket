@@ -20,7 +20,12 @@ export function extractCommandsFromSentence({
     const speedMatch = text.match(speedPattern);
     if (speedMatch) {
         commands.speed = parseFloat(speedMatch[1]);
-        text = text.replace(speedPattern, ''); // Remove the speed command from the text
+        text = text.replace(speedPattern, '');
+         globals.mainThread.push({
+            role:"system", 
+            content:"You set just the speed for the next dialogue to"+ commands.speed
+         })
+         globals.speed = commands.speed
     } else {
         globals.speed = 0.9;
     }
