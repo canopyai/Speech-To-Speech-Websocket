@@ -1,8 +1,8 @@
 export function extractCommandsFromSentence({ 
     sentence, 
     globals
- }) {
-    const text = sentence.sentence;
+}) {
+    let text = sentence.sentence;
 
     // Define regex patterns for different commands
     const speedPattern = /<speed:(\d+(\.\d+)?)>/;
@@ -20,24 +20,35 @@ export function extractCommandsFromSentence({
     const speedMatch = text.match(speedPattern);
     if (speedMatch) {
         commands.speed = parseFloat(speedMatch[1]);
+        text = text.replace(speedPattern, ''); // Remove the speed command from the text
     } else {
-        globals.speed = 0.9
+        globals.speed = 0.9;
     }
 
     // Extract copy command
     const copyMatch = text.match(copyPattern);
-    const whisperMatch = text.match(whisperPattern);
-
     if (copyMatch) {
         commands.copy = true;
-        globals.voiceVector = [0,0,1]
-    } else if(whisperMatch){
-        globals.voiceVector = [1-commands.whisper,commands.whisper,0]
-
-    } else {
-        globals.voiceVector = [1,0,0]
+        globals.voiceVector = [0, 0, 1];
+        text = text.replace(copyPattern, ''); // Remove the copy command from the text
     }
 
+    // Extract whisper command
+    const whisperMatch = text.match(whisperPattern);
+    if (whisperMatch) {
+        commands.whisper = parseFloat(whisperMatch[1]);
+        text = text.replace(whisperPattern, ''); // Remove the whisper command from the text
+    }
+
+    // Set global voice vector based on extracted commands
+    if (!copyMatch && whisperMatch) {
+        globals.voiceVector = [1 - commands.whisper, commands.whisper, 0];
+    } else if (!copyMatch && !whisperMatch) {
+        globals.voiceVector = [1, 0, 0];
+    }
+
+    // Update the sentence with the cleaned text
+    sentence.sentence = text.trim();
 
     return commands;
 }

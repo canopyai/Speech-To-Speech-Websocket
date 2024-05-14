@@ -150,7 +150,10 @@ export const generateResponse = async ({
 
 
                 processingQueue.push(processingObject);
-                let extractSentence = extractCommandsFromSentence({ sentence })
+                extractCommandsFromSentence({ 
+                    sentence, 
+                    commands
+                 })
                 let TTSSentence = reformatTextForTTS({ sentence });
                 sentence.sentence = "";
 
