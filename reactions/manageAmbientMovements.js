@@ -18,10 +18,10 @@ export function manageAmbientMovements({
 
         const visemesWithEyes = eyeMovementsForAmbient({visemes})
 
-        globals.forwardSocket.ws.send(JSON.stringify({
-            visemes: visemesWithEyes, 
-            messageType:"ambientMovements"
-        }))
+        // globals.forwardSocket.ws.send(JSON.stringify({
+        //     visemes: visemesWithEyes, 
+        //     messageType:"ambientMovements"
+        // }))
 
     } else {
         setTimeout(() => {
