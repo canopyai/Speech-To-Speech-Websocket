@@ -30,7 +30,8 @@ export const getAnimationData = async ({
                     text: TTSSentence,
                     isFirstChunk: isFirstChunk ? true : false,
                     add_post_padding: false, 
-                    voice_vector:[1,0,0]
+                    voice_vector:[1,0,0], 
+                    speed:0.9
                 })
             });
 
