@@ -64,7 +64,7 @@ export const manageProcessingQueue = ({
                 });
 
 
-                // globals.forwardSocket.ws.send(JSON.stringify(forwardData));
+                globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
             }, 20)
 
