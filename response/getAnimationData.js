@@ -17,6 +17,8 @@ export const getAnimationData = async ({
 
         const startTime = Date.now();
 
+        console.log("strings", TTSSentence)
+
         if (globals.conversationIndex > currentConversationIndex) return
         try {
             const response = await fetch(remoteUrl, {
