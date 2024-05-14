@@ -2,7 +2,7 @@ export function generateBlinking({
     duration
 }){
 
-    return
+    // return
 
     const blinkHoldDur = 15;
 
