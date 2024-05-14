@@ -48,15 +48,15 @@ export const initialiseVAD = async ({
                 conversationIndex: globals.conversationIndex
             }));
 
-            // globals.forwardSocket.ws.send(JSON.stringify({
-            //     messageType: "animationData",
-            //     visemes: [{
-            //         targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            //         duration: 200
-            //     }],
-            //     audioData: "",
-            //     uuid: "shutmouth",
-            // }));
+            globals.forwardSocket.ws.send(JSON.stringify({
+                messageType: "animationData",
+                visemes: [{
+                    targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    duration: 200
+                }],
+                audioData: "",
+                uuid: "shutmouth",
+            }));
 
 
             createNonSpeakingEmotion({
