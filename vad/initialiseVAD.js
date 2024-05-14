@@ -24,11 +24,11 @@ export const initialiseVAD = async ({
             globals.isUserSpeaking = true
 
 
-            // setTimeout(() => {
-            //     sendBrowsMovement({
-            //         globals
-            //     })
-            // }, 300)
+            setTimeout(() => {
+                sendBrowsMovement({
+                    globals
+                })
+            }, 300)
 
 
 
