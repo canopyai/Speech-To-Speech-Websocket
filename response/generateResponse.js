@@ -64,7 +64,7 @@ export const generateResponse = async ({
     const contentWithoutString = lastMessage.content.replace(/<[^>]+>/g, '');
     lastMessage.content = contentWithoutString + `\n <${audioIntonationString}>`;
 
-    console.log("mainThreadCopy", mainThreadCopy)
+    // console.log("mainThreadCopy", mainThreadCopy)
     try {
 
 
