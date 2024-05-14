@@ -31,7 +31,7 @@ export const getAnimationData = async ({
                     text: TTSSentence,
                     isFirstChunk: isFirstChunk ? true : false,
                     add_post_padding: false, 
-                    voice_vector:globals.voice_vector,
+                    voice_vector:globals.voiceVector,
                     speed:globals.speed
                 })
             });
