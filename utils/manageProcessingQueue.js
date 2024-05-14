@@ -1,4 +1,4 @@
-import fs
+import fs from "fs"
 
 
 export const manageProcessingQueue = ({
