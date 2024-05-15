@@ -57,6 +57,11 @@ export async function getSemantics({ last3Messages, globals }) {
 
     const lastMessages = cleanAndCloneContent(last3Messages)
 
+    if(!globals.lastGlobalEmotionTimestamp){
+        globals.lastGlobalEmotionTimestamp = Date.now() - 2001
+    }
+
+    if(Date.now()-globals.lastGlobalEmotionTimestamp < 2000) return
 
 
     try {
