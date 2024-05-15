@@ -39,8 +39,9 @@ function getBrowsVector({
     globals
 }) {
 
-    if (!globals.dominantEmotion) {
-        return [0.3, 0, 0, 0]
+    if (true) {
+    // if (!globals.dominantEmotion) {
+        return [0, 1, 0, 0]
     }
 
     const active = (Math.random() * 0.2) + 1
@@ -49,11 +50,11 @@ function getBrowsVector({
         case "happy":
             return [active, 0, 0, 0]
         case "sad":
-            return [active, 0, 0, 0]
+            return [active, 0, 0, 0] //0 index
         case "angry":
             return [active, 0, 0, 0]
         case "concern":
-            return [active, 0, 0, 0]
+            return [active, 0, 0, 0]  // 0 index
         case "neutral":
             return [active, 0, 0, 0]
         case "excited":
