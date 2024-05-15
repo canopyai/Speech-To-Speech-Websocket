@@ -76,7 +76,7 @@ export const getAnimationData = async ({
                 const { targets } = hv;
 
                 // targets.push(targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio)
-                targets.push(10,0,0,0)
+                targets.push(1,0,0,0)
 
             }
 
