@@ -43,7 +43,7 @@ function getBrowsVector({
         return [0.3, 0, 0, 0]
     }
 
-    const active = (Math.random() * 0.2) + 0.1
+    const active = (Math.random() * 0.2) + 1
 
     switch (globals.dominantEmotion.emotion) {
         case "happy":
