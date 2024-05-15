@@ -39,7 +39,7 @@ function getBrowsVector({
     globals
 }){
 
-    if (!globals.dominantEmotion.emotion){
+    if (!globals.dominantEmotion){
         return [0.3,0,0,0]
     }
 
