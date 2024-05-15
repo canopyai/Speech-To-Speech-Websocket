@@ -75,8 +75,8 @@ export const getAnimationData = async ({
             for (let hv of headVisemes) {
                 const { targets } = hv;
 
-                // targets.push(targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio)
-                targets.push(1,0,0,0)
+                targets.push(targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio)
+                // targets.push(1,0,0,0)
                 // targets.push(Math.random(), Math.random(), Math.random(), Math.random())
 
             }
