@@ -4,7 +4,7 @@ export function sendBrowsMovement({
 
     // return;
     if(!globals.lastBrowMovement){
-        globals.lastBrowMovement = Date.now()
+        globals.lastBrowMovement = Date.now() - 10000
     }
 
     const activationProbs = 1
