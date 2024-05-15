@@ -22,17 +22,17 @@ export function sendBrowsMovement({
 
         
         console.log("sending brows movement data")
-        globals.forwardSocket.ws.send(JSON.stringify({
+        // globals.forwardSocket.ws.send(JSON.stringify({
 
             
 
-            visemes: [{
-                duration: 100, 
-                targets: normalizedProspectiveTargs
-            }], 
-            messageType:"brows"
+        //     visemes: [{
+        //         duration: 100, 
+        //         targets: normalizedProspectiveTargs
+        //     }], 
+        //     messageType:"brows"
    
-        }))
+        // }))
 
 
     }
