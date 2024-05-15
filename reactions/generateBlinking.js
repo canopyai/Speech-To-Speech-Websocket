@@ -28,7 +28,7 @@ export function generateBlinking({
             {
                 targets: [0],
                 duration: cataBlink
-            }
+            },
             {
                 targets: [0],
                 duration: 50
