@@ -73,12 +73,10 @@ export const getAnimationData = async ({
             const lookLeftRatio = 0.3//index 0
             const lookRightRatio = 0.3//index 1
             for (let hv of headVisemes) {
-
-
-
                 const { targets } = hv;
 
-                targets.push(targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio)
+                // targets.push(targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio)
+                targets.push(10,0,0,0)
 
             }
 
