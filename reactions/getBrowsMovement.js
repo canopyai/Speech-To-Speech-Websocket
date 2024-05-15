@@ -52,7 +52,7 @@ function getBrowsVector({
         case "sad":
             return [active, 0, 0, 0] //0 index
         case "angry":
-            return [active, 0, 0, 0]
+            return [0, 0, active, 0] // 2 index
         case "concern":
             return [active, 0, 0, 0]  // 0 index
         case "neutral":
@@ -62,6 +62,6 @@ function getBrowsVector({
         case "fear":
             return [active, 0, 0, 0]
         case "disgust":
-            return [active, 0, 0, 0]
+            return [0, 0, active, 0] // 2 index 
     }
 }
