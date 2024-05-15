@@ -41,7 +41,7 @@ function getBrowsVector({
 
     if (true) {
     // if (!globals.dominantEmotion) {
-        return [0, 1, 0, 0]
+        return [0, 0, 1, 0]  //loopy in the middle
     }
 
     const active = (Math.random() * 0.2) + 1
