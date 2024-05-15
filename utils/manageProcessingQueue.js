@@ -50,10 +50,6 @@ export const manageProcessingQueue = ({
                     conversationIndex: globals.conversationIndex
                 }));
             } 
-
-    
-
-                console.log("sending headVisemes, brow, and lip visemes data")
                 globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
 
@@ -71,7 +67,6 @@ export const manageProcessingQueue = ({
                 setTimeout(() => {
                     //check if user is still speaking 
                     globals.isEmotionCycleSet = false;
-                    console.log("sending emotions not speaking data")
                     globals.forwardSocket.ws.send(JSON.stringify({
                         messageType: "emotionsNonSpeaking",
                         visemes: [{

@@ -23,7 +23,6 @@ export function dispatchBlinking({
         duration
     });
 
-    console.log("sending blinking data")
     globals.forwardSocket.ws.send(JSON.stringify(blinkingData));
 
     const nextBlinkDelay = gaussianRandom(4000, 2800, 600, 8000);

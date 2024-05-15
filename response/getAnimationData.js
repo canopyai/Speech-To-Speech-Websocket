@@ -8,7 +8,6 @@ export const getAnimationData = async ({
     processingObject,
 }) => {
     try {
-        console.log("trying to fetch animation data")
         const remoteUrl = "http://35.204.220.103:8080/generate_animation";
 
         if (TTSSentence.length === 0) {
@@ -16,8 +15,6 @@ export const getAnimationData = async ({
         }
 
         const startTime = Date.now();
-
-        console.log("strings", TTSSentence)
 
 
         if (globals.conversationIndex > currentConversationIndex) return
