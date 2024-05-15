@@ -65,7 +65,14 @@ wss.on('connection', (ws, req) => {
     console.log("my ip address", ip)
 
 
-    if (ip == "94.252.122.131" || ip == "35.204.82.115" || ip == "35.204.158.8" || ip == "185.40.61.173" || ip == "94.252.73.66") {
+    if (
+        ip == "94.252.122.131" || 
+        ip == "35.204.82.115" || 
+        ip == "35.204.158.8" || 
+        ip == "185.40.61.173" || 
+        ip == "94.252.73.66"|| 
+        ip == "185.40.61.128"
+    ) {
         console.log("forward socket connected", ip)
 
         forwardSocket.ws = ws;
