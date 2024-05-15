@@ -30,9 +30,9 @@ export const getAnimationData = async ({
                 body: JSON.stringify({
                     text: TTSSentence,
                     isFirstChunk: isFirstChunk ? true : false,
-                    add_post_padding: false, 
-                    voice_vector:globals.voiceVector,
-                    speed:globals.speed
+                    add_post_padding: false,
+                    voice_vector: globals.voiceVector,
+                    speed: globals.speed
                 })
             });
 
@@ -47,9 +47,9 @@ export const getAnimationData = async ({
                 visemes,
                 segments_latency: segmentsLatency,
                 tts_latency: TTSLatency,
-                head_movement_curves: headVisemes, 
-                int_alvs_brows: headBrowVisemes, 
-                
+                head_movement_curves: headVisemes,
+                int_alvs_brows: headBrowVisemes,
+
             } = data;
 
 
@@ -74,17 +74,18 @@ export const getAnimationData = async ({
             const lookRightRatio = 0.3//index 1
             for (let hv of headVisemes) {
 
-                
-                
+
+
                 const { targets } = hv;
-   
-                targets.push(targets[5] * lookUpRatio,lookRightRatio*targets[1],targets[4]*lookDownRatio,hv.targets[0]*lookLeftRatio)
+
+                targets.push(targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, hv.targets[0] * lookLeftRatio)
 
             }
-            for (let hbv of headBrowVisemes){
-                
+
+            for (let hbv of headBrowVisemes) {
+
                 //hbv.targets = [Math.random(),Math.random(),Math.random(),Math.random()]
-                hbv.targets = [0,0,0,0]
+                hbv.targets = [0, 0, 0, 0]
             }
 
             processingObject.forwardData = {
@@ -94,8 +95,8 @@ export const getAnimationData = async ({
                 conversationIndex: currentConversationIndex,
                 uuid: hexCode,
                 TTSSentence,
-                headVisemes, 
-                isFirstChunk, 
+                headVisemes,
+                isFirstChunk,
                 headBrowVisemes
             }
 
