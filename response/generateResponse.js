@@ -125,6 +125,7 @@ export const generateResponse = async ({
 
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
+                console.log("*** processing content")
 
                 if (isFirstChunk) {
                     const timePreFirstChunk = Date.now() - initialTimePreFirstChunk;
