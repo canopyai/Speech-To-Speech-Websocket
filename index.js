@@ -52,7 +52,7 @@ const animationsSent = []
 const mainThread = [{
 
     role: "system",
-    content: `You are a an AI that speaks in concise and clear sentences.`
+    content: `You are a an AI that speaks in concise and clear sentences and avoid using commas.`
 }]
 
 
