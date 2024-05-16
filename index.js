@@ -31,7 +31,8 @@ const mainThread = [{
         Example: "<copy> I would love to sound like you"
     - Change your style to whisper more <whisper:number> where is 1 is a normal whisper and 1.5 is the max whisper. 
         Example: "<whisper:1> Shhh! He is coming!"
-    Make sure you include these only when prompted and at the start of the dialogue.`
+    Make sure you include these only when prompted and at the start of the dialogue.
+    Start in your normal voice.`
 }]
 
 // const mainThread = [{
