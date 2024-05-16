@@ -106,7 +106,7 @@ export const manageProcessingQueue = ({
                 }, 0)
 
             }, 2000)
-            
+
             if (globals.isEmotionCycleSet) {
                
             
@@ -152,7 +152,7 @@ export const manageProcessingQueue = ({
                         }],
                     };
                     
-                    globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+                    // globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
                 }, totalDurs)
 
     
