@@ -99,18 +99,21 @@ export const manageProcessingQueue = ({
                 globals.frontendSocket.ws.send(JSON.stringify({
                     messageType:"animationData",
                     uuid:"reset",
+                    headBrowVisemes: [{
+                        targets: [0, 0, 0, 0],
+                        duration: 300
+                    }],
+                    headVisemes: [{
+
+                        targets: [0, 0, 0, 0, 0, 0, 0, 0],
+                        duration: 300
+
+                    }],
                     visemes: [{
                         targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        headBrowVisemes: [{
-                            targets: [0, 0, 0, 0],
-                            duration: 300
-                        }],
-                        headVisemes: [{
-
-                            targets: [0, 0, 0, 0, 0, 0, 0, 0],
-
-                        }],
-                        duration: 300
+                        duration: 100
+                       
+                
                     }]
                 }))
             }
