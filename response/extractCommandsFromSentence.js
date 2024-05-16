@@ -35,7 +35,11 @@ export function extractCommandsFromSentence({
     if (copyMatch) {
         commands.copy = true;
         globals.voiceVector = [0, 0, 1];
-        text = text.replace(copyPattern, ''); // Remove the copy command from the text
+        text = text.replace(copyPattern, '');
+        globals.mainThread.push({
+            role:"system", 
+            content:"You just used the <copy> command to copy the style."
+         }) // Remove the copy command from the text
     }
 
     // Extract whisper command
