@@ -120,7 +120,7 @@ export const manageProcessingQueue = ({
                     };
                     
                     globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
-                }, 10000)
+                }, 5000)
 
     
             }
