@@ -107,6 +107,17 @@ export const manageProcessingQueue = ({
 
             processingQueue.shift();
             console.log("processing queue length", processingQueue.length, processingQueue)
+            if(processingQueue.length==1){
+                const emotionAnimationData = {
+                    messageType: "emotionsNonSpeaking",
+                    visemes: [{
+                        targets: [1, 0, 0, 0, 0, 0, 0, 0],
+                        duration: 300
+                    }],
+                };
+                globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+    
+            }
 
         }
     }
