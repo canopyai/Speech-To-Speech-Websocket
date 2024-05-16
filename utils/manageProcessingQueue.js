@@ -97,6 +97,7 @@ export const manageProcessingQueue = ({
             if(processingQueue.length==0){
                 globals.frontendSocket.ws.send({
                     messageType:"animationData",
+                    uuid:"reset",
                     visemes: [{
                         targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                         headBrowVisemes: [{
