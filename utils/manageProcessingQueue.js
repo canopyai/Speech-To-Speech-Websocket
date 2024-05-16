@@ -95,7 +95,7 @@ export const manageProcessingQueue = ({
 
             processingQueue.shift();
             console.log("processing queue length", processingQueue.length, processingQueue)  
-            if(processingQueue.length==0){
+            if(processingQueue.length==1){
                 globals.frontendSocket.ws.send({
                     messageType:"animationData",
                     uuid:"reset",
