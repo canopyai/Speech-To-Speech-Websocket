@@ -84,7 +84,7 @@ export const getAnimationData = async ({
                 console.log("hbv targets", targets)
 
                 //hbv.targets = [Math.random(),Math.random(),Math.random(),Math.random()]
-                // hbv.targets = [0, 0, 0, 0]
+                hbv.targets = [0, 0, 0, 0]
             }
 
             processingObject.forwardData = {
