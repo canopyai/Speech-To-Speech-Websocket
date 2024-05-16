@@ -94,7 +94,7 @@ export const manageProcessingQueue = ({
 
 
             processingQueue.shift();
-            if(processingQueue.length===0){
+            if(processingQueue.length==0){
                 globals.frontendSocket.ws.send({
                     visemes: [{
                         targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
