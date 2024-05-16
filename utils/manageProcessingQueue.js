@@ -97,7 +97,16 @@ export const manageProcessingQueue = ({
             if(processingQueue.length==0){
                 globals.frontendSocket.ws.send({
                     visemes: [{
-                        targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                        targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                        headBrowVisemes: [{
+                            targets: [0, 0, 0, 0],
+                            duration: 300
+                        }],
+                        headVisemes: [{
+
+                            targets: [0, 0, 0, 0, 0, 0, 0, 0],
+
+                        }],
                         duration: 300
                     }]
                 })
