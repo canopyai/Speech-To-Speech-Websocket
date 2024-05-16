@@ -95,28 +95,7 @@ export const manageProcessingQueue = ({
 
             processingQueue.shift();
             console.log("processing queue length", processingQueue.length, processingQueue)  
-            if(processingQueue.length==1){
-                globals.frontendSocket.ws.send(JSON.stringify({
-                    messageType:"animationData",
-                    uuid:"reset",
-                    headBrowVisemes: [{
-                        targets: [0, 0, 0, 0],
-                        duration: 300
-                    }],
-                    headVisemes: [{
-
-                        targets: [0, 0, 0, 0, 0, 0, 0, 0],
-                        duration: 300
-
-                    }],
-                    visemes: [{
-                        targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                        duration: 100
-                       
-                
-                    }]
-                }))
-            }
+           
         }
     }
 }
