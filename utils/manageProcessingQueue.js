@@ -94,6 +94,7 @@ export const manageProcessingQueue = ({
 
 
             processingQueue.shift();
+            console.log("processing queue length", processingQueue.length)  
             if(processingQueue.length==0){
                 globals.frontendSocket.ws.send({
                     messageType:"animationData",
