@@ -36,29 +36,41 @@ export const manageProcessingQueue = ({
         // console.log("headBrowVisemes",headBrowVisemes)
 
         // console.log("headVisemes",headVisemes[0].targets.length)
-        
+
 
 
         if (forwardData) {
 
             console.log("there is forward data")
 
-            if(isFirstChunk){
+            if (isFirstChunk) {
                 console.log("sending clear queue message")
                 globals.forwardSocket.ws.send(JSON.stringify({
                     messageType: "clearQueue",
                     conversationIndex: globals.conversationIndex
                 }));
-            } 
-                globals.forwardSocket.ws.send(JSON.stringify(forwardData));
+            }
+
+
+            const emotionAnimationData = {
+                messageType: "emotions",
+                visemes: [{
+                    targets: [0, 0, 0, 0, 0, 0, 0, 0],
+                    duration: 300
+                }],
+            };
+
+
+            globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+            globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
 
 
-            if(!globals.lastNonSpeakingTimestamp){
+            if (!globals.lastNonSpeakingTimestamp) {
                 globals.lastNonSpeakingTimestamp = Date.now()
             }
 
-            if(Date.now()>globals.lastNonSpeakingTimestamp){
+            if (Date.now() > globals.lastNonSpeakingTimestamp) {
                 console.log("resetting last nonSpeaking TS")
                 globals.lastNonSpeakingTimestamp = Date.now()
             }
@@ -76,7 +88,7 @@ export const manageProcessingQueue = ({
                     }));
                 }, 500)
 
-            
+
             }
 
 
@@ -94,8 +106,8 @@ export const manageProcessingQueue = ({
 
 
             processingQueue.shift();
-            console.log("processing queue length", processingQueue.length, processingQueue)  
-           
+            console.log("processing queue length", processingQueue.length, processingQueue)
+
         }
     }
 }
