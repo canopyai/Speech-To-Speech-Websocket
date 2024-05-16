@@ -53,7 +53,7 @@ export const manageProcessingQueue = ({
 
 
             const emotionAnimationData = {
-                messageType: "emotions",
+                messageType: "emotionsNonSpeaking",
                 visemes: [{
                     targets: [0, 0, 0, 0, 0, 0, 0, 0],
                     duration: 300
@@ -61,7 +61,7 @@ export const manageProcessingQueue = ({
             };
 
 
-            // globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
+            globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
 

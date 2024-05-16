@@ -56,7 +56,7 @@ export function createNonSpeakingEmotion({
             messageType: "emotionsNonSpeaking",
             visemes
         }
-        return;
+
 
         if ((Date.now() - 10000) > globals.lastNonSpeakingTimestamp) {
             globals.forwardSocket.ws.send(JSON.stringify(emotionsNonSpeaking));
