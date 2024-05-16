@@ -32,9 +32,9 @@ export function generateAmbientHeadMovements({
             // duration:15
         });
     }
-    prolongSomeMovements({
-        movements
-    })
+    // prolongSomeMovements({
+    //     movements
+    // })
  
     return movements;
 }
