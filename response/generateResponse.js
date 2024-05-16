@@ -103,7 +103,7 @@ export const generateResponse = async ({
             let finishReason = part.choices[0].finish_reason
             const text = part.choices[0].delta.content
 
-            // console.log("text", text)
+            console.log("text", text)
 
             if (!text) {
 
