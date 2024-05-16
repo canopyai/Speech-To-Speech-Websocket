@@ -96,6 +96,7 @@ export const manageProcessingQueue = ({
             processingQueue.shift();
             if(processingQueue.length==0){
                 globals.frontendSocket.ws.send({
+                    messageType:"animationData",
                     visemes: [{
                         targets: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                         headBrowVisemes: [{
