@@ -14,7 +14,7 @@ export const initialiseVAD = async ({
         const { vad_type } = data
 
         if (vad_type === "start") {
-            setInterval(()=>{
+            setTimeout(()=>{
                 noddle({
                     globals
                 })

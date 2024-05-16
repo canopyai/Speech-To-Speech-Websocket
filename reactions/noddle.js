@@ -11,7 +11,6 @@ export function noddle({
 
     if(!globals.forwardSocket) return
 
-    console.log("nodding function being called with forward socket")
 
 
     if (!globals.lastNodTime) {
