@@ -3,7 +3,7 @@ export function noddle({
 }) {
 
     // return;
-    const nodPercentage = 0.1;
+    const nodPercentage = 0.5;
 
     // console.log("nodding function being called")
     
