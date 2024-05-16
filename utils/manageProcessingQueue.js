@@ -86,26 +86,30 @@ export const manageProcessingQueue = ({
             if (Date.now() > globals.lastNonSpeakingTimestamp) {
                 console.log("resetting last nonSpeaking TS")
                 globals.lastNonSpeakingTimestamp = Date.now()
-            }
+            } 
+            
+            let totalDurs = 0;
 
-            if (globals.isEmotionCycleSet) {
-                let totalDurs = 0;
-                setTimeout(()=>{
+            setTimeout(()=>{
 
-                    if(!globals.sentItemsDurs){
-                        globals.sentItemsDurs = []
+                if(!globals.sentItemsDurs){
+                    globals.sentItemsDurs = []
+                }
+
+                //add all durations in last 3 seconds
+                totalDurs = globals.sentItemsDurs.reduce((acc, cur)=>{
+                    if(Date.now()-cur.timestamp<3000){
+                        return acc + cur.curDur
+                    }else{
+                        return acc
                     }
+                }, 0)
 
-                    //add all durations in last 3 seconds
-                    totalDurs = globals.sentItemsDurs.reduce((acc, cur)=>{
-                        if(Date.now()-cur.timestamp<3000){
-                            return acc + cur.curDur
-                        }else{
-                            return acc
-                        }
-                    }, 0)
-
-                }, 2000)
+            }, 2000)
+            
+            if (globals.isEmotionCycleSet) {
+               
+            
 
                 setTimeout(() => {
                     //check if user is still speaking 
