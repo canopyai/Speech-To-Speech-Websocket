@@ -2,6 +2,7 @@ export function sendBrowsMovement({
     globals
 }) {
 
+    console.log("sendBrowsMovement function being called")
     // return;
     if (!globals.lastBrowMovement) {
         globals.lastBrowMovement = Date.now() - 10000
@@ -14,6 +15,7 @@ export function sendBrowsMovement({
 
     if (globals.forwardSocket && globals.forwardSocket.ws) {
 
+        console.log("sending brows movement data")
 
         console.log("sending brows movement data")
         globals.forwardSocket.ws.send(JSON.stringify({
