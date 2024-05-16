@@ -27,7 +27,7 @@ export const getAnimationData = async ({
                 body: JSON.stringify({
                     text: TTSSentence,
                     isFirstChunk: isFirstChunk ? true : false,
-                    add_post_padding: false,
+                    add_post_padding: true,
                     voice_vector: globals.voiceVector,
                     speed: globals.speed
                 })
