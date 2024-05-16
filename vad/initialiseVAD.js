@@ -18,7 +18,7 @@ export const initialiseVAD = async ({
                 noddle({
                     globals
                 })
-            }, Math.random()*1000+1000)
+            }, Math.random()*100+1000)
             globals.isEmotionCycleSet = true;
 
             globals.isUserSpeaking = true

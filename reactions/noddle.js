@@ -3,7 +3,7 @@ export function noddle({
 }) {
 
     // return;
-    const nodPercentage = 0.5;
+    const nodPercentage = 0.1;
 
     // console.log("nodding function being called")
     
@@ -19,7 +19,7 @@ export function noddle({
     }
 
     
-    const minNodInterval = 4500
+    const minNodInterval = 6500
 
     if (Date.now() - globals.lastNodTime < minNodInterval) return;
 
