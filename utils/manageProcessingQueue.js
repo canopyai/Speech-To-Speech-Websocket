@@ -38,6 +38,17 @@ export const manageProcessingQueue = ({
         // console.log("headVisemes",headVisemes[0].targets.length)
 
 
+        let curDur = visemes.reduce((acc, cur) => {
+            return acc + cur.duration
+        })
+
+        if(!globals.sentItemsDurs){
+            globals.sentItemsDurs = []
+        }
+
+        globals.sentItemsDurs.push({curDur, timestamp: Date.now()})
+
+
 
         if (forwardData) {
 
@@ -78,6 +89,24 @@ export const manageProcessingQueue = ({
             }
 
             if (globals.isEmotionCycleSet) {
+                let totalDurs = 0;
+                setTimeout(()=>{
+
+                    if(!globals.sentItemsDurs){
+                        globals.sentItemsDurs = []
+                    }
+
+                    //add all durations in last 3 seconds
+                    totalDurs = globals.sentItemsDurs.reduce((acc, cur)=>{
+                        if(Date.now()-cur.timestamp<3000){
+                            return acc + cur.curDur
+                        }else{
+                            return acc
+                        }
+                    }, 0)
+
+                }, 2000)
+
                 setTimeout(() => {
                     //check if user is still speaking 
                     globals.isEmotionCycleSet = false;
@@ -120,7 +149,7 @@ export const manageProcessingQueue = ({
                     };
                     
                     globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
-                }, 5000)
+                }, totalDurs)
 
     
             }
