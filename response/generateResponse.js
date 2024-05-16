@@ -151,6 +151,8 @@ export const generateResponse = async ({
 
 
                 processingQueue.push(processingObject);
+          
+
                 if (isFirstChunk) {
                     extractCommandsFromSentence({
                         sentence,
