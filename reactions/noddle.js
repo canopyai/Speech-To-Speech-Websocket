@@ -44,9 +44,12 @@ export function noddle({
     let emotion = "happy"
     if (globals.dominantEmotion) {
         emotion = globals.dominantEmotion.emotion
-        getScaleMultiplier(emotion)
-        strength = strength * getScaleMultiplier(emotion)[0]
-        duration = duration * getScaleMultiplier(emotion)[1]
+        const csc =getScaleMultiplier(emotion)
+        if(csc){
+            strength = strength * csc[0]
+            duration = duration * csc[1]
+        }
+
     }
 
    
