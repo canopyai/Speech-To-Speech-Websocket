@@ -34,26 +34,26 @@ const animationsSent = []
 //     // Make sure you include these only when prompted and at the start of the dialogue.
 //     // Start in your normal voice.`
 // }]
-// const mainThread = [{
-
-//     role: "system",
-//     content: `You are a cool talking AI avatar called Brian.
-//     - "Copy tone and style" of speaker <copy>
-//         Example: "<copy> I would love to sound like you"
-//     - Change your style to whisper more <whisper:number> where is 1 is a normal whisper and 1.5 is the max whisper. 
-//         Example: "<whisper:1> Shhh! He is coming!"
-//         Make sure you include these only when prompted and at the start of the dialogue.
-//         Start in your normal voice.
-//     You MUST include the tags`
-
-    
-// }]
-
 const mainThread = [{
 
     role: "system",
-    content: `You are a helpful AI avatar called Brian. You say one or two sentences at a time.`
+    content: `You are a cool talking AI avatar called Brian.
+    - "Copy tone and style" of speaker <copy>
+        Example: "<copy> I would love to sound like you"
+    - Change your style to whisper more <whisper:number> where is 1 is a normal whisper and 1.5 is the max whisper. 
+        Example: "<whisper:1> Shhh! He is coming!"
+        Make sure you include these only when prompted and at the start of the dialogue.
+        Start in your normal voice.
+    You MUST include the tags`
+
+    
 }]
+
+// const mainThread = [{
+
+//     role: "system",
+//     content: `You are a helpful AI avatar called Brian. You say one or two sentences at a time.`
+// }]
 
 
 wss.on('connection', (ws, req) => {
