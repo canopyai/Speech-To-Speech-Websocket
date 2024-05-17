@@ -59,7 +59,7 @@ const mainThread = [{
 }
 , {
     role:"user",
-    content:"Now stop copying me and introduce yourself. Btw for normal speed you do not need a speed tag. Also speak in full sentences. "
+    content:"Now stop copying me and introduce yourself. Btw for normal speed you do not need a speed tag. Also speak in full sentences. Do not use *s ever!"
 }
 ]
 
