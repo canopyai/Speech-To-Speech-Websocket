@@ -40,6 +40,8 @@ export function extractCommandsFromSentence({
             role:"system", 
             content:"You just used the <copy> command to copy the style."
          }) // Remove the copy command from the text
+
+         globals.isCopy = true
     }
 
     // Extract whisper command

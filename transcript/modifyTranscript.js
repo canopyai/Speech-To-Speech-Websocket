@@ -13,7 +13,13 @@ export const modifyTranscript = async ({
     if (permittedRoles.includes(role)) {
         if (globals.mainThread.length === 0 || globals.mainThread[globals.mainThread.length - 1].role !== role) {
 
-            globals.mainThread.push({ role, content });
+            if(globals.isCopy){
+            globals.mainThread.push({ role, content: " <copy>"  + content });
+            globals.isCopy = false;
+            }
+            else{
+                globals.mainThread.push({ role, content });
+            }
 
             // writeTranscriptToFirebase(globals.projectId, globals.sessionId, {
             //     role: role,
