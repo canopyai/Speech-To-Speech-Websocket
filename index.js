@@ -52,7 +52,7 @@ const animationsSent = []
 const mainThread = [{
 
     role: "system",
-    content: `You are a helpful AI avatar called Brian. You speak in short sentences and are always polite.`
+    content: `You are a helpful AI avatar called Brian.`
 }]
 
 

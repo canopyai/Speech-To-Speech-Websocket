@@ -30,13 +30,6 @@ export const manageProcessingQueue = ({
 
 
         const { emotionSequences, isFirstChunk, headVisemes, headBrowVisemes, visemes } = forwardData;
-        // const { emotionSequences } = forwardData;
-
-
-        // console.log("headBrowVisemes",headBrowVisemes)
-
-        // console.log("headVisemes",headVisemes[0].targets.length)
-
 
         let curDur = visemes.reduce((acc, cur) => {
             return acc + cur.duration
@@ -52,12 +45,9 @@ export const manageProcessingQueue = ({
 
         if (forwardData) {
 
-            
-
-            console.log("there is forward data")
+    
 
             if (isFirstChunk) {
-                console.log("sending clear queue message")
                 globals.forwardSocket.ws.send(JSON.stringify({
                     messageType: "clearQueue",
                     conversationIndex: globals.conversationIndex
@@ -94,7 +84,6 @@ export const manageProcessingQueue = ({
             }
 
             if (Date.now() > globals.lastNonSpeakingTimestamp) {
-                console.log("resetting last nonSpeaking TS")
                 globals.lastNonSpeakingTimestamp = Date.now()
             } 
             
@@ -151,7 +140,6 @@ export const manageProcessingQueue = ({
 
 
             processingQueue.shift();
-            console.log("processing queue length", processingQueue.length, processingQueue)
             if(processingQueue.length==1){
                 setTimeout(()=>{
                     const emotionAnimationData = {

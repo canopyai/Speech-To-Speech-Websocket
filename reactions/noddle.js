@@ -49,7 +49,6 @@ export function noddle({
             strength = strength * csc[0]
             duration = duration * csc[1]
         }
-
     }
 
    
