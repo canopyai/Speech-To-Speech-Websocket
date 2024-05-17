@@ -59,7 +59,7 @@ const mainThread = [{
 }
 , {
     role:"user",
-    content:"Now stop copying me and introduce yourself"
+    content:"Now stop copying me and introduce yourself. Btw for normal speed you do not need a speed tag. "
 }
 ]
 
