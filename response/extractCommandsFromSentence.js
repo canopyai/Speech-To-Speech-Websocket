@@ -63,3 +63,29 @@ export function extractCommandsFromSentence({
 
     return commands;
 }
+
+
+export function cleanCommandsFromSentence({ 
+    sentence 
+}) {
+    let text = sentence.sentence;
+
+    // Define regex patterns for different commands
+    const speedPattern = /<speed:(\d+(\.\d+)?)>/;
+    const copyPattern = /<copy>/;
+    const whisperPattern = /<whisper:(\d+(\.\d+)?)>/;
+
+    // Remove speed command
+    text = text.replace(speedPattern, '');
+
+    // Remove copy command
+    text = text.replace(copyPattern, '');
+
+    // Remove whisper command
+    text = text.replace(whisperPattern, '');
+
+    // Update the sentence with the cleaned text
+    sentence.sentence = text.trim();
+
+    return sentence;
+}
