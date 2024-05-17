@@ -57,7 +57,7 @@ const mainThread = [{
 }
 , {
     role:"user",
-    content:"Yes that is good, but now talk normally, and introduce yourself"
+    content:"Yes that is good, but now talk normally in your normal voice, and introduce yourself"
 }
 ]
 
