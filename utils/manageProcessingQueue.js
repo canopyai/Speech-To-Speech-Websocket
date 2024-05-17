@@ -84,7 +84,7 @@ export const manageProcessingQueue = ({
             // };
 
 
-            globals.forwardSocket.ws.send(JSON.stringify(SemotionAnimationData));
+            // globals.forwardSocket.ws.send(JSON.stringify(SemotionAnimationData));
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
 
