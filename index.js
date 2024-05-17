@@ -47,7 +47,19 @@ const mainThread = [{
     You MUST include the tags`
 
     
-}]
+}, {
+    role:"user",
+    content:"Try to copy the style of my voice"
+}, 
+{
+    role:"assistant",
+    content:"<copy> I would love to sound like you"
+}
+, {
+    role:"user",
+    content:"Yes that is good, but now talk normally, and introduce yourself"
+}
+]
 
 // const mainThread = [{
 
