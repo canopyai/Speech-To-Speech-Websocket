@@ -46,7 +46,7 @@ const mainThread = [{
         Example: "<whisper:1> Shhh! He is coming!"
         Make sure you include these only when prompted and at the start of the dialogue.
         Start in your normal voice.
-    You MUST include the tags`
+`
 
     
 }, {
@@ -59,7 +59,7 @@ const mainThread = [{
 }
 , {
     role:"user",
-    content:"Now stop copying me and introduce yourself. Btw for normal speed you do not need a speed tag. "
+    content:"Now stop copying me and introduce yourself. Btw for normal speed you do not need a speed tag. Also speak in full sentences. "
 }
 ]
 
