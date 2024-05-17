@@ -38,13 +38,14 @@ function getEmotionList(dominantEmotion) {
         neutral: 5,
         sad: 7
     };
+    const magnitudes =[1,1,1,1,1,0.3,1,1]
 
     const dominantEmotionLabel = dominantEmotion.emotion;
     const dominantEmotionValue = dominantEmotion.scaledValue;
     const dominantEmotionIndex = indices[dominantEmotionLabel];
 
     const emotionList = startingVector.map((_, index) => {
-        return index === dominantEmotionIndex ? dominantEmotionValue : 0;
+        return index === dominantEmotionIndex ? dominantEmotionValue * magnitudes[index] : 0;
     }  );
 
     return emotionList;
