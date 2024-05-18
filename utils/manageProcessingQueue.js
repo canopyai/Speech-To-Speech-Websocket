@@ -48,10 +48,10 @@ export const manageProcessingQueue = ({
 
             console.log("bodyVisemes", bodyVisemes[0].length)
 
-            // const bodyObject = {
-            //     messageType: "bodyMovements",
-            //     visemes: bodyVisemes
-            // }
+            const bodyObject = {
+                messageType: "bodyMovements",
+                visemes: bodyVisemes
+            }
     
     
 
@@ -83,7 +83,7 @@ export const manageProcessingQueue = ({
 
 
             globals.forwardSocket.ws.send(JSON.stringify(SemotionAnimationData));
-            // globals.forwardSocket.ws.send(JSON.stringify(bodyObject));
+            globals.forwardSocket.ws.send(JSON.stringify(bodyObject));
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
 
