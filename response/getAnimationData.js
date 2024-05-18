@@ -81,7 +81,7 @@ export const getAnimationData = async ({
             for (let hbv of headBrowVisemes) {
 
                 const {targets} = hbv
-                console.log("hbv targets", targets)
+                // console.log("hbv targets", targets)
 
                 //hbv.targets = [Math.random(),Math.random(),Math.random(),Math.random()]
                 // hbv.targets = [0, 0, 0, 0]
