@@ -46,13 +46,17 @@ export const manageProcessingQueue = ({
         if (forwardData) {
             let bodyVisemes = headVisemes;
             //call math.random 10 times
-            bodyVisemes = [Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random()]
+
+            let btargets = [Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random()]
 
             console.log("bodyVisemes", bodyVisemes)
 
             const bodyObject = {
                 messageType: "bodyMovements",
-                visemes: bodyVisemes
+                visemes: [{
+                    targets:btargets, 
+                    duration:300
+                }]
             }
     
     
