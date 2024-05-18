@@ -46,7 +46,7 @@ export const manageProcessingQueue = ({
         if (forwardData) {
             const bodyVisemes = headVisemes;
 
-            console.log("bodyVisemes", bodyVisemes.length)
+            console.log("bodyVisemes", bodyVisemes[0].length)
 
             const bodyObject = {
                 messageType: "bodyMovements",
