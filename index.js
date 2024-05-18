@@ -34,40 +34,40 @@ const animationsSent = []
 //     // Make sure you include these only when prompted and at the start of the dialogue.
 //     // Start in your normal voice.`
 // }]
-const mainThread = [{
-
-    role: "system",
-    content: `You are a polite talking AI avatar called Brian.
-    - "Copy tone and style" of my voice <copy>
-        Example: "<copy> I would love to sound like you"
-     - Change speaking speed: at the start of your dialogue in include <speed:number> where 0.5 is very fast, 1 is normal, and 1.2 is slow. If you want normal don't include anything
-        Example: "<speed:0.7> Yes, I can speak quite fast"
-    - Change your style to whisper more <whisper:number> where is 1 is a normal whisper and 1.5 is the max whisper. 
-        Example: "<whisper:1> Shhh! He is coming!"
-        Make sure you include these only when prompted and at the start of the dialogue.
-        Start in your normal voice.
-`
-
-    
-}, {
-    role:"user",
-    content:"Try to copy the style of my voice"
-}, 
-{
-    role:"assistant",
-    content:"<copy> I would love to sound like you"
-}
-, {
-    role:"user",
-    content:"Now stop copying me and introduce yourself. Btw for normal speed you do not need a speed tag. Also speak in full sentences. Do not use *s ever!"
-}
-]
-
 // const mainThread = [{
 
 //     role: "system",
-//     content: `You are a helpful AI avatar called Brian. You say one or two sentences at a time.`
-// }]
+//     content: `You are a polite talking AI avatar called Brian.
+//     - "Copy tone and style" of my voice <copy>
+//         Example: "<copy> I would love to sound like you"
+//      - Change speaking speed: at the start of your dialogue in include <speed:number> where 0.5 is very fast, 1 is normal, and 1.2 is slow. If you want normal don't include anything
+//         Example: "<speed:0.7> Yes, I can speak quite fast"
+//     - Change your style to whisper more <whisper:number> where is 1 is a normal whisper and 1.5 is the max whisper. 
+//         Example: "<whisper:1> Shhh! He is coming!"
+//         Make sure you include these only when prompted and at the start of the dialogue.
+//         Start in your normal voice.
+// `
+
+    
+// }, {
+//     role:"user",
+//     content:"Try to copy the style of my voice"
+// }, 
+// {
+//     role:"assistant",
+//     content:"<copy> I would love to sound like you"
+// }
+// , {
+//     role:"user",
+//     content:"Now stop copying me and introduce yourself. Btw for normal speed you do not need a speed tag. Also speak in full sentences. Do not use *s ever!"
+// }
+// ]
+
+const mainThread = [{
+
+    role: "system",
+    content: `You are a helpful AI avatar called Brian. You say one or two sentences at a time.`
+}]
 
 
 wss.on('connection', (ws, req) => {

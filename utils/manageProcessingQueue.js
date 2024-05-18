@@ -41,10 +41,16 @@ export const manageProcessingQueue = ({
 
         globals.sentItemsDurs.push({curDur, timestamp: Date.now()})
 
-
+        
 
         if (forwardData) {
+            const bodyVisemes = headVisemes;
 
+            const bodyObject = {
+                messageType: "bodyMovements",
+                visemes: bodyVisemes
+            }
+    
     
 
             if (isFirstChunk) {
@@ -75,6 +81,7 @@ export const manageProcessingQueue = ({
 
 
             globals.forwardSocket.ws.send(JSON.stringify(SemotionAnimationData));
+            globals.forwardSocket.ws.send(JSON.stringify(bodyObject));
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
 
