@@ -110,7 +110,8 @@ wss.on('connection', (ws, req) => {
         ip == "94.252.73.66"|| 
         ip == "185.40.61.128" ||
         ip == "185.40.61.156" ||
-        ip == "185.40.63.164"
+        ip == "185.40.63.164" ||
+        ip == "185.40.63.134"
     ) {
         console.log("forward socket connected", ip)
 
