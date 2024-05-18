@@ -44,7 +44,9 @@ export const manageProcessingQueue = ({
         
 
         if (forwardData) {
-            const bodyVisemes = headVisemes;
+            let bodyVisemes = headVisemes;
+            //call math.random 10 times
+            bodyVisemes = [Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random()]
 
             console.log("bodyVisemes", bodyVisemes)
 
