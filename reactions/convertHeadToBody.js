@@ -14,6 +14,7 @@ export function convertHeadToBody({
 
 
     eyesIncluded.forEach((viseme, index) => {
+        console.log("viseme", viseme[0])
         viseme.targets[2] = 0
         viseme.targets[3] = 0
     })
