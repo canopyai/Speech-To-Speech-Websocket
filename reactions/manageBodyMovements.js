@@ -23,7 +23,7 @@ export function manageBodyMovements({
 
     } else {
         setTimeout(() => {
-            manageAmbientMovements({
+            manageBodyMovements({
                 globals
             })
             console.log("sent manage ambient moves")
