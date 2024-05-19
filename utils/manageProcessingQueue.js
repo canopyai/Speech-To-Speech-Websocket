@@ -85,6 +85,7 @@ export const manageProcessingQueue = ({
                 }],
             };
 
+            console.log("headVisemes", headVisemes)
 
             globals.forwardSocket.ws.send(JSON.stringify(emotionAnimationData));
             const SemotionAnimationData = {
