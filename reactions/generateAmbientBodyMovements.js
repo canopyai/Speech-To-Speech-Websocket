@@ -1,7 +1,7 @@
 export function generateAmbientBodyMovements({
     duration,
 }) {
-    const baseScalar = 30;
+    const baseScalar = 1;
     const frequencies = [0.2, 1, 0.1];
     const relativeMagnitudes = [1, 0.7, 1];
     const absoluteMagnitude = 1.2;
