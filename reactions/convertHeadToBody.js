@@ -34,14 +34,14 @@ function eyeMovementsForBody({
     const newVisemes = []
     const timestep = 15
     for (let viseme of visemes) {
-        const { targets } = viseme
+        const { targets, duration } = viseme
 
         let eyeTargets = [targets[5] * lookUpRatio, lookRightRatio * targets[1], targets[4] * lookDownRatio, targets[0] * lookLeftRatio]
         
 
         newVisemes.push({
             targets: viseme.targets.concat(eyeTargets),
-            duration: (Math.random()<0.01)?((Math.random()*1500)):timestep
+            duration
         })
 
     }
