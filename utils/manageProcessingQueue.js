@@ -88,7 +88,7 @@ export const manageProcessingQueue = ({
             };
 
 
-            console.log("visemesWithEyes", visemesWithEyes)
+            // console.log("visemesWithEyes", visemesWithEyes)
             globals.forwardSocket.ws.send(JSON.stringify(SemotionAnimationData));
             globals.forwardSocket.ws.send(JSON.stringify(bodyObject));
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));

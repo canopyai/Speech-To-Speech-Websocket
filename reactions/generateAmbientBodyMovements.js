@@ -46,6 +46,7 @@ export function generateAmbientBodyMovements({ duration }) {
     movements = smoothTransitions(movements);
 
     const halfSine = generateHalfSineWave(movements.length)
+    console.log("halfSine", halfSine)
     movements.forEach((el, index)=>{
 
         el.targets.forEach((t, index)=>{
