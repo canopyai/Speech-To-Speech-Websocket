@@ -13,7 +13,7 @@ export function manageBodyMovements({
             globals
         })
         visemes = [{
-            targets: [1, 0, 0, 0, 0, 0],
+            targets: [0, 0, 0, 0, 1, 0],
             duration: 300
         }, 
         ]
