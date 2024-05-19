@@ -124,18 +124,18 @@ wss.on('connection', (ws, req) => {
             forwardSocket
         });
 
-        // setTimeout(() => {
-        //     manageAmbientMovements({
-        //         globals
-        //     })
-        // }, 5000)
+        setTimeout(() => {
+            manageAmbientMovements({
+                globals
+            })
+        }, 2000)
 
 
-        // setTimeout(() => {
-        //     manageBodyMovements({
-        //         globals
-        //     })
-        // }, 5000)
+        setTimeout(() => {
+            manageBodyMovements({
+                globals
+            })
+        }, 2000)
 
 
         
