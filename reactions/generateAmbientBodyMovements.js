@@ -1,6 +1,6 @@
 export function generateAmbientBodyMovements({ duration }) {
     const baseScalar = 1;
-    const relativeMagnitudes = [1, 0.7, 1];
+    const relativeMagnitudes = [Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5];
     const absoluteMagnitude = 1.2;
     const timestep = 15;
     const numSteps = Math.floor(duration / timestep);
@@ -14,6 +14,13 @@ export function generateAmbientBodyMovements({ duration }) {
     // Generate three random frequencies
     const frequencies = [getRandomFrequency(), getRandomFrequency(), getRandomFrequency()];
   
+    // Randomly choose one active element per pair (0,1), (2,3), (4,5)
+    const activeIndices = [
+      Math.random() < 0.5 ? 0 : 1,
+      Math.random() < 0.5 ? 2 : 3,
+      Math.random() < 0.5 ? 4 : 5
+    ];
+  
     for (let step = 0; step < numSteps; step++) {
       const timeInSeconds = (step * timestep) / 1000.0;
       const envelope = Math.sin((Math.PI * step) / numSteps); // Half-sine wave envelope
@@ -26,8 +33,8 @@ export function generateAmbientBodyMovements({ duration }) {
         const noise = (Math.random() - 0.5) * 0.02; // Small noise factor
         const value = baseScalar * variedMagnitude * absoluteMagnitude * Math.sin(2 * Math.PI * variedFreq * timeInSeconds) + noise;
   
-        // Set the active element at indices 1, 3, 5 and apply the envelope
-        targets[index * 2 + 1] = value * envelope;
+        // Set the active element at the chosen index and apply the envelope
+        targets[activeIndices[index]] = value * envelope;
       });
   
       movements.push({
@@ -42,18 +49,16 @@ export function generateAmbientBodyMovements({ duration }) {
       duration: timestep,
     });
   
+    // Apply the half-sine wave to all targets
+    const halfSine = generateHalfSineWave(movements.length);
+    movements.forEach((el, sinDex) => {
+      el.targets.forEach((t, index) => {
+        el.targets[index] = t * halfSine[sinDex];
+      });
+    });
+  
     // Smooth transitions
     movements = smoothTransitions(movements);
-
-    const halfSine = generateHalfSineWave(movements.length)
-    console.log("halfSine", halfSine)
-    movements.forEach((el, sinDex)=>{
-
-        el.targets.forEach((t, index)=>{
-            el.targets[index] = t * halfSine[sinDex]
-        })
-    })
-        
   
     return movements;
   }
@@ -83,9 +88,6 @@ export function generateAmbientBodyMovements({ duration }) {
     return smoothedMovements;
   }
   
-
-  
-
   function generateHalfSineWave(n) {
     const sineWave = [];
     for (let i = 0; i < n; i++) {
@@ -94,4 +96,8 @@ export function generateAmbientBodyMovements({ duration }) {
     }
     return sineWave;
   }
+  
+  // Example usage
+  const movements = generateAmbientBodyMovements({ duration: 2000 });
+  console.log(movements);
   
