@@ -15,6 +15,7 @@ import { handleUpdateDialogue } from './canopy_methods/handleUpdateDialogue.js';
 import { handleMessageThreadLength } from './canopy_methods/handleMessageThreadLength.js';
 import { handleConfig } from "./authenticate/handle_config/handleConfig.js"
 import { manageAmbientMovements } from "./reactions/manageAmbientMovements.js"
+import { manageBodyMovements } from './reactions/manageBodyMovements.js';
 
 const permittedRoles = ["user", "assistant", "system"];
 
@@ -123,12 +124,21 @@ wss.on('connection', (ws, req) => {
             forwardSocket
         });
 
+        // setTimeout(() => {
+        //     manageAmbientMovements({
+        //         globals
+        //     })
+        // }, 5000)
+
+
         setTimeout(() => {
-            manageAmbientMovements({
+            manageBodyMovements({
                 globals
             })
         }, 5000)
 
+
+        
 
 
         initialiseForwardSocket({
