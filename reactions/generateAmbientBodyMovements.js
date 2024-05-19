@@ -17,22 +17,17 @@ export function generateAmbientBodyMovements({ duration }) {
     for (let step = 0; step < numSteps; step++) {
       const timeInSeconds = (step * timestep) / 1000.0;
       const envelope = Math.sin((Math.PI * step) / numSteps); // Half-sine wave envelope
-      let targets = Array(6).fill(0); // Initialize with zeroes
+      let targets = [0, 0, 0, 0, 0, 0]; // Initialize with zeroes
   
-      // Calculate sin values for three pairs and ensure only one element in each pair is active
+      // Calculate sin values for three active elements
       frequencies.forEach((freq, index) => {
-        const variedFreq = freq + (Math.random() * 0.02 - 0.01); // Even smaller random variation
-        const variedMagnitude = relativeMagnitudes[index] * (1 + (Math.random() * 0.1 - 0.05)); // Even smaller random variation
-        const noise = (Math.random() - 0.5) * 0.02; // Much smaller noise factor
+        const variedFreq = freq + (Math.random() * 0.02 - 0.01); // Small random variation
+        const variedMagnitude = relativeMagnitudes[index] * (1 + (Math.random() * 0.1 - 0.05)); // Small random variation
+        const noise = (Math.random() - 0.5) * 0.02; // Small noise factor
         const value = envelope * (baseScalar * variedMagnitude * absoluteMagnitude * Math.sin(2 * Math.PI * variedFreq * timeInSeconds) + noise);
   
-        // Randomly select which element in the pair to activate
-        const pairIndex = index * 2;
-        if (Math.random() < 0.5) {
-          targets[pairIndex] = value;
-        } else {
-          targets[pairIndex + 1] = value;
-        }
+        // Set the active element at indices 1, 3, 5
+        targets[index * 2 + 1] = value;
       });
   
       movements.push({
