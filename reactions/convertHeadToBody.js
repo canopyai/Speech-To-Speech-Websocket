@@ -13,6 +13,11 @@ export function convertHeadToBody({
         duration: totalDuration,
 
     })
+
+    visemes.forEach((el)=>{
+        el.targets[2] = 0
+        el.targets[3] = 0
+    })
     let visemesWithEyes = eyeMovementsForBody({visemes})
     console.log("totalDuration", totalDuration)
 
