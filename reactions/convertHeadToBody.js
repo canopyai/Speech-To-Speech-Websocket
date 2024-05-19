@@ -9,9 +9,18 @@ export function convertHeadToBody({
     //add up all the durations together
 
     const totalDuration = headVisemes.reduce((acc, curr) => acc + curr.duration, 0)
-    const visemes = generateAmbientBodyMovements({
+    let visemes = generateAmbientBodyMovements({
         duration: totalDuration,
 
+    })
+
+    visemes = []
+
+    headVisemes.forEach((el)=>{
+        visemes.push({
+            targets: el.targets.slice(0, 6),
+            duration: el.duration
+        })
     })
 
     visemes.forEach((el)=>{
