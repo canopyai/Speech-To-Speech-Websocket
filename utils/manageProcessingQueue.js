@@ -47,14 +47,25 @@ export const manageProcessingQueue = ({
             let bodyVisemes = headVisemes;
             //call math.random 10 times
 
-
-            console.log("sending body visemes", bodyVisemes)
-
-        
+            let btargets = [Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random()]
+            btargets[2] = 0
+            btargets[3] = 0
             const bodyObject = {
                 messageType: "bodyMovements",
-                visemes: bodyVisemes,
-            };
+                visemes: [{
+                    targets:btargets, 
+                    duration:300
+                }, {
+                    targets:btargets, 
+                    duration:300
+                }, {
+                    targets:btargets, 
+                    duration:300
+                }, {
+                    targets:btargets, 
+                    duration:300
+                }]
+            }
     
     
 
