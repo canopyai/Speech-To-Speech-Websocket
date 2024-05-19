@@ -48,7 +48,8 @@ export const manageProcessingQueue = ({
             //call math.random 10 times
 
             let btargets = [Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random()]
-
+            btargets[2] = 0
+            btargets[3] = 0
             const bodyObject = {
                 messageType: "bodyMovements",
                 visemes: [{
