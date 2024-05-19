@@ -1,4 +1,4 @@
-function cleanHeadMovements(data) {
+export function cleanHeadMovements(data) {
     // Helper function to process each pair
     function processPair(arr, index1, index2) {
       if (Math.abs(arr[index1]) > Math.abs(arr[index2])) {
