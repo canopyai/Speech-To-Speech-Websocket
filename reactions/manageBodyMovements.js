@@ -8,22 +8,22 @@ export function manageBodyMovements({
 
     if (globals.forwardSocket && globals.forwardSocket.ws) {
         const overAllDuration = 60000
-        const visemes = generateAmbientBodyMovements({
+        let visemes = generateAmbientBodyMovements({
             duration: overAllDuration,
             globals
         })
-
+        visemes = [{
+            targets: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            duration: 300
+        }, 
+        ]
 
 
 
 
         let visemesWithEyes = eyeMovementsForBody({visemes})
         
-        visemesWithEyes = [{
-            targets: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            duration: 300
-        }, 
-        ]
+     
 
         console.log("visemesWithEyes", visemesWithEyes)
     
