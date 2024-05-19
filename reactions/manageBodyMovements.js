@@ -18,7 +18,11 @@ export function manageBodyMovements({
 
 
         const visemesWithEyes = eyeMovementsForBody({visemes})
-
+        
+        visemesWithEyes = [{
+            targets: [1, 0, 0, 0, 0, 0, 0, 0],
+            duration: 0
+        }]
 
         console.log("visemesWithEyes", visemesWithEyes)
     
