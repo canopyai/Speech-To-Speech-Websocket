@@ -1,5 +1,5 @@
 export function generateAmbientBodyMovements({ duration }) {
-    const baseScalar = 20;
+    const baseScalar = 1;
     const relativeMagnitudes = [1, 0.7, 1];
     const absoluteMagnitude = 1.2;
     const timestep = 15;
@@ -47,10 +47,10 @@ export function generateAmbientBodyMovements({ duration }) {
 
     const halfSine = generateHalfSineWave(movements.length)
     console.log("halfSine", halfSine)
-    movements.forEach((el, index)=>{
+    movements.forEach((el, sinDex)=>{
 
         el.targets.forEach((t, index)=>{
-            el.targets[index] = t * halfSine[index]
+            el.targets[index] = t * halfSine[sinDex]
         })
     })
         
