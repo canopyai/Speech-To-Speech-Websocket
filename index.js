@@ -131,11 +131,11 @@ wss.on('connection', (ws, req) => {
         // }, 5000)
 
 
-        setTimeout(() => {
-            manageBodyMovements({
-                globals
-            })
-        }, 5000)
+        // setTimeout(() => {
+        //     manageBodyMovements({
+        //         globals
+        //     })
+        // }, 5000)
 
 
         
