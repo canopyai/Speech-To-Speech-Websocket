@@ -44,7 +44,7 @@ export function generateAmbientHeadMovements({
 
 function smoothTransitions(movements) {
     const smoothedMovements = [];
-    const alpha = 0.1; // Smoothing factor
+    const alpha = 0.01; // Smoothing factor
 
     for (let i = 0; i < movements.length; i++) {
         if (i === 0) {
