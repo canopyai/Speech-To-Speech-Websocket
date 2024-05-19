@@ -39,7 +39,7 @@ export const getAnimationData = async ({
 
             const data = await response.json(); // Assuming the server responds with JSON
 
-            const {
+            let {
                 b64string: audioData,
                 visemes,
                 segments_latency: segmentsLatency,
