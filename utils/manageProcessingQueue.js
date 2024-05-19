@@ -1,6 +1,3 @@
-import fs from "fs"
-
-
 export const manageProcessingQueue = ({
     processingQueue,
     globals,

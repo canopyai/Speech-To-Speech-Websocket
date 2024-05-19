@@ -1,5 +1,5 @@
 import { generateRandomHex } from "../utils/generateHexCode.js";
-import fs from 'fs';
+import { cleanHeadMovements } from "../response/cleanHeadMovements.js"
 export const getAnimationData = async ({
     TTSSentence,
     globals,
