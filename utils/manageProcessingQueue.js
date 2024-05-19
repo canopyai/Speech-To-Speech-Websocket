@@ -1,3 +1,5 @@
+import { convertHeadToBody } from "../reactions/convertHeadToBody";
+
 export const manageProcessingQueue = ({
     processingQueue,
     globals,
@@ -41,28 +43,20 @@ export const manageProcessingQueue = ({
         
 
         if (forwardData) {
-            let bodyVisemes = headVisemes;
-            //call math.random 10 times
+            let eyesIncluded = convertHeadToBody({headVisemes});
 
-            let btargets = [Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random(), Math.random(), Math.random(),Math.random(), Math.random()]
-            btargets[2] = 0
-            btargets[3] = 0
+
             const bodyObject = {
                 messageType: "bodyMovements",
-                visemes: [{
-                    targets:btargets, 
-                    duration:300
-                }, {
-                    targets:btargets, 
-                    duration:300
-                }, {
-                    targets:btargets, 
-                    duration:300
-                }, {
-                    targets:btargets, 
-                    duration:300
-                }]
+                visemes: eyesIncluded,
             }
+
+            
+            //call math.random 10 times
+
+
+
+            
     
     
 
@@ -95,8 +89,7 @@ export const manageProcessingQueue = ({
 
 
             globals.forwardSocket.ws.send(JSON.stringify(SemotionAnimationData));
-            // globals.forwardSocket.ws.send(JSON.stringify(bodyObject));
-            console.log("sent body movements")
+            globals.forwardSocket.ws.send(JSON.stringify(bodyObject));
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
 

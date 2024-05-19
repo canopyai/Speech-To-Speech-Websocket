@@ -1,5 +1,4 @@
 export function eyeMovementsForBody({
-    globals,
     visemes
 }) {
 
