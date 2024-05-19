@@ -4,7 +4,7 @@ export function convertHeadToBody({
     const initialVisemes = headVisemes.map((viseme) => {
         return {
             duration: viseme.duration,
-            targets: viseme.targets.slice(0, 5)
+            targets: viseme.targets.slice(0, 6)
         }
     });
 
