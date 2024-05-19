@@ -1,5 +1,5 @@
 import { generateAmbientBodyMovements } from './generateAmbientBodyMovements.js';
-
+import { eyeMovementsForBody } from "./eyeMovementsForBody.js"
 export function convertHeadToBody({
     headVisemes
 }){
@@ -9,5 +9,12 @@ export function convertHeadToBody({
     //add up all the durations together
 
     const totalDuration = headVisemes.reduce((acc, curr) => acc + curr.duration, 0)
+    const visemes = generateAmbientBodyMovements({
+        duration: totalDuration,
+
+    })
+    let visemesWithEyes = eyeMovementsForBody({visemes})
     console.log("totalDuration", totalDuration)
+
+    return visemesWithEyes
 }

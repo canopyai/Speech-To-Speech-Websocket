@@ -1,6 +1,5 @@
 export function generateAmbientBodyMovements({
     duration,
-    globals
 }) {
     const baseScalar = 0.3;
     const frequencies = [0.2, 1, 0.1];
@@ -9,11 +8,6 @@ export function generateAmbientBodyMovements({
     const timestep = 15;
     const numSteps = Math.floor(duration / timestep);
     let movements = [];
-    let isEyebrows = false;
-
-    if (globals.isUserSpeaking) {
-        isEyebrows = Math.random() > 0.5;
-    }
 
     for (let step = 0; step < numSteps; step++) {
         const timeInSeconds = step * timestep / 1000.0;
