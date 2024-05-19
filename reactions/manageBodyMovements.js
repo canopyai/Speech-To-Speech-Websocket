@@ -1,5 +1,6 @@
 import { generateAmbientHeadMovements } from "./generateAmbientHeadMovements.js"
-import { eyeMovementsForAmbient } from "./eyeMovementsForAmbient.js"
+import { eyeMovementsForBody } from "./eyeMovementsForBody.js"
+
 
 export function manageBodyMovements({
     globals
