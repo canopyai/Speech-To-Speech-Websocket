@@ -14,15 +14,6 @@ export function convertHeadToBody({
 
     })
 
-    visemes = []
-
-    headVisemes.forEach((el)=>{
-        visemes.push({
-            targets: el.targets.slice(0, 6),
-            duration: el.duration
-        })
-    })
-
     visemes.forEach((el)=>{
         el.targets[2] = 0
         el.targets[3] = 0
