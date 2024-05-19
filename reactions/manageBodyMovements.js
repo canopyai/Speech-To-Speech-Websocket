@@ -21,6 +21,11 @@ export function manageBodyMovements({
 
 
         console.log("visemesWithEyes", visemesWithEyes)
+    
+        visemesWithEyes.forEach((el)=>{
+            el.targets[2] = 0
+            el.targets[3] = 0
+        })
         
         console.log("sending ambient movements")
         globals.forwardSocket.ws.send(JSON.stringify({
