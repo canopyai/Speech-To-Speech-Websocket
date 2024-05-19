@@ -32,7 +32,7 @@ export function generateAmbientBodyMovements({ duration }) {
   
       movements.push({
         targets,
-        duration: Math.random() < 0.05 ? Math.random() * 150 : timestep, // Add variability to duration
+        duration: timestep, 
       });
     }
   
@@ -46,7 +46,7 @@ export function generateAmbientBodyMovements({ duration }) {
     movements = smoothTransitions(movements);
 
     const halfSine = generateHalfSineWave(movements.length)
-    console.log("halfSine", halfSine)
+
     movements.forEach((el, sinDex)=>{
 
         el.targets.forEach((t, index)=>{
@@ -60,7 +60,7 @@ export function generateAmbientBodyMovements({ duration }) {
   
   function smoothTransitions(movements) {
     const smoothedMovements = [];
-    const alpha = 0.01; // Smoothing factor
+    const alpha = 0.05; // Smoothing factor
   
     for (let i = 0; i < movements.length; i++) {
       if (i === 0) {
