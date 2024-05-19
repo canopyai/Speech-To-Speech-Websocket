@@ -45,13 +45,13 @@ export const manageProcessingQueue = ({
         if (forwardData) {
             let eyesIncluded = convertHeadToBody({headVisemes});
 
-            console.log("eyesIncluded", eyesIncluded)
+            // console.log("eyesIncluded", eyesIncluded)
 
 
-            const bodyObject = {
-                messageType: "bodyMovements",
-                visemes: eyesIncluded,
-            }
+            // const bodyObject = {
+            //     messageType: "bodyMovements",
+            //     visemes: eyesIncluded,
+            // }
 
             
             //call math.random 10 times
@@ -89,7 +89,7 @@ export const manageProcessingQueue = ({
 
 
             globals.forwardSocket.ws.send(JSON.stringify(SemotionAnimationData));
-            globals.forwardSocket.ws.send(JSON.stringify(bodyObject));
+            // globals.forwardSocket.ws.send(JSON.stringify(bodyObject));
             globals.forwardSocket.ws.send(JSON.stringify(forwardData));
 
 
