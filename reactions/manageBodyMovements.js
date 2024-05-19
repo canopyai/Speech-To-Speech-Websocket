@@ -1,4 +1,4 @@
-import { generateAmbientHeadMovements } from "./generateAmbientHeadMovements.js"
+import { generateAmbientBodyMovements } from "./generateAmbientBodyMovements.js"
 import { eyeMovementsForBody } from "./eyeMovementsForBody.js"
 
 
@@ -8,7 +8,7 @@ export function manageBodyMovements({
 
     if (globals.forwardSocket && globals.forwardSocket.ws) {
         const overAllDuration = 60000
-        const visemes = generateAmbientHeadMovements({
+        const visemes = generateAmbientBodyMovements({
             duration: overAllDuration,
             globals
         })

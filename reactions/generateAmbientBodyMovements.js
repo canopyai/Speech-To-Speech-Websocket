@@ -1,4 +1,4 @@
-export function generateAmbientHeadMovements({
+export function generateAmbientBodyMovements({
     duration,
     globals
 }) {
