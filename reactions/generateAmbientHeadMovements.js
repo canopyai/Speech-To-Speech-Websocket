@@ -2,7 +2,7 @@ export function generateAmbientHeadMovements({
     duration,
     globals
 }) {
-    const baseScalar = 0.3;
+    const baseScalar = 0.7;
     const frequencies = [0.2, 1, 0.1];
     const relativeMagnitudes = [1, 0.7, 1]
     const absoluteMagnitude = 1.2
