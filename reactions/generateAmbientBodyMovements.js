@@ -1,5 +1,5 @@
 export function generateAmbientBodyMovements({ duration }) {
-    const baseScalar = 1;
+    const baseScalar = 0.3;
     const relativeMagnitudes = [Math.random()*0.5 + 0.5, Math.random()*0.5 + 0.5, Math.random()*0.5 + 0.5];
     const absoluteMagnitude = 1.2;
     const timestep = 15;
@@ -8,7 +8,7 @@ export function generateAmbientBodyMovements({ duration }) {
   
     // Function to generate a random frequency between 0.1 and 0.3
     function getRandomFrequency() {
-      return 0.1 + Math.random() * 0.2;
+      return (0.1 + Math.random() * 0.2)/3;
     }
   
     // Generate three random frequencies
