@@ -1,5 +1,5 @@
 export function generateAmbientBodyMovements({ duration }) {
-    const baseScalar = 1;
+    const baseScalar = 20;
     const relativeMagnitudes = [1, 0.7, 1];
     const absoluteMagnitude = 1.2;
     const timestep = 15;
@@ -81,6 +81,8 @@ export function generateAmbientBodyMovements({ duration }) {
   
     return smoothedMovements;
   }
+  
+
   
 
   function generateHalfSineWave(n) {
