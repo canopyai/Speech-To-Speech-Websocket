@@ -45,13 +45,13 @@ export function generateAmbientBodyMovements({ duration }) {
     // Smooth transitions
     movements = smoothTransitions(movements);
 
-    const halfSine = generateHalfSineWave(movements.length)
-    movements.forEach((el, index)=>{
+    // const halfSine = generateHalfSineWave(movements.length)
+    // movements.forEach((el, index)=>{
 
-        el.targets.forEach((t, index)=>{
-            el.targets[index] = t * halfSine[index]
-        })
-    })
+    //     el.targets.forEach((t, index)=>{
+    //         el.targets[index] = t * halfSine[index]
+    //     })
+    // })
         
   
     return movements;
