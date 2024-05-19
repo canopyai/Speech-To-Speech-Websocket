@@ -45,6 +45,8 @@ export const manageProcessingQueue = ({
         if (forwardData) {
             let eyesIncluded = convertHeadToBody({headVisemes});
 
+            console.log("eyesIncluded", eyesIncluded)
+
 
             const bodyObject = {
                 messageType: "bodyMovements",
