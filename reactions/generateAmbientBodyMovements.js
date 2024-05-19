@@ -24,10 +24,10 @@ export function generateAmbientBodyMovements({ duration }) {
         const variedFreq = freq + (Math.random() * 0.02 - 0.01); // Small random variation
         const variedMagnitude = relativeMagnitudes[index] * (1 + (Math.random() * 0.1 - 0.05)); // Small random variation
         const noise = (Math.random() - 0.5) * 0.02; // Small noise factor
-        const value = envelope * (baseScalar * variedMagnitude * absoluteMagnitude * Math.sin(2 * Math.PI * variedFreq * timeInSeconds) + noise);
+        const value = baseScalar * variedMagnitude * absoluteMagnitude * Math.sin(2 * Math.PI * variedFreq * timeInSeconds) + noise;
   
-        // Set the active element at indices 1, 3, 5
-        targets[index * 2 + 1] = value;
+        // Set the active element at indices 1, 3, 5 and apply the envelope
+        targets[index * 2 + 1] = value * envelope;
       });
   
       movements.push({
@@ -35,6 +35,12 @@ export function generateAmbientBodyMovements({ duration }) {
         duration: Math.random() < 0.05 ? Math.random() * 150 : timestep, // Add variability to duration
       });
     }
+  
+    // Ensure the last targets are all zero by adding a final movement with zero targets
+    movements.push({
+      targets: [0, 0, 0, 0, 0, 0],
+      duration: timestep,
+    });
   
     // Smooth transitions
     movements = smoothTransitions(movements);
