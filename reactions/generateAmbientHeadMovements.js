@@ -23,7 +23,7 @@ export function generateAmbientHeadMovements({
         frequencies.forEach((freq, index) => {
             const variedFreq = freq + (Math.random() * 0.05 - 0.025); // Small random variation
             const variedMagnitude = relativeMagnitudes[index] * (1 + (Math.random() * 0.2 - 0.1)); // Small random variation
-            const noise = (Math.random() - 0.5) * 0.1; // Small noise factor
+            const noise = (Math.random() - 0.5) * 0.05; // Smaller noise factor
             targets.push(baseScalar * variedMagnitude * absoluteMagnitude * Math.sin(2 * Math.PI * variedFreq * timeInSeconds) + noise);
             if (index < frequencies.length) {
                 targets.push(0); // Maintain interleaved zeroes
@@ -36,20 +36,26 @@ export function generateAmbientHeadMovements({
         });
     }
 
-    // Optionally smooth transitions
+    // Optionally smooth transitions using easing functions
     movements = smoothTransitions(movements);
 
     return movements;
 }
 
 function smoothTransitions(movements) {
+    function easeInOutQuad(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
     for (let i = 1; i < movements.length; i++) {
         const prevTargets = movements[i - 1].targets;
         const currTargets = movements[i].targets;
-        movements[i].targets = currTargets.map((target, index) => {
+        const easedTargets = currTargets.map((target, index) => {
             const prevTarget = prevTargets[index];
-            return (prevTarget + target) / 2; // Simple linear interpolation
+            const t = easeInOutQuad(i / movements.length); // Apply easing
+            return prevTarget + t * (target - prevTarget); // Interpolation with easing
         });
+        movements[i].targets = easedTargets;
     }
     return movements;
 }
