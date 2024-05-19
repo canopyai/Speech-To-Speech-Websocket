@@ -1,4 +1,4 @@
-import { convertHeadToBody } from "reactions/convertHeadToBody.js";
+import { convertHeadToBody } from "../reactions/convertHeadToBody";
 
 export const manageProcessingQueue = ({
     processingQueue,
