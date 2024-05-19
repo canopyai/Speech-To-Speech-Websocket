@@ -12,11 +12,11 @@ export function manageBodyMovements({
             duration: overAllDuration,
             globals
         })
-        visemes = [{
-            targets: [0, 0, 0, 0, 1, 0],
-            duration: 300
-        }, 
-        ]
+        // visemes = [{
+        //     targets: [0, 0, 0, 0, 1, 0],
+        //     duration: 300
+        // }, 
+        // ]
 
 
 
