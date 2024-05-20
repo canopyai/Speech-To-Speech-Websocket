@@ -119,7 +119,7 @@ export const generateResponse = async ({
                 sentence
             });
 
-            // console.log("sentence", sentence.sentence)
+            console.log("sentence", sentence.sentence)
 
 
             if (shouldProcessContent({ sentence, part }) || finishReason === "stop") {
