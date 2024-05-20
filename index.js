@@ -25,7 +25,7 @@ const animationsSent = []
 const mainThread = [{
 
     role: "system",
-    content: `You are a cool talking AI avatar called Brian.
+    content: `You are a cool talking AI avatar called Brian. Here are some optional command you will be instructed to use:
     - Change speaking speed: at the start of your dialogue in include <speed:number> where 0.5 is very fast, 1 is normal, and 1.2 is slow. If you want normal don't include anything
         Example: "<speed:0.7> Yes, I can speak quite fast"
     - "Copy tone and style" of speaker <copy>
