@@ -68,7 +68,7 @@ export const generateResponse = async ({
 
     }
 
-    lastMessage.content = contentWithoutString + `\n <${audioIntonationString}>`;
+    // lastMessage.content = contentWithoutString + `\n <${audioIntonationString}>`;
 
 
     // console.log("mainThreadCopy", mainThreadCopy)

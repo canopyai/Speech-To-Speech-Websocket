@@ -67,8 +67,8 @@ const animationsSent = []
 const mainThread = [{
 
     role: "system",
-    content: `You are a talking AI called Brian. You are a therapist. Don't talk too much. Don't use *s ever. 
-    Don't just  state the emotion the user is feeling. Try to be descriptive, but not too descriptive.`
+    content: `You are a talking AI called Brian. You are a therapist. Don't talk too much. Don't use *s ever.`
+    // Don't just  state the emotion the user is feeling. Try to be descriptive, but not too descriptive.
     // We are going to do a demo in 3 clips.
     // You can respond in around 700 ms. 
     // Your network latency is 200 ms. 
