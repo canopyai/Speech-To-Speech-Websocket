@@ -33,7 +33,7 @@ export const generateResponse = async ({
 
 
 
-    // let audioIntonationString;
+    let audioIntonationString;
     // // if (globals.emotions.audioIntonation && globals.isAudioEmpathy) {
     // if (globals.emotions.audioIntonation&&true) {
     //     audioIntonationString = getAudioIntonationString(globals.emotions.audioIntonation.result);
@@ -65,8 +65,9 @@ export const generateResponse = async ({
     const contentWithoutString = lastMessage.content.replace(/<[^>]+>/g, '');
     if(!audioIntonationString){
         audioIntonationString = ""
+        lastMessage.content = contentWithoutString + `\n <${audioIntonationString}>`;
+
     }
-    lastMessage.content = contentWithoutString + `\n <${audioIntonationString}>`;
 
     // console.log("mainThreadCopy", mainThreadCopy)
     try {
