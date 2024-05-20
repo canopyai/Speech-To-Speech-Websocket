@@ -29,8 +29,8 @@ export const getAnimationData = async ({
                     isFirstChunk: isFirstChunk ? true : false,
                     add_post_padding: false,
                     voice_vector: globals.voiceVector,
-                    speed:0.97
-                    // speed: globals.speed
+                    // speed:0.97
+                    speed: globals.speed
                 })
             });
 
