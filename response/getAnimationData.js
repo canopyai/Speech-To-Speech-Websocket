@@ -17,7 +17,7 @@ export const getAnimationData = async ({
         const startTime = Date.now();
 
 
-        TTSSentence = `Hey there, I am a realtime talking AI Avatar called Brian.
+        TTSSentence = `Hey there, I am a realtime talking AI Avatar called Brian. I am capable of understanding and expressing empathy through tone of voice and body language.
         `
 
 
