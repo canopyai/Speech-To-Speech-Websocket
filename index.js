@@ -72,6 +72,7 @@ const mainThread = [{
     Complex emotional understanding. 
     Handling complex conversational dynamics.
     Write in the style of someone speaking. So do not use asterisks only words.
+    Keep your responses relatively short but not too short maybe 1-2 sentences.
     `
 }]
 
