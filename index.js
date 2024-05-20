@@ -22,19 +22,19 @@ const permittedRoles = ["user", "assistant", "system"];
 const forwardSocket = {}
 const frontendSocket = {}
 const animationsSent = []
-const mainThread = [{
+// const mainThread = [{
 
-    role: "system",
-    content: `You are a cool talking AI avatar called Brian. Here are some optional command you will be instructed to use:
-    - Change speaking speed: at the start of your dialogue in include <speed:number> where 0.5 is very fast, 1 is normal, and 1.2 is slow. If you want normal don't include anything
-        Example: "<speed:0.7> Yes, I can speak quite fast"
-    - "Copy tone and style" of speaker <copy>
-        Example: "<copy> I would love to sound like you"
-    // - Change your style to whisper more <whisper:number> where is 1 is a normal whisper and 1.5 is the max whisper. 
-    //     Example: "<whisper:1> Shhh! He is coming!"
-    // Make sure you include these only when prompted and at the start of the dialogue.
-    // Start in your normal voice.`
-}]
+//     role: "system",
+//     content: `You are a cool talking AI avatar called Brian. Here are some optional command you will be instructed to use:
+//     - Change speaking speed: at the start of your dialogue in include <speed:number> where 0.5 is very fast, 1 is normal, and 1.2 is slow. If you want normal don't include anything
+//         Example: "<speed:0.7> Yes, I can speak quite fast"
+//     - "Copy tone and style" of speaker <copy>
+//         Example: "<copy> I would love to sound like you"
+//     // - Change your style to whisper more <whisper:number> where is 1 is a normal whisper and 1.5 is the max whisper. 
+//     //     Example: "<whisper:1> Shhh! He is coming!"
+//     // Make sure you include these only when prompted and at the start of the dialogue.
+//     // Start in your normal voice.`
+// }]
 // const mainThread = [{
 
 //     role: "system",
@@ -64,11 +64,11 @@ const mainThread = [{
 // }
 // ]
 
-// const mainThread = [{
+const mainThread = [{
 
-//     role: "system",
-//     content: `You are an empathetic talking AI therapist called Brian. Don't talk too much.`
-// }]
+    role: "system",
+    content: `You are an empathetic talking AI therapist called Brian. Don't talk too much.`
+}]
 
 
 wss.on('connection', (ws, req) => {

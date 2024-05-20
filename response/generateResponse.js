@@ -63,10 +63,10 @@ export const generateResponse = async ({
     let mainThreadCopy = [...globals.mainThread];
     const lastMessage = mainThreadCopy[mainThreadCopy.length - 1];
     const contentWithoutString = lastMessage.content.replace(/<[^>]+>/g, '');
-    // if(!audioIntonationString){
-    //     audioIntonationString = ""
-    // }
-    // lastMessage.content = contentWithoutString + `\n <${audioIntonationString}>`;
+    if(!audioIntonationString){
+        audioIntonationString = ""
+    }
+    lastMessage.content = contentWithoutString + `\n <${audioIntonationString}>`;
 
     // console.log("mainThreadCopy", mainThreadCopy)
     try {
