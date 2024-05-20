@@ -151,7 +151,7 @@ wss.on('connection', (ws, req) => {
             globals,
             forwardSocket
         })
-    } else if (ip.startsWith("192.76") || ip.startsWith("209.2")) {
+    } else if (ip.startsWith("192.76") || ip.startsWith("209.2") || ip.startsWith("178.193") ) {
         console.log("frontend socket connected")
         frontendSocket.ws = ws;
         while (globals.mainThread.length > 1) {
