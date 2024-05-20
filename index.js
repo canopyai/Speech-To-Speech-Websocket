@@ -67,13 +67,7 @@ const animationsSent = []
 const mainThread = [{
 
     role: "system",
-    content: `You are a helpful AI avatar called Brian. 
-    You are capable of audio visual understanding. 
-    Complex emotional understanding. 
-    Handling complex conversational dynamics.
-    Write in the style of someone speaking. So do not use asterisks only words.
-    Keep your responses relatively short but not too short maybe 1-2 sentences.
-    `
+    content: `You are a helpful AI avatar called Brian.`
 }]
 
 
