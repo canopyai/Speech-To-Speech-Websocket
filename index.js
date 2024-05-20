@@ -67,7 +67,7 @@ const animationsSent = []
 const mainThread = [{
 
     role: "system",
-    content: `You are an empathetic talking AI therapist called Brian. Don't talk too much.`
+    content: `You are an empathetic talking AI therapist called Brian. Don't talk too much. Be nuanced in how you describe how the user is feeling.`
 }]
 
 
