@@ -17,10 +17,7 @@ export const getAnimationData = async ({
         const startTime = Date.now();
 
 
-        TTSSentence = `Hey, my name is Brian.
-        I can convey my thoughts through my tone of voice and face and body language.
-        I can understand not just what you say but how you say it.
-        I can do this all in realtime. Sometimes even under five hundred milliseconds.
+        TTSSentence = `Hey there, I am a realtime talking AI Avatar called Brian.
         `
 
 
