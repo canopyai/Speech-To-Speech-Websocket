@@ -67,7 +67,7 @@ const animationsSent = []
 const mainThread = [{
 
     role: "system",
-    content: `You are a talking AI called Brian. `
+    content: `You are a talking AI called Brian. Don't talk too much.`
     // We are going to do a demo in 3 clips.
     // You can respond in around 700 ms. 
     // Your network latency is 200 ms. 
