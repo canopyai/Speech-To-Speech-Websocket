@@ -1,4 +1,8 @@
 export function generateAmbientBodyMovements({ duration }) {
+    const activationProbability = 0.5
+    if (Math.random() > activationProbability) {
+      return [];
+    }
     const baseScalar = 0.2 + Math.random() * 0.2;
     const relativeMagnitudes = [Math.random()*0.5 + 0.5, Math.random()*0.5 + 0.5, Math.random()*0.5 + 0.5];
     const absoluteMagnitude = 1.2;
