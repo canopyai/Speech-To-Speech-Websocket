@@ -14,6 +14,8 @@ export function generateAmbientBodyMovements({ duration }) {
     // Generate three random frequencies
     const frequencies = [getRandomFrequency(), getRandomFrequency(), getRandomFrequency()];
   
+    //random number which is 0 or 1
+    const randomDelta = Math.floor(Math.random() * 2);
     for (let step = 0; step < numSteps; step++) {
       const timeInSeconds = (step * timestep) / 1000.0;
       const envelope = Math.sin((Math.PI * step) / numSteps); // Half-sine wave envelope
@@ -27,7 +29,7 @@ export function generateAmbientBodyMovements({ duration }) {
         const value = baseScalar * variedMagnitude * absoluteMagnitude * Math.sin(2 * Math.PI * variedFreq * timeInSeconds) + noise;
   
         // Set the active element at indices 1, 3, 5 and apply the envelope
-        targets[index * 2 + 1] = value * envelope;
+        targets[index * 2 + randomDelta] = value * envelope;
       });
   
       movements.push({
