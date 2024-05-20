@@ -17,9 +17,6 @@ export const getAnimationData = async ({
         const startTime = Date.now();
 
 
-        TTSSentence = `Hey there guys, I am a realtime talking AI Avatar called Brian. I am capable of understanding and expressing empathy through tone of voice and body language.
-        `
-
 
         if (globals.conversationIndex > currentConversationIndex) return
         try {
