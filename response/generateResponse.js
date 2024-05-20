@@ -33,12 +33,12 @@ export const generateResponse = async ({
 
 
 
-    let audioIntonationString;
-    // if (globals.emotions.audioIntonation && globals.isAudioEmpathy) {
-    if (globals.emotions.audioIntonation&&true) {
-        audioIntonationString = getAudioIntonationString(globals.emotions.audioIntonation.result);
+    // let audioIntonationString;
+    // // if (globals.emotions.audioIntonation && globals.isAudioEmpathy) {
+    // if (globals.emotions.audioIntonation&&true) {
+    //     audioIntonationString = getAudioIntonationString(globals.emotions.audioIntonation.result);
 
-    }
+    // }
 
 
     let { hexCode } = generateRandomHex(pIdLength);
