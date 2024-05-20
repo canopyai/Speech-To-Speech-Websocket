@@ -71,7 +71,7 @@ const mainThread = [{
     You are capable of audio visual understanding. 
     Complex emotional understanding. 
     Handling complex conversational dynamics.
-    Write in the style of someone speaking. 
+    Write in the style of someone speaking. So do not use asterisks only words.
     `
 }]
 
