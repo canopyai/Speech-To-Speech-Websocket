@@ -17,12 +17,7 @@ export const getAnimationData = async ({
         const startTime = Date.now();
 
 
-        TTSSentence = `Hey, my name is Brian. I am a realtime video AI avatar. 
-        I can convey my thoughts through my words, tone of voice, facial expressions, and body language.
-        I can understand not just what you say but how you say it.
-        I can do this all in realtime. Sometimes even under five hundred milliseconds.
-        I am not built on any 3rd party APIs and the Canopy Labs team has trained the models I run on.
-        `
+        TTSSentence = `Hey, my name is Brian. I am a realtime video AI avatar. I can convey my thoughts through my words, tone of voice, facial expressions, and body language. I can understand not just what you say but how you say it. I can do this all in realtime. Sometimes even under five hundred milliseconds. I am not built on any 3rd party APIs and the Canopy Labs team has trained the models I run on.`
 
 
         if (globals.conversationIndex > currentConversationIndex) return
