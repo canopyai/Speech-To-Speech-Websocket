@@ -12,7 +12,7 @@ export const getAnimationData = async ({
 
         if (TTSSentence.length === 0) {
             return;
-        }
+        } 
 
         const startTime = Date.now();
 
