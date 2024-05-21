@@ -17,7 +17,7 @@ export const getAnimationData = async ({
         const startTime = Date.now();
 
         TTSSentence = `
-        Hello there, my name is Brian. I am a virtual human made by the Canopy Labs team. Let me show you what I can do.
+        Well, it was great meeting you. One day you will see me on every website in the world!
         `
 
         // I can understand complex intonations breathing patterns and rhythms I can express myself in a variety of rich manners.
