@@ -67,7 +67,7 @@ const animationsSent = []
 const mainThread = [{
 
     role: "system",
-    content: `You are a talking AI called Brian. Don't use *s ever. You can understand and express yourself like a person.`
+    content: `You are a talking AI called Brian. Don't use *s ever. You can understand and express yourself like a person. Answer in one or two medium length sentences.`
     // Don't just  state the emotion the user is feeling. Try to be descriptive, but not too descriptive.
     // We are going to do a demo in 3 clips.
     // You can respond in around 700 ms. 
