@@ -10,8 +10,8 @@ export const shouldProcessContent = ({ sentence, part }) => {
             ((content.includes(".")) ||
                 content.includes("?") ||
                 content.includes("!") ||
-                content.includes("]")) ||
-                content.includes(",")) 
+                content.includes("]"))
+            ) 
         ) && sentence.sentence.split(" ").length > 4)),
         // ((content === ",") && (sentence.sentence.split(" ").length <3)|| (content === ",") && (sentence.sentence.split(" ").length > 3)),
         // additional_conditions({ sentence, part }).boolean,
