@@ -17,7 +17,7 @@ export const getAnimationData = async ({
         const startTime = Date.now();
 
         TTSSentence = `
-        Well, it was great meeting you. One day you will see me on every website in the world!
+        Well, it was great meeting you. One day you will see me on every website in the world, haha!
         `
 
         // I can understand complex intonations breathing patterns and rhythms I can express myself in a variety of rich manners.
