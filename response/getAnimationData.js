@@ -16,6 +16,9 @@ export const getAnimationData = async ({
 
         const startTime = Date.now();
 
+        TTSSentence = `
+        Hello there. My name is Brian. I am an AI avatar and I am excited to show off my capabilities. I can understand complex intonations, breathing patterns and rhythms. I can express myself in a variety of rich manners.
+        `
 
 
 
@@ -27,10 +30,7 @@ export const getAnimationData = async ({
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    text: ```Hello there, my name is Brian, 
-                    I am an AI avatar and I am excited to show off my capabilities,
-                    I can understand complex intonations, breathing patterns and rhythms, 
-                    I can express myself in a variety of rich manners.```,
+                    text: TTSSentence,
                     isFirstChunk: isFirstChunk ? true : false,
                     add_post_padding: false,
                     voice_vector: globals.voiceVector,
