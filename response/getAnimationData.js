@@ -31,7 +31,7 @@ export const getAnimationData = async ({
                     add_post_padding: false,
                     voice_vector: globals.voiceVector,
                     // speed:0.97
-                    speed: 1
+                    speed: 0.95
                 })
             });
 
