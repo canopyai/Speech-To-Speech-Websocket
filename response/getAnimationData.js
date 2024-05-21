@@ -17,7 +17,7 @@ export const getAnimationData = async ({
         const startTime = Date.now();
 
         TTSSentence = ```
-        Hello there. My name is Brian. I am an AI avatar and I am excited to show off my capabilities. I can understand complex intonations, breathing patterns and rhythms. I can express myself in a variety of rich manners.
+        Hello there, my name is Brian, Iam an AI avatar and I am excited to show off my capabilities, I can understand complex intonations, breathing patterns and rhythms, I can express myself in a variety of rich manners.
         ```
 
 
