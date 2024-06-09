@@ -31,7 +31,7 @@ export function manageBodyMovements({
         console.log("sending ambient movements")
         globals.forwardSocket.ws.send(JSON.stringify({
             visemes: visemesWithEyes, 
-            messageType:"ambientBodyMovements"
+            messageType:"ambientBodyMovements" 
         }))
 
     } else {

@@ -49,7 +49,7 @@ export const manageProcessingQueue = ({
 
 
             const bodyObject = {
-                messageType: "bodyMovements",
+                messageType: "ambientBodyMovements",
                 visemes: visemesWithEyes,
             }
 
