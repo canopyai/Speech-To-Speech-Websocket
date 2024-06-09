@@ -12,11 +12,7 @@ export function manageBodyMovements({
             duration: overAllDuration,
             globals
         })
-        // visemes = [{
-        //     targets: [0, 0, 0, 0, 1, 0],
-        //     duration: 300
-        // }, 
-        // ]
+   
 
 
 
@@ -35,7 +31,7 @@ export function manageBodyMovements({
         console.log("sending ambient movements")
         globals.forwardSocket.ws.send(JSON.stringify({
             visemes: visemesWithEyes, 
-            messageType:"bodyMovements"
+            messageType:"ambientBodyMovements"
         }))
 
     } else {
